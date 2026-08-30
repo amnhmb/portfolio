@@ -460,7 +460,7 @@ function App() {
               <div className="space-y-16">
                 {Array.isArray(eduList) && eduList.map((edu, index) => (
                   <div key={index} className="relative pl-8 border-l border-gray-200">
-                    <div className="absolute w-3 h-3 rounded-full bg-gray-300 -left-[6.5px] top-2 ring-4 ring-[#ECECEC]"></div>
+                    <div className="absolute w-3 h-3 rounded-full bg-accent -left-[6.5px] top-2 ring-4 ring-[#ECECEC]"></div>
                     <div className="mb-4">
                       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-2">
                         <h3 className="text-2xl font-bold text-[#111111] max-w-md leading-tight">{edu.degree}</h3>
