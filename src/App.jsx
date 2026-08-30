@@ -640,7 +640,7 @@ function App() {
                 <a href="mailto:aimannhambalii@gmail.com" className="px-4 py-2.5 text-sm sm:text-base sm:px-8 sm:py-4 bg-[#111111] text-white rounded-md font-medium hover:bg-accent hover:scale-[0.98] transition-all duration-300">
                   {t('hero.contact')}
                 </a>
-                <a href="/Aiman_Hambali_CV.docx" download className="px-4 py-2.5 text-sm sm:text-base sm:px-8 sm:py-4 border border-gray-300 text-[#111111] rounded-md font-medium hover:border-accent hover:text-accent transition-all duration-300">
+                <a href={`${import.meta.env.BASE_URL}Aiman_Hambali_CV.docx`} download className="px-4 py-2.5 text-sm sm:text-base sm:px-8 sm:py-4 border border-gray-300 text-[#111111] rounded-md font-medium hover:border-accent hover:text-accent transition-all duration-300">
                   {t('hero.resume')}
                 </a>
               </div>
@@ -659,8 +659,8 @@ function App() {
             <div className="md:col-span-5 relative w-full aspect-square">
               <div className="absolute inset-0 bg-gray-100 border border-gray-200 rounded-lg translate-x-4 translate-y-4"></div>
               <img 
-                src="/profile-photo.jpg" 
-                alt="Aiman Hambali" 
+                src={`${import.meta.env.BASE_URL}profile-photo.jpg`}
+                alt="Aiman Hambali"
                 className="absolute inset-0 w-full h-full object-cover rounded-lg grayscale hover:grayscale-0 transition-all duration-700 z-10 border border-gray-200"
               />
             </div>
