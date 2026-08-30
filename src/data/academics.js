@@ -155,6 +155,11 @@ export const academics = {
           { code: 'MPU3482', name: 'Personal Financial Management 2', grade: 'S', credit: 2 },
         ],
       },
+      {
+        sem: 7, term: 'Jul 2025 – Jan 2026', gpa: null, cgpa: 3.60, credits: null,
+        note: 'Industrial Training (Latihan Industri) — Unisem (M) Berhad, PM Technician (Intern). Preventive maintenance on semiconductor test equipment.',
+        courses: [],
+      },
     ],
   },
 };
