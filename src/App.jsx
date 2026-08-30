@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, Suspense, lazy } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Globe, Mail } from 'lucide-react';
+import { Globe, Mail, X } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -9,18 +9,15 @@ import '@fontsource/geist-sans/500.css';
 import '@fontsource/geist-sans/600.css';
 import '@fontsource/geist-sans/700.css';
 import '@fontsource/geist-mono/400.css';
+import { academics, diplomaGPA, degreeGPA } from './data/academics';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Scene = lazy(() => import('./Scene'));
 
-// PLACEHOLDER ARRAYS FOR ACADEMIC PERFORMANCE (GPA)
-// God can easily inject the real pointers here. 
-// y-axis is scaled automatically between 3.0 and 4.0.
-export const diplomaGPA = [3.30, 3.78, 3.59, 3.67, 3.67]; 
-export const degreeGPA = [3.61, 3.19, 3.64, 3.65, 3.79, 3.89];
-
-function SimpleLineChart({ data, title }) {
+function SimpleLineChart({ data, title, type, onPointClick }) {
+  const [hoveredIdx, setHoveredIdx] = useState(null);
+  
   if (!data || data.length === 0) return null;
   const w = 300;
   const h = 100;
@@ -35,7 +32,7 @@ function SimpleLineChart({ data, title }) {
   const points = data.map((val, i) => `${getX(i)},${getY(val)}`).join(' ');
   
   return (
-    <div className="flex flex-col items-start mt-4">
+    <div className="flex flex-col items-start mt-4 relative w-full overflow-visible">
       <span className="text-xs font-mono text-gray-500 mb-2 uppercase tracking-widest">{title}</span>
       <svg width="100%" viewBox={`0 0 ${w} ${h}`} className="overflow-visible stroke-[#e11d48]">
         {/* Grid lines */}
@@ -44,14 +41,36 @@ function SimpleLineChart({ data, title }) {
         <line x1={padding} y1={getY(3.0)} x2={w-padding} y2={getY(3.0)} stroke="#e5e7eb" strokeWidth="1" strokeDasharray="4" />
         
         {/* Data Line */}
-        <polyline fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" points={points} />
+        <polyline fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" points={points} pointerEvents="none" />
         
         {/* Data Points */}
         {data.map((val, i) => (
-          <g key={i}>
-            <circle cx={getX(i)} cy={getY(val)} r="3" fill="#FAFAFA" strokeWidth="2" />
-            <text x={getX(i)} y={getY(val) - 10} fontSize="8" fill="#111111" textAnchor="middle" className="font-mono">{val.toFixed(2)}</text>
-            <text x={getX(i)} y={h} fontSize="8" fill="#9ca3af" textAnchor="middle" className="font-mono">S{i+1}</text>
+          <g 
+            key={i} 
+            className="cursor-pointer transition-transform duration-300 origin-center" 
+            style={{ transformOrigin: `${getX(i)}px ${getY(val)}px` }}
+            onMouseEnter={() => setHoveredIdx(i)}
+            onMouseLeave={() => setHoveredIdx(null)}
+            onClick={() => onPointClick(type, i)}
+          >
+            {hoveredIdx === i && (
+              <rect x={getX(i) - 25} y={getY(val) - 32} width="50" height="20" rx="4" fill="#111111" />
+            )}
+            <circle 
+              cx={getX(i)} cy={getY(val)} r={hoveredIdx === i ? "5" : "4"} 
+              fill={hoveredIdx === i ? "#e11d48" : "#FAFAFA"} 
+              strokeWidth="2" 
+              stroke="#e11d48"
+            />
+            {hoveredIdx === i ? (
+              <text x={getX(i)} y={getY(val) - 18} fontSize="10" fill="#FAFAFA" textAnchor="middle" className="font-mono font-bold pointer-events-none">{val.toFixed(2)}</text>
+            ) : (
+              <text x={getX(i)} y={getY(val) - 10} fontSize="8" fill="#111111" textAnchor="middle" className="font-mono pointer-events-none">{val.toFixed(2)}</text>
+            )}
+            <text x={getX(i)} y={h} fontSize="8" fill="#9ca3af" textAnchor="middle" className="font-mono pointer-events-none">S{i+1}</text>
+            
+            {/* Invisible larger hit area for easier clicking */}
+            <circle cx={getX(i)} cy={getY(val)} r="15" fill="transparent" />
           </g>
         ))}
       </svg>
@@ -59,9 +78,135 @@ function SimpleLineChart({ data, title }) {
   );
 }
 
+function SlideOverDrawer({ transcript, onClose, t }) {
+  const drawerRef = useRef();
+
+  useEffect(() => {
+    if (!transcript) return;
+    
+    document.body.style.overflow = 'hidden';
+    
+    const focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+    const focusableContent = drawerRef.current?.querySelectorAll(focusableElements);
+    const firstFocusableElement = focusableContent?.[0];
+    const lastFocusableElement = focusableContent?.[focusableContent.length - 1];
+
+    if (firstFocusableElement) {
+      firstFocusableElement.focus();
+    }
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') onClose();
+      
+      if (e.key === 'Tab') {
+        if (e.shiftKey) {
+          if (document.activeElement === firstFocusableElement) {
+            lastFocusableElement?.focus();
+            e.preventDefault();
+          }
+        } else {
+          if (document.activeElement === lastFocusableElement) {
+            firstFocusableElement?.focus();
+            e.preventDefault();
+          }
+        }
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = 'unset';
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [transcript, onClose]);
+
+  const isOpen = !!transcript;
+  const data = isOpen ? academics[transcript.type] : null;
+  const semData = isOpen ? data.semesters[transcript.semIndex] : null;
+
+  return (
+    <div 
+      className={`fixed inset-0 z-[100] flex justify-end ${isOpen ? 'pointer-events-auto' : 'pointer-events-none'}`} 
+      role="dialog" 
+      aria-modal="true" 
+      aria-labelledby="drawer-title"
+    >
+      <div 
+        className={`fixed inset-0 bg-black/20 backdrop-blur-sm transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0'}`} 
+        onClick={onClose} 
+        aria-hidden="true" 
+      />
+      
+      <div 
+        ref={drawerRef}
+        className={`relative w-full max-w-md h-full bg-[#FAFAFA] border-l border-gray-200 shadow-2xl flex flex-col transform transition-transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
+      >
+        {isOpen && semData && data && (
+          <>
+            <div className="flex items-center justify-between p-6 border-b border-gray-200">
+              <div>
+                <h2 id="drawer-title" className="text-xl font-bold text-[#111111] tracking-tight">{data.level}</h2>
+                <p className="text-sm text-gray-500 font-mono tracking-widest uppercase mt-1">{t('education.semester')} {semData.sem} — {semData.term}</p>
+              </div>
+              <button onClick={onClose} className="p-2 text-gray-400 hover:text-[#111111] hover:bg-gray-100 rounded-md transition-colors" aria-label="Close">
+                <X size={20} />
+              </button>
+            </div>
+            
+            <div className="flex-1 overflow-y-auto p-6">
+              <div className="flex items-center justify-between mb-8 p-4 bg-gray-50 rounded-lg border border-gray-100">
+                <div>
+                  <p className="text-xs text-gray-500 font-mono uppercase tracking-widest mb-1">GPA</p>
+                  <p className="text-3xl font-bold text-[#e11d48]">{semData.gpa !== null ? semData.gpa.toFixed(2) : '—'}</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-xs text-gray-500 font-mono uppercase tracking-widest mb-1">CGPA</p>
+                  <p className="text-3xl font-bold text-[#111111]">{semData.cgpa.toFixed(2)}</p>
+                </div>
+              </div>
+
+              {semData.note ? (
+                <div className="p-4 bg-gray-50 border border-gray-200 rounded-lg text-gray-600 font-light text-sm italic">
+                  {semData.note}
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  <div className="grid grid-cols-12 text-xs font-mono text-gray-400 uppercase tracking-widest border-b border-gray-200 pb-2">
+                    <div className="col-span-8">{t('education.subject')}</div>
+                    <div className="col-span-2 text-center">{t('education.grade')}</div>
+                    <div className="col-span-2 text-right">{t('education.credit')}</div>
+                  </div>
+                  
+                  <ul className="space-y-3">
+                    {semData.courses.map((course, i) => (
+                      <li key={i} className="grid grid-cols-12 items-start text-sm border-b border-gray-100 pb-3 last:border-0">
+                        <div className="col-span-8 pr-4">
+                          <p className="font-medium text-[#111111] leading-snug">{course.name}</p>
+                          <p className="text-gray-400 font-mono text-xs mt-1">{course.code}</p>
+                        </div>
+                        <div className="col-span-2 text-center font-bold text-[#e11d48] self-center">
+                          {course.grade}
+                        </div>
+                        <div className="col-span-2 text-right font-mono text-gray-500 self-center">
+                          {course.credit}
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function App() {
   const { t, i18n } = useTranslation();
   const [lang, setLang] = useState(i18n.language);
+  const [selectedTranscript, setSelectedTranscript] = useState(null); // { type, semIndex }
   
   const mainRef = useRef();
   const heroRef = useRef();
@@ -74,6 +219,10 @@ function App() {
     const newLang = lang === 'en' ? 'ms' : 'en';
     i18n.changeLanguage(newLang);
     setLang(newLang);
+  };
+
+  const handlePointClick = (type, semIndex) => {
+    setSelectedTranscript({ type, semIndex });
   };
 
   useEffect(() => {
@@ -122,6 +271,14 @@ function App() {
   
   return (
     <div className="min-h-screen font-sans selection:bg-accent selection:text-white" ref={mainRef}>
+      
+      {/* SlideOver Drawer */}
+      <SlideOverDrawer 
+        transcript={selectedTranscript} 
+        onClose={() => setSelectedTranscript(null)} 
+        t={t} 
+      />
+
       {/* Navbar */}
       <nav className="fixed top-0 w-full z-50 bg-[#FAFAFA]/80 backdrop-blur-xl border-b border-gray-200/50">
         <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
@@ -219,7 +376,18 @@ function App() {
                   <div key={index} className="relative pl-8 border-l border-gray-200">
                     <div className="absolute w-3 h-3 rounded-full bg-gray-300 -left-[6.5px] top-2 ring-4 ring-[#FAFAFA]"></div>
                     <div className="mb-4">
-                      <h3 className="text-2xl font-bold mb-2 text-[#111111]">{edu.degree}</h3>
+                      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-2">
+                        <h3 className="text-2xl font-bold text-[#111111] max-w-md leading-tight">{edu.degree}</h3>
+                        {edu.type && (
+                          <button 
+                            onClick={() => handlePointClick(edu.type, 0)} 
+                            className="shrink-0 px-3 py-1 bg-gray-100 text-[#111111] rounded text-xs font-medium hover:bg-gray-200 hover:text-accent transition-colors"
+                          >
+                            {t('education.viewTranscript')}
+                          </button>
+                        )}
+                      </div>
+                      
                       <div className="flex flex-wrap items-center gap-4 text-sm font-mono tracking-widest uppercase mb-1">
                         <span className="text-accent">{edu.school}</span>
                         <span className="text-gray-400">—</span>
@@ -227,10 +395,16 @@ function App() {
                       </div>
                       <span className="text-xs text-gray-400 font-mono tracking-widest uppercase">{edu.period}</span>
                     </div>
-                    {edu.details && (
-                      <p className="text-gray-600 text-lg leading-relaxed max-w-2xl font-light mt-4">
-                        {edu.details}
-                      </p>
+                    
+                    {Array.isArray(edu.details) && (
+                      <ul className="text-gray-600 text-base leading-relaxed font-light mt-4 space-y-2">
+                        {edu.details.map((detail, idx) => (
+                          <li key={idx} className="flex items-start gap-3">
+                            <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0"></span>
+                            <span>{detail}</span>
+                          </li>
+                        ))}
+                      </ul>
                     )}
                     
                     {edu.results && (
@@ -251,13 +425,13 @@ function App() {
               </div>
             </div>
             
-            <div className="md:col-span-5 bg-white border border-gray-200 rounded-lg p-8 self-start shadow-sm mt-16 md:mt-0">
+            <div className="md:col-span-5 bg-white border border-gray-200 rounded-lg p-8 self-start shadow-sm mt-16 md:mt-0 sticky top-32">
               <h3 className="text-2xl font-bold mb-8 text-[#111111] tracking-tight">
                 {t('education.performance')}
               </h3>
-              <SimpleLineChart data={degreeGPA} title="Degree GPA (Sem 1 - 6)" />
+              <SimpleLineChart data={degreeGPA} title="Degree GPA (Sem 1 - 6)" type="degree" onPointClick={handlePointClick} />
               <div className="h-8"></div>
-              <SimpleLineChart data={diplomaGPA} title="Diploma GPA (Sem 1 - 5)" />
+              <SimpleLineChart data={diplomaGPA} title="Diploma GPA (Sem 1 - 5)" type="diploma" onPointClick={handlePointClick} />
             </div>
           </div>
         </section>
@@ -311,8 +485,8 @@ function App() {
           <ul className="grid md:grid-cols-2 gap-6 max-w-4xl">
             {Array.isArray(t('activities.items', { returnObjects: true })) && t('activities.items', { returnObjects: true }).map((activity, index) => (
               <li key={index} className="flex items-center gap-4 text-gray-600 text-lg font-light">
-                <span className="w-1.5 h-1.5 rounded-full bg-accent block"></span>
-                {activity}
+                <span className="w-1.5 h-1.5 rounded-full bg-accent block shrink-0"></span>
+                <span>{activity}</span>
               </li>
             ))}
           </ul>
