@@ -459,7 +459,7 @@ function App() {
               </h2>
               <div className="space-y-16">
                 {Array.isArray(eduList) && eduList.map((edu, index) => (
-                  <div key={index} className="relative pl-8 border-l border-gray-200">
+                  <div key={index} className="relative pl-8 border-l border-accent">
                     <div className="absolute w-3 h-3 rounded-full bg-accent -left-[6.5px] top-2 ring-4 ring-[#ECECEC]"></div>
                     <div className="mb-4">
                       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-2">
@@ -545,7 +545,7 @@ function App() {
           
           <div className="space-y-16">
             {Array.isArray(expList) && expList.map((exp, index) => (
-              <div key={index} className="relative pl-8 md:pl-12 border-l border-gray-200 ml-2 md:ml-4">
+              <div key={index} className="relative pl-8 md:pl-12 border-l border-accent ml-2 md:ml-4">
                 <div className="absolute w-3 h-3 rounded-full bg-accent -left-[6.5px] top-2 ring-4 ring-[#ECECEC]"></div>
                 <div className="mb-4">
                   <h3 className="text-2xl md:text-3xl font-bold mb-2 text-[#111111]">{exp.role}</h3>
