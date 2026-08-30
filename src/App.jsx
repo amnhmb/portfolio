@@ -303,6 +303,50 @@ function AnimatedTextNumber({ text }) {
   return <span ref={nodeRef}>{text}</span>;
 }
 
+// Terminal-style decode: characters resolve from random glyphs into the final
+// text, left to right. Lightweight (single rAF loop), respects reduced motion.
+function ScrambleText({ text, className, delay = 0 }) {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) { el.textContent = text; return; }
+
+    const glyphs = '!<>-_\\/[]{}=+*^?#01__';
+    const final = String(text);
+    let frame = 0;
+    let started = false;
+    let raf;
+    const revealPerFrame = 0.6; // characters locked in per frame
+
+    const tick = () => {
+      const revealed = Math.floor(frame * revealPerFrame);
+      let out = '';
+      for (let i = 0; i < final.length; i++) {
+        if (final[i] === ' ') { out += ' '; continue; }
+        out += i < revealed ? final[i] : glyphs[(Math.random() * glyphs.length) | 0];
+      }
+      el.textContent = out;
+      frame++;
+      if (revealed <= final.length) {
+        raf = requestAnimationFrame(tick);
+      } else {
+        el.textContent = final;
+      }
+    };
+
+    // scramble immediately, start resolving after the optional delay
+    el.textContent = final.replace(/[^ ]/g, () => glyphs[(Math.random() * glyphs.length) | 0]);
+    const timer = setTimeout(() => { started = true; raf = requestAnimationFrame(tick); }, delay);
+
+    return () => { clearTimeout(timer); if (raf) cancelAnimationFrame(raf); };
+  }, [text, delay]);
+
+  return <span ref={ref} className={className}>{text}</span>;
+}
+
 function App() {
   const { t, i18n } = useTranslation();
   const [lang, setLang] = useState(i18n.language);
@@ -470,11 +514,11 @@ function App() {
           <div className="w-full grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
             {/* Left Col: Text */}
             <div className="max-w-2xl hero-content order-2 lg:order-1">
-              <p className="hero-el text-accent font-mono mb-6 text-sm tracking-widest uppercase">
-                // {t('hero.greeting')}
+              <p className="text-accent font-mono mb-6 text-sm tracking-widest uppercase">
+                // <ScrambleText text={t('hero.greeting')} />
               </p>
-              <h1 className="hero-el text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-6 leading-[1.05] text-[#111111]">
-                {t('hero.name')}
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-6 leading-[1.05] text-[#111111]">
+                <ScrambleText text={t('hero.name')} delay={250} />
               </h1>
               <h2 className="hero-el text-xl md:text-3xl font-medium text-gray-500 mb-8 tracking-tight">
                 {t('hero.role')}
