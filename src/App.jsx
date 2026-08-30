@@ -305,7 +305,7 @@ function AnimatedTextNumber({ text }) {
 
 // Terminal-style decode: characters resolve from random glyphs into the final
 // text, left to right. Lightweight (single rAF loop), respects reduced motion.
-function ScrambleText({ text, className, delay = 0, trigger = 'mount' }) {
+function ScrambleText({ text, className, delay = 0, trigger = 'mount', active = true }) {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -313,6 +313,8 @@ function ScrambleText({ text, className, delay = 0, trigger = 'mount' }) {
     if (!el) return;
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduce) { el.textContent = text; return; }
+    // Gate for mount-triggered decodes (e.g. hero waits for the splash to end).
+    if (trigger === 'mount' && !active) { el.textContent = ''; return; }
 
     const glyphs = '!<>-_\\/[]{}=+*^?#01__';
     const final = String(text);
@@ -349,7 +351,7 @@ function ScrambleText({ text, className, delay = 0, trigger = 'mount' }) {
     }
 
     return () => { clearTimeout(timer); if (raf) cancelAnimationFrame(raf); if (io) io.disconnect(); };
-  }, [text, delay, trigger]);
+  }, [text, delay, trigger, active]);
 
   return <span ref={ref} className={className}>{text}</span>;
 }
@@ -429,6 +431,11 @@ function App() {
   const [showSplash, setShowSplash] = useState(() => {
     try { return sessionStorage.getItem('amnhmb_splash') !== '1'; } catch (e) { return true; }
   });
+  // Hero animations wait until the splash is gone (or start immediately if the
+  // splash was already shown this session).
+  const [heroReady, setHeroReady] = useState(() => {
+    try { return sessionStorage.getItem('amnhmb_splash') === '1'; } catch (e) { return false; }
+  });
   const [selectedTranscript, setSelectedTranscript] = useState(null); // { type, semIndex }
   const [isDesktop, setIsDesktop] = useState(true);
 
@@ -465,12 +472,12 @@ function App() {
       const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       
       if (!isReducedMotion) {
-        // Hold the rest of the hero hidden until the decode animation on the
-        // name + greeting has resolved, then reveal it.
-        gsap.fromTo(".hero-el",
-          { y: 40, opacity: 0 },
-          { y: 0, opacity: 1, duration: 1, stagger: 0.12, ease: "power4.out", delay: 1.3 }
-        );
+        // Keep the rest of the hero hidden; reveal it only once the splash is
+        // gone and the name has decoded (heroReady), so the intro is sequential.
+        gsap.set(".hero-el", { y: 40, opacity: 0 });
+        if (heroReady) {
+          gsap.to(".hero-el", { y: 0, opacity: 1, duration: 1, stagger: 0.12, ease: "power4.out", delay: 1.1 });
+        }
 
         gsap.to(".hero-content", {
           yPercent: 20,
@@ -535,7 +542,7 @@ function App() {
     }, mainRef);
 
     return () => ctx.revert();
-  }, [lang]);
+  }, [lang, heroReady]);
 
   const skillsList = t('skills.items', { returnObjects: true }) || [];
   const expList = t('experience.items', { returnObjects: true }) || [];
@@ -544,7 +551,7 @@ function App() {
   return (
     <div className="min-h-screen font-sans selection:bg-accent selection:text-white" ref={mainRef}>
 
-      {showSplash && <SplashScreen onDone={() => setShowSplash(false)} />}
+      {showSplash && <SplashScreen onDone={() => { setShowSplash(false); setHeroReady(true); }} />}
 
       {/* SlideOver Drawer */}
       <SlideOverDrawer 
@@ -620,10 +627,10 @@ function App() {
             {/* greeting + name: overlay over photo on mobile, static left column on desktop */}
             <div className="hero-content absolute top-6 left-1 z-10 pr-2 max-w-[82%] lg:static lg:top-auto lg:max-w-2xl lg:col-start-1 lg:row-start-1 lg:self-center lg:pr-0">
               <p className="text-accent font-mono mb-2 sm:mb-6 text-[10px] sm:text-sm tracking-widest uppercase">
-                // <ScrambleText text={t('hero.greeting')} />
+                // <ScrambleText text={t('hero.greeting')} active={heroReady} />
               </p>
               <h1 className="whitespace-pre-line text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[1.05] text-[#111111]">
-                <ScrambleText text={t('hero.name').replace(/ Bin /, '\nBin ')} delay={250} />
+                <ScrambleText text={t('hero.name').replace(/ Bin /, '\nBin ')} delay={250} active={heroReady} />
               </h1>
             </div>
 
