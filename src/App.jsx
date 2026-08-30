@@ -79,7 +79,7 @@ function SimpleLineChart({ data, title, type, onPointClick }) {
   );
 }
 
-function SlideOverDrawer({ transcript, onClose, t }) {
+function SlideOverDrawer({ transcript, onClose, onSelectTranscript, t }) {
   const drawerRef = useRef();
 
   useEffect(() => {
@@ -98,6 +98,14 @@ function SlideOverDrawer({ transcript, onClose, t }) {
 
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') onClose();
+      
+      const data = academics[transcript.type];
+      if (e.key === 'ArrowLeft' && transcript.semIndex > 0) {
+        onSelectTranscript({ type: transcript.type, semIndex: transcript.semIndex - 1 });
+      }
+      if (e.key === 'ArrowRight' && transcript.semIndex < data.semesters.length - 1) {
+        onSelectTranscript({ type: transcript.type, semIndex: transcript.semIndex + 1 });
+      }
       
       if (e.key === 'Tab') {
         if (e.shiftKey) {
@@ -119,7 +127,7 @@ function SlideOverDrawer({ transcript, onClose, t }) {
       document.body.style.overflow = 'unset';
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [transcript, onClose]);
+  }, [transcript, onClose, onSelectTranscript]);
 
   const isOpen = !!transcript;
   const data = isOpen ? academics[transcript.type] : null;
@@ -144,14 +152,52 @@ function SlideOverDrawer({ transcript, onClose, t }) {
       >
         {isOpen && semData && data && (
           <>
-            <div className="flex items-center justify-between p-6 border-b border-gray-200">
-              <div>
-                <h2 id="drawer-title" className="text-xl font-bold text-[#111111] tracking-tight">{data.level}</h2>
-                <p className="text-sm text-gray-500 font-mono tracking-widest uppercase mt-1">{t('education.semester')} {semData.sem} — {semData.term}</p>
+            <div className="flex flex-col p-6 border-b border-gray-200">
+              <div className="flex items-center justify-between mb-4">
+                <div>
+                  <h2 id="drawer-title" className="text-xl font-bold text-[#111111] tracking-tight">{data.level}</h2>
+                  <p className="text-sm text-gray-500 font-mono tracking-widest uppercase mt-1">{t('education.semester')} {semData.sem} — {semData.term}</p>
+                </div>
+                <button onClick={onClose} className="p-2 text-gray-400 hover:text-[#111111] hover:bg-gray-100 rounded-md transition-colors" aria-label="Close">
+                  <X size={20} />
+                </button>
               </div>
-              <button onClick={onClose} className="p-2 text-gray-400 hover:text-[#111111] hover:bg-gray-100 rounded-md transition-colors" aria-label="Close">
-                <X size={20} />
-              </button>
+              
+              <div className="flex items-center justify-between">
+                <button 
+                  onClick={() => transcript.semIndex > 0 && onSelectTranscript({ type: transcript.type, semIndex: transcript.semIndex - 1 })}
+                  disabled={transcript.semIndex === 0}
+                  className="px-2 py-1 text-gray-400 disabled:opacity-30 hover:text-[#111111] transition-colors"
+                  aria-label="Previous semester"
+                >
+                  ‹
+                </button>
+                <div className="flex gap-1">
+                  {data.semesters.map((s, i) => (
+                    <button
+                      key={i}
+                      onClick={() => onSelectTranscript({ type: transcript.type, semIndex: i })}
+                      className={`w-8 h-8 rounded-full text-xs font-mono flex items-center justify-center transition-colors ${
+                        transcript.semIndex === i 
+                          ? 'bg-[#e11d48] text-white font-bold' 
+                          : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+                      }`}
+                      aria-selected={transcript.semIndex === i}
+                      role="tab"
+                    >
+                      S{s.sem}
+                    </button>
+                  ))}
+                </div>
+                <button 
+                  onClick={() => transcript.semIndex < data.semesters.length - 1 && onSelectTranscript({ type: transcript.type, semIndex: transcript.semIndex + 1 })}
+                  disabled={transcript.semIndex === data.semesters.length - 1}
+                  className="px-2 py-1 text-gray-400 disabled:opacity-30 hover:text-[#111111] transition-colors"
+                  aria-label="Next semester"
+                >
+                  ›
+                </button>
+              </div>
             </div>
             
             <div className="flex-1 overflow-y-auto p-6">
@@ -277,6 +323,7 @@ function App() {
       <SlideOverDrawer 
         transcript={selectedTranscript} 
         onClose={() => setSelectedTranscript(null)} 
+        onSelectTranscript={setSelectedTranscript}
         t={t} 
       />
 
