@@ -400,33 +400,6 @@ function App() {
           }
         });
 
-              const lines = ref.current.querySelectorAll(".timeline-line");
-              if (lines.length > 0) {
-                gsap.to(lines, {
-                  scaleY: 1,
-                  duration: 1.5,
-                  stagger: 0.3,
-                  ease: "power3.inOut",
-                  scrollTrigger: {
-                    trigger: ref.current,
-                    start: "top 75%",
-                  }
-                });
-              }
-              const dots = ref.current.querySelectorAll(".timeline-dot");
-              if (dots.length > 0) {
-                gsap.to(dots, {
-                  scale: 1,
-                  duration: 0.5,
-                  stagger: 0.3,
-                  ease: "back.out(1.7)",
-                  scrollTrigger: {
-                    trigger: ref.current,
-                    start: "top 75%",
-                  }
-                });
-              }
-
       }
     }, mainRef);
 
