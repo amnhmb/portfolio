@@ -520,41 +520,41 @@ function App() {
             )}
           </div>
           
-          <div className="w-full grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+          <div className="w-full grid grid-cols-2 gap-4 sm:gap-8 lg:gap-8 items-center">
             {/* Left Col: Text */}
-            <div className="max-w-2xl hero-content order-2 lg:order-1">
-              <p className="text-accent font-mono mb-6 text-sm tracking-widest uppercase">
+            <div className="max-w-2xl hero-content order-1">
+              <p className="text-accent font-mono mb-3 sm:mb-6 text-[10px] sm:text-sm tracking-widest uppercase">
                 // <ScrambleText text={t('hero.greeting')} />
               </p>
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-6 leading-[1.05] text-[#111111]">
+              <h1 className="text-2xl sm:text-4xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-3 sm:mb-6 leading-[1.05] text-[#111111]">
                 <ScrambleText text={t('hero.name')} delay={250} />
               </h1>
-              <h2 className="hero-el text-xl md:text-3xl font-medium text-gray-500 mb-8 tracking-tight">
+              <h2 className="hero-el text-sm sm:text-xl md:text-3xl font-medium text-gray-500 mb-4 sm:mb-8 tracking-tight">
                 {t('hero.role')}
               </h2>
-              <p className="hero-el text-gray-600 text-lg md:text-xl mb-12 max-w-xl leading-relaxed font-light">
+              <p className="hero-el hidden sm:block text-gray-600 text-lg md:text-xl mb-12 max-w-xl leading-relaxed font-light">
                 {t('hero.description')}
               </p>
               
-              <div className="hero-el flex flex-wrap items-center gap-6">
-                <a href="mailto:aimannhambalii@gmail.com" className="px-8 py-4 bg-[#111111] text-white rounded-md font-medium hover:bg-accent hover:scale-[0.98] transition-all duration-300">
+              <div className="hero-el flex flex-wrap items-center gap-3 sm:gap-6">
+                <a href="mailto:aimannhambalii@gmail.com" className="px-4 py-2.5 text-sm sm:text-base sm:px-8 sm:py-4 bg-[#111111] text-white rounded-md font-medium hover:bg-accent hover:scale-[0.98] transition-all duration-300">
                   {t('hero.contact')}
                 </a>
-                <a href="/Aiman_Hambali_CV.docx" download className="px-8 py-4 border border-gray-300 text-[#111111] rounded-md font-medium hover:border-accent hover:text-accent transition-all duration-300">
+                <a href="/Aiman_Hambali_CV.docx" download className="px-4 py-2.5 text-sm sm:text-base sm:px-8 sm:py-4 border border-gray-300 text-[#111111] rounded-md font-medium hover:border-accent hover:text-accent transition-all duration-300">
                   {t('hero.resume')}
                 </a>
               </div>
-  
-              <div className="hero-el flex flex-wrap items-center gap-8 mt-16 text-gray-600">
+
+              <div className="hero-el hidden sm:flex flex-wrap items-center gap-8 mt-16 text-gray-600">
                 <span className="font-mono text-sm tracking-widest uppercase">aimannhambalii@gmail.com</span>
                 <span className="font-mono text-sm tracking-widest uppercase">+60 11-2550 7190</span>
               </div>
             </div>
 
             {/* Right Col: Image */}
-            <div className="hero-el order-1 lg:order-2 flex justify-center lg:justify-end w-full pointer-events-none">
-              <div 
-                className="relative w-72 sm:w-80 md:w-96 lg:w-[32rem]"
+            <div className="hero-el order-2 flex justify-center lg:justify-end w-full pointer-events-none">
+              <div
+                className="relative w-full sm:w-80 md:w-96 lg:w-[32rem]"
                 style={{
                   WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%)',
                   WebkitMaskComposite: 'source-in',
