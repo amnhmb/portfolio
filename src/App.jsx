@@ -377,16 +377,16 @@ function SplashScreen({ onDone }) {
 
     const glyphs = '!<>-_\\/[]{}=+*^?#01__';
     let raf, frame = 0;
-    const revealPerFrame = 0.18;
+    const revealPerFrame = 0.09;
     let lineTween, exitTween, holdTimer;
 
     const drawLine = () => {
       lineTween = gsap.to(line, {
-        scaleX: 1, duration: 0.6, ease: 'power3.inOut',
+        scaleX: 1, duration: 1.0, ease: 'power3.inOut',
         onComplete: () => {
           holdTimer = setTimeout(() => {
-            exitTween = gsap.to(root, { opacity: 0, duration: 0.5, ease: 'power2.out', onComplete: finish });
-          }, 350);
+            exitTween = gsap.to(root, { opacity: 0, duration: 0.6, ease: 'power2.out', onComplete: finish });
+          }, 1200);
         }
       });
     };
