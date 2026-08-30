@@ -326,10 +326,7 @@ function App() {
   const eduList = t('education.items', { returnObjects: true }) || [];
   
   return (
-    <div className="min-h-screen font-sans selection:bg-accent selection:text-white relative" ref={mainRef}>
-
-      {/* Polka-dot halftone background layer */}
-      <div aria-hidden="true" className="dot-layer" />
+    <div className="min-h-screen font-sans selection:bg-accent selection:text-white" ref={mainRef}>
 
       {/* SlideOver Drawer */}
       <SlideOverDrawer 
