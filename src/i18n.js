@@ -67,7 +67,7 @@ const resources = {
             degree: "Sijil Pelajaran Malaysia (SPM)",
             school: "SMK Long Gafar",
             location: "Secondary School",
-            period: "—",
+            period: "2016 - 2017",
             resultsTitle: "Results",
             results: [
               { subject: "Bahasa Melayu", grade: "A-" },
@@ -80,6 +80,12 @@ const resources = {
               { subject: "Perdagangan", grade: "C" },
               { subject: "Prinsip Perakaunan", grade: "A-" }
             ]
+          },
+          {
+            degree: "Lower Secondary",
+            school: "SMK Kota",
+            location: "Secondary School",
+            period: "2013 - 2015"
           }
         ]
       },
@@ -160,7 +166,7 @@ const resources = {
             degree: "Sijil Pelajaran Malaysia (SPM)",
             school: "SMK Long Gafar",
             location: "Sekolah Menengah",
-            period: "—",
+            period: "2016 - 2017",
             resultsTitle: "Keputusan",
             results: [
               { subject: "Bahasa Melayu", grade: "A-" },
@@ -173,6 +179,12 @@ const resources = {
               { subject: "Perdagangan", grade: "C" },
               { subject: "Prinsip Perakaunan", grade: "A-" }
             ]
+          },
+          {
+            degree: "Menengah Rendah",
+            school: "SMK Kota",
+            location: "Sekolah Menengah",
+            period: "2013 - 2015"
           }
         ]
       },
