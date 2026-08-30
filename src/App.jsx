@@ -59,12 +59,12 @@ function SimpleLineChart({ data, title, type, onPointClick }) {
             <circle 
               cx={getX(i)} cy={getY(val)} 
               r={hoveredIdx === i ? "4.5" : "3.5"} 
-              fill={hoveredIdx === i ? "#e11d48" : "#FAFAFA"} 
+              fill={hoveredIdx === i ? "#e11d48" : "#ECECEC"} 
               strokeWidth={hoveredIdx === i ? "0" : "1.5"} 
               stroke="#e11d48"
             />
             {hoveredIdx === i ? (
-              <text x={getX(i)} y={getY(val) - 20} fontSize="10" fill="#FAFAFA" textAnchor="middle" className="font-mono font-bold pointer-events-none">{val.toFixed(2)}</text>
+              <text x={getX(i)} y={getY(val) - 20} fontSize="10" fill="#ECECEC" textAnchor="middle" className="font-mono font-bold pointer-events-none">{val.toFixed(2)}</text>
             ) : (
               <text x={getX(i)} y={getY(val) - 12} fontSize="8" fill="#111111" textAnchor="middle" className="font-mono pointer-events-none">{val.toFixed(2)}</text>
             )}
@@ -225,7 +225,7 @@ function SlideOverDrawer({ transcript, onClose, onSelectTranscript, t }) {
       
       <div 
         ref={drawerRef}
-        className={`relative w-full max-w-md h-full bg-[#FAFAFA] border-l border-gray-200 shadow-2xl flex flex-col transform transition-transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        className={`relative w-full max-w-md h-full bg-[#ECECEC] border-l border-gray-200 shadow-2xl flex flex-col transform transition-transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
       >
         {isOpen && semData && data && (
           <>
@@ -422,7 +422,7 @@ function App() {
       />
 
       {/* Navbar */}
-      <nav className="fixed top-0 w-full z-50 bg-[#FAFAFA]/80 backdrop-blur-xl border-b border-gray-200/50">
+      <nav className="fixed top-0 w-full z-50 bg-[#ECECEC]/80 backdrop-blur-xl border-b border-gray-200/50">
         <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
           <div className="font-sans font-bold text-xl tracking-tight text-[#111111] nav-logo">
             amnhmb<span className="text-accent">_</span>
@@ -490,13 +490,13 @@ function App() {
 
             {/* Right Col: Image */}
             <div className="hero-el order-1 lg:order-2 flex justify-center lg:justify-end w-full">
-              <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-[28rem] lg:h-[28rem] rounded-2xl overflow-hidden border border-gray-100 shadow-xl shadow-gray-100/50 grayscale-[.3] hover:grayscale-0 transition-all duration-700">
+              <div className="relative w-72 sm:w-80 md:w-96 lg:w-[32rem]">
                 <picture>
                   <source srcSet={`${import.meta.env.BASE_URL}hero-optimized.webp`} type="image/webp" />
                   <img 
                     src={`${import.meta.env.BASE_URL}hero-optimized.jpg`} 
                     alt="Aiman Hambali" 
-                    className="w-full h-full object-cover"
+                    className="w-full h-auto object-contain"
                   />
                 </picture>
               </div>
@@ -537,7 +537,7 @@ function App() {
               <div className="space-y-16">
                 {Array.isArray(eduList) && eduList.map((edu, index) => (
                   <div key={index} className="relative pl-8 border-l border-gray-200">
-                    <div className="absolute w-3 h-3 rounded-full bg-gray-300 -left-[6.5px] top-2 ring-4 ring-[#FAFAFA]"></div>
+                    <div className="absolute w-3 h-3 rounded-full bg-gray-300 -left-[6.5px] top-2 ring-4 ring-[#ECECEC]"></div>
                     <div className="mb-4">
                       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-2">
                         <h3 className="text-2xl font-bold text-[#111111] max-w-md leading-tight">{edu.degree}</h3>
@@ -623,7 +623,7 @@ function App() {
           <div className="space-y-16">
             {Array.isArray(expList) && expList.map((exp, index) => (
               <div key={index} className="relative pl-8 md:pl-12 border-l border-gray-200 ml-2 md:ml-4">
-                <div className="absolute w-3 h-3 rounded-full bg-accent -left-[6.5px] top-2 ring-4 ring-[#FAFAFA]"></div>
+                <div className="absolute w-3 h-3 rounded-full bg-accent -left-[6.5px] top-2 ring-4 ring-[#ECECEC]"></div>
                 <div className="mb-4">
                   <h3 className="text-2xl md:text-3xl font-bold mb-2 text-[#111111]">{exp.role}</h3>
                   <div className="flex flex-wrap items-center gap-4 text-sm font-mono tracking-widest uppercase">
@@ -763,7 +763,7 @@ function App() {
                   <h4 className="text-sm font-mono text-gray-400 uppercase tracking-widest mb-4">{t('research.approachLabel')}</h4>
                   <p className="text-gray-600 text-lg leading-relaxed font-light mb-6">{t('research.approach')}</p>
                   
-                  <div className="bg-[#FAFAFA] border border-gray-100 rounded-md p-5 inline-block">
+                  <div className="bg-[#ECECEC] border border-gray-100 rounded-md p-5 inline-block">
                     <div className="text-3xl font-bold text-[#e11d48] mb-1">{t('research.stats.period')}</div>
                     <div className="text-xs text-gray-500 font-mono tracking-wide">{t('research.stats.periodSub')}</div>
                   </div>
@@ -772,7 +772,7 @@ function App() {
                   <h4 className="text-sm font-mono text-gray-400 uppercase tracking-widest mb-4">{t('research.collabLabel')}</h4>
                   <p className="text-gray-600 text-lg leading-relaxed font-light mb-6">{t('research.collab')}</p>
                   
-                  <div className="bg-[#FAFAFA] border border-gray-100 rounded-md p-5">
+                  <div className="bg-[#ECECEC] border border-gray-100 rounded-md p-5">
                     <div className="grid grid-cols-3 gap-4">
                       <div>
                         <div className="text-2xl font-bold text-[#111111] mb-1">{t('research.stats.acc')}</div>
@@ -860,7 +860,7 @@ function App() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16 w-full max-w-2xl">
             <a 
               href="mailto:aimannhambalii@gmail.com" 
-              className="inline-flex items-center gap-3 px-6 py-4 bg-[#FAFAFA] border border-gray-200 text-[#111111] hover:border-[#111111] hover:bg-[#111111] hover:text-white rounded-lg font-mono tracking-wide transition-all duration-300 shadow-sm w-full sm:w-auto justify-center"
+              className="inline-flex items-center gap-3 px-6 py-4 bg-[#ECECEC] border border-gray-200 text-[#111111] hover:border-[#111111] hover:bg-[#111111] hover:text-white rounded-lg font-mono tracking-wide transition-all duration-300 shadow-sm w-full sm:w-auto justify-center"
             >
               <Mail size={18} />
               aimannhambalii@gmail.com
@@ -869,7 +869,7 @@ function App() {
               href="https://wa.me/601125507190" 
               target="_blank" 
               rel="noopener"
-              className="inline-flex items-center gap-3 px-6 py-4 bg-[#FAFAFA] border border-gray-200 text-[#111111] hover:border-[#25D366] hover:bg-[#25D366] hover:text-white rounded-lg font-mono tracking-wide transition-all duration-300 shadow-sm w-full sm:w-auto justify-center"
+              className="inline-flex items-center gap-3 px-6 py-4 bg-[#ECECEC] border border-gray-200 text-[#111111] hover:border-[#25D366] hover:bg-[#25D366] hover:text-white rounded-lg font-mono tracking-wide transition-all duration-300 shadow-sm w-full sm:w-auto justify-center"
             >
               <FaWhatsapp size={20} />
               +60 11-2550 7190

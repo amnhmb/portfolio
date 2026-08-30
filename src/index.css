@@ -14,12 +14,12 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    background-color: #FAFAFA;
+    background-color: #ECECEC;
     color: #111111;
   }
   
   body {
-    @apply antialiased font-sans bg-[#FAFAFA] text-[#111111];
+    @apply antialiased font-sans bg-[#ECECEC] text-[#111111];
   }
 
   h1, h2, h3, h4, h5, h6 {
