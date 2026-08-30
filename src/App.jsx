@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, Suspense, lazy } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Globe, Mail, X } from 'lucide-react';
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { FaWhatsapp } from 'react-icons/fa';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import '@fontsource/geist-sans/400.css';
@@ -433,6 +433,7 @@ function App() {
               <a href="#skills" className="hover:text-accent transition-colors">{t('nav.skills')}</a>
               <a href="#experience" className="hover:text-accent transition-colors">{t('nav.experience')}</a>
               <a href="#research" className="hover:text-accent transition-colors">{t('nav.research')}</a>
+              <a href="#contact" className="hover:text-accent transition-colors">{t('nav.contact')}</a>
             </div>
             <button 
               onClick={toggleLanguage}
@@ -764,6 +765,34 @@ function App() {
               ))}
             </div>
           </div>
+        </section>
+
+        {/* Contact Footer Section */}
+        <section id="contact" className="py-24 border-t border-gray-200 flex flex-col items-center justify-center text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-[#111111] tracking-tight">
+            {t('contact.title')}
+          </h2>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16 w-full max-w-2xl">
+            <a 
+              href="mailto:aimannhambalii@gmail.com" 
+              className="inline-flex items-center gap-3 px-6 py-4 bg-[#FAFAFA] border border-gray-200 text-[#111111] hover:border-[#111111] hover:bg-[#111111] hover:text-white rounded-lg font-mono tracking-wide transition-all duration-300 shadow-sm w-full sm:w-auto justify-center"
+            >
+              <Mail size={18} />
+              aimannhambalii@gmail.com
+            </a>
+            <a 
+              href="https://wa.me/601125507190" 
+              target="_blank" 
+              rel="noopener"
+              className="inline-flex items-center gap-3 px-6 py-4 bg-[#FAFAFA] border border-gray-200 text-[#111111] hover:border-[#25D366] hover:bg-[#25D366] hover:text-white rounded-lg font-mono tracking-wide transition-all duration-300 shadow-sm w-full sm:w-auto justify-center"
+            >
+              <FaWhatsapp size={20} />
+              +60 11-2550 7190
+            </a>
+          </div>
+          <p className="text-sm text-gray-400 font-mono tracking-wider">
+            {t('contact.copyright')}
+          </p>
         </section>
 
       </main>

@@ -142,6 +142,10 @@ const resources = {
         other: ["Robotics Club, Politeknik Ungku Omar", "Pitch Perfect 5.0"],
         close: "Close"
       },
+      contact: {
+        title: "Get in Touch",
+        copyright: "© 2026 Aiman Hambali Bin Amran"
+      },
       research: {
         title: "Featured Research",
         paperTitle: "An IoT-Enabled Growth Management System with Deep Learning-Based Monitoring for Volvariella volvacea Mushroom Cultivation in Controlled Environments",
@@ -309,6 +313,10 @@ const resources = {
         otherLabel: "Aktiviti Lain",
         other: ["Kelab Robotik, Politeknik Ungku Omar", "Pitch Perfect 5.0"],
         close: "Tutup"
+      },
+      contact: {
+        title: "Hubungi Saya",
+        copyright: "© 2026 Aiman Hambali Bin Amran"
       },
       research: {
         title: "Kajian Kes",
