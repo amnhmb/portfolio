@@ -32,13 +32,14 @@ function App() {
       if (!isReducedMotion) {
         // Hero Stagger Animation
         gsap.fromTo(".hero-el", 
-          { y: 30, opacity: 0 }, 
-          { y: 0, opacity: 1, duration: 0.8, stagger: 0.15, ease: "power3.out", delay: 0.2 }
+          { y: 40, opacity: 0 }, 
+          { y: 0, opacity: 1, duration: 1.2, stagger: 0.15, ease: "power4.out", delay: 0.3 }
         );
 
         // Hero Parallax effect on scroll
         gsap.to(".hero-content", {
-          yPercent: 30,
+          yPercent: 40,
+          opacity: 0.2,
           ease: "none",
           scrollTrigger: {
             trigger: heroRef.current,
@@ -50,17 +51,17 @@ function App() {
 
         // About Reveal
         gsap.fromTo(aboutRef.current.children,
-          { y: 50, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.8, stagger: 0.2, ease: "power2.out", scrollTrigger: {
+          { y: 60, opacity: 0 },
+          { y: 0, opacity: 1, duration: 1.2, stagger: 0.2, ease: "power3.out", scrollTrigger: {
             trigger: aboutRef.current,
-            start: "top 80%",
+            start: "top 85%",
           }}
         );
 
         // Skills Reveal
         gsap.fromTo(".skill-item",
-          { y: 20, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.5, stagger: 0.05, ease: "back.out(1.5)", scrollTrigger: {
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8, stagger: 0.05, ease: "back.out(1.2)", scrollTrigger: {
             trigger: skillsRef.current,
             start: "top 85%",
           }}
@@ -68,10 +69,10 @@ function App() {
 
         // Experience Pin/Parallax
         gsap.fromTo(expRef.current,
-          { opacity: 0, scale: 0.95 },
-          { opacity: 1, scale: 1, duration: 0.8, ease: "power2.out", scrollTrigger: {
+          { opacity: 0, y: 40 },
+          { opacity: 1, y: 0, duration: 1, ease: "power3.out", scrollTrigger: {
             trigger: expRef.current,
-            start: "top 75%",
+            start: "top 80%",
           }}
         );
       }
@@ -83,96 +84,94 @@ function App() {
   return (
     <div className="min-h-screen font-sans selection:bg-accent selection:text-white" ref={mainRef}>
       {/* Navbar */}
-      <nav className="fixed top-0 w-full z-50 bg-white/80 dark:bg-gray-950/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="font-bold text-xl tracking-tighter nav-logo">
-            Aiman.<span className="text-accent">H</span>
+      <nav className="fixed top-0 w-full z-50 bg-[#FAFAFA]/80 dark:bg-[#0A0A0A]/80 backdrop-blur-xl border-b border-gray-200 dark:border-gray-900 transition-colors duration-300">
+        <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+          <div className="font-display font-bold text-2xl tracking-tight nav-logo">
+            Aiman<span className="text-[#aa3bff]">.</span>
           </div>
-          <div className="flex items-center gap-6">
-            <div className="hidden md:flex gap-6 text-sm font-medium text-gray-600 dark:text-gray-400">
-              <a href="#about" className="hover:text-accent transition-colors">{t('nav.about')}</a>
-              <a href="#skills" className="hover:text-accent transition-colors">{t('nav.skills')}</a>
-              <a href="#experience" className="hover:text-accent transition-colors">{t('nav.experience')}</a>
+          <div className="flex items-center gap-8">
+            <div className="hidden md:flex gap-8 text-sm font-medium text-gray-500 dark:text-gray-400">
+              <a href="#about" className="hover:text-[#aa3bff] transition-colors">{t('nav.about')}</a>
+              <a href="#skills" className="hover:text-[#aa3bff] transition-colors">{t('nav.skills')}</a>
+              <a href="#experience" className="hover:text-[#aa3bff] transition-colors">{t('nav.experience')}</a>
             </div>
             <button 
               onClick={toggleLanguage}
-              className="flex items-center gap-2 text-sm font-medium hover:text-accent transition-colors bg-gray-100 dark:bg-gray-800 px-3 py-1.5 rounded-full"
+              className="flex items-center gap-2 text-xs font-bold tracking-wider hover:text-white hover:bg-[#aa3bff] transition-all bg-gray-200 dark:bg-gray-800 dark:hover:bg-[#aa3bff] px-4 py-2 rounded-full"
             >
-              <Globe size={16} />
+              <Globe size={14} />
               {lang.toUpperCase()}
             </button>
           </div>
         </div>
       </nav>
 
-      <main className="max-w-6xl mx-auto px-6 pt-24 pb-12 overflow-hidden">
+      <main className="max-w-6xl mx-auto px-6 pt-32 pb-24 overflow-hidden">
         {/* Hero Section */}
         <section ref={heroRef} className="min-h-[85vh] relative flex items-center">
-          <div className="absolute right-0 top-0 w-full md:w-1/2 h-full -z-10 opacity-30 md:opacity-100 pointer-events-none md:pointer-events-auto">
+          <div className="absolute right-0 top-0 w-full md:w-3/5 h-[110%] -z-10 opacity-40 md:opacity-100 pointer-events-none md:pointer-events-auto">
             <Suspense fallback={null}>
               <Scene />
             </Suspense>
           </div>
           <div className="max-w-2xl hero-content">
-            <p className="hero-el text-accent font-medium mb-4 text-lg">
+            <p className="hero-el text-[#aa3bff] font-semibold mb-6 text-lg tracking-wide uppercase">
               {t('hero.greeting')}
             </p>
-            <h1 className="hero-el text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-tight">
+            <h1 className="hero-el text-6xl md:text-8xl font-display font-bold tracking-tighter mb-8 leading-[1.1]">
               Aiman Hambali. <br/>
-              <span className="text-gray-400 dark:text-gray-500">{t('hero.role')}</span>
+              <span className="text-gray-400 dark:text-gray-600 block mt-2">{t('hero.role')}</span>
             </h1>
-            <p className="hero-el text-gray-600 dark:text-gray-400 text-lg md:text-xl mb-10 max-w-xl leading-relaxed">
+            <p className="hero-el text-gray-600 dark:text-gray-400 text-lg md:text-2xl mb-12 max-w-xl leading-relaxed font-light">
               {t('hero.description')}
             </p>
             
-            <div className="hero-el flex flex-wrap items-center gap-4">
-              <a href="#contact" className="px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg font-medium hover:scale-105 transition-transform">
+            <div className="hero-el flex flex-wrap items-center gap-6">
+              <a href="#contact" className="px-8 py-4 bg-[#111111] dark:bg-[#F2F2F2] text-white dark:text-[#111111] rounded-full font-medium hover:scale-105 hover:bg-[#aa3bff] dark:hover:bg-[#aa3bff] dark:hover:text-white transition-all duration-300 shadow-lg">
                 {t('hero.contact')}
               </a>
-              <a href="/Aiman_Hambali_CV.docx" download className="px-6 py-3 border border-gray-300 dark:border-gray-700 rounded-lg font-medium hover:border-accent hover:text-accent transition-colors">
+              <a href="/Aiman_Hambali_CV.docx" download className="px-8 py-4 border border-gray-300 dark:border-gray-800 rounded-full font-medium hover:border-[#aa3bff] hover:text-[#aa3bff] transition-all duration-300">
                 {t('hero.resume')}
               </a>
             </div>
 
-            <div className="hero-el flex items-center gap-5 mt-12 text-gray-500">
-              <a href="#" className="hover:text-accent transition-colors"><FaGithub size={24} /></a>
-              <a href="#" className="hover:text-accent transition-colors"><FaLinkedin size={24} /></a>
-              <a href="#" className="hover:text-accent transition-colors"><Mail size={24} /></a>
+            <div className="hero-el flex items-center gap-8 mt-16 text-gray-400 dark:text-gray-600">
+              <a href="#" className="hover:text-[#aa3bff] hover:-translate-y-1 transition-all duration-300"><FaGithub size={28} /></a>
+              <a href="#" className="hover:text-[#aa3bff] hover:-translate-y-1 transition-all duration-300"><FaLinkedin size={28} /></a>
+              <a href="#" className="hover:text-[#aa3bff] hover:-translate-y-1 transition-all duration-300"><Mail size={28} /></a>
             </div>
           </div>
         </section>
 
         {/* About Section */}
-        <section id="about" ref={aboutRef} className="py-24">
-          <h2 className="text-3xl font-bold mb-8 flex items-center gap-4">
-            <span className="text-accent text-lg font-mono">01.</span> {t('about.title')}
-            <div className="h-px bg-gray-200 dark:bg-gray-800 flex-1 ml-4 max-w-xs"></div>
+        <section id="about" ref={aboutRef} className="py-32 border-t border-gray-200 dark:border-gray-900 mt-20">
+          <h2 className="text-4xl md:text-5xl font-display font-bold mb-16 flex items-center gap-6">
+            <span className="text-[#aa3bff] text-xl font-mono font-normal">01.</span> {t('about.title')}
           </h2>
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-4 text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
+          <div className="grid md:grid-cols-12 gap-16 items-center">
+            <div className="md:col-span-7 space-y-6 text-gray-600 dark:text-gray-400 text-xl leading-relaxed font-light">
               <p>{t('about.p1')}</p>
               <p>{t('about.p2')}</p>
             </div>
-            <div className="relative group mx-auto md:mx-0 w-64 h-64 md:w-80 md:h-80">
-              <div className="absolute inset-0 border-2 border-accent rounded-xl translate-x-4 translate-y-4 transition-transform group-hover:translate-x-2 group-hover:translate-y-2"></div>
+            <div className="md:col-span-5 relative group mx-auto md:mx-0 w-full max-w-sm aspect-square">
+              <div className="absolute inset-0 border-2 border-[#aa3bff] rounded-2xl translate-x-6 translate-y-6 transition-transform duration-500 ease-out group-hover:translate-x-3 group-hover:translate-y-3"></div>
               <img 
                 src="/profile-photo.jpg" 
                 alt="Aiman Hambali" 
-                className="absolute inset-0 w-full h-full object-cover rounded-xl grayscale group-hover:grayscale-0 transition-all duration-500 z-10"
+                className="absolute inset-0 w-full h-full object-cover rounded-2xl grayscale group-hover:grayscale-0 transition-all duration-700 z-10 shadow-2xl"
               />
             </div>
           </div>
         </section>
 
         {/* Skills Section */}
-        <section id="skills" ref={skillsRef} className="py-24">
-          <h2 className="text-3xl font-bold mb-12 flex items-center gap-4">
-            <span className="text-accent text-lg font-mono">02.</span> {t('skills.title')}
-            <div className="h-px bg-gray-200 dark:bg-gray-800 flex-1 ml-4 max-w-xs"></div>
+        <section id="skills" ref={skillsRef} className="py-32 border-t border-gray-200 dark:border-gray-900">
+          <h2 className="text-4xl md:text-5xl font-display font-bold mb-16 flex items-center gap-6">
+            <span className="text-[#aa3bff] text-xl font-mono font-normal">02.</span> {t('skills.title')}
           </h2>
           <div className="flex flex-wrap gap-4">
             {t('skills.items', { returnObjects: true }).map((skill, index) => (
-              <div key={index} className="skill-item px-6 py-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg text-sm font-medium shadow-sm hover:border-accent transition-colors">
+              <div key={index} className="skill-item px-6 py-3 bg-white dark:bg-[#111111] border border-gray-200 dark:border-gray-800 rounded-full text-sm font-medium shadow-sm hover:border-[#aa3bff] hover:text-[#aa3bff] transition-all duration-300 hover:-translate-y-1">
                 {skill}
               </div>
             ))}
@@ -180,19 +179,18 @@ function App() {
         </section>
 
         {/* Experience Section */}
-        <section id="experience" ref={expRef} className="py-24">
-          <h2 className="text-3xl font-bold mb-12 flex items-center gap-4">
-            <span className="text-accent text-lg font-mono">03.</span> {t('experience.title')}
-            <div className="h-px bg-gray-200 dark:bg-gray-800 flex-1 ml-4 max-w-xs"></div>
+        <section id="experience" ref={expRef} className="py-32 border-t border-gray-200 dark:border-gray-900">
+          <h2 className="text-4xl md:text-5xl font-display font-bold mb-16 flex items-center gap-6">
+            <span className="text-[#aa3bff] text-xl font-mono font-normal">03.</span> {t('experience.title')}
           </h2>
           
-          <div className="relative pl-8 border-l-2 border-gray-200 dark:border-gray-800">
-            <div className="absolute w-4 h-4 rounded-full bg-accent -left-[9px] top-1 ring-4 ring-white dark:ring-gray-950"></div>
-            <div className="mb-2">
-              <h3 className="text-xl font-bold">{t('experience.role')} <span className="text-accent">@ {t('experience.company')}</span></h3>
-              <span className="text-sm text-gray-500 font-mono">{t('experience.period')}</span>
+          <div className="relative pl-10 border-l border-gray-300 dark:border-gray-800 ml-4">
+            <div className="absolute w-3 h-3 rounded-full bg-[#aa3bff] -left-[6.5px] top-2 ring-8 ring-[#FAFAFA] dark:ring-[#0A0A0A]"></div>
+            <div className="mb-4">
+              <h3 className="text-2xl font-display font-bold mb-1">{t('experience.role')} <span className="text-[#aa3bff]">@ {t('experience.company')}</span></h3>
+              <span className="text-sm text-gray-500 font-mono tracking-wide uppercase">{t('experience.period')}</span>
             </div>
-            <p className="text-gray-600 dark:text-gray-400 mt-4 leading-relaxed max-w-2xl">
+            <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed max-w-3xl font-light">
               {t('experience.description')}
             </p>
           </div>

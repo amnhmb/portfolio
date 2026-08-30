@@ -4,10 +4,23 @@
 
 @theme {
   --color-accent: #aa3bff;
+  --color-accent-hover: #912ae0;
+  
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Outfit', system-ui, -apple-system, sans-serif;
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
   body {
-    @apply antialiased bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100;
+    @apply antialiased font-sans bg-[#FAFAFA] text-[#111111] dark:bg-[#0A0A0A] dark:text-[#F2F2F2];
+    /* Adjusted base colors to be richer: very light gray for light mode, deep rich black for dark mode */
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight;
   }
 }
