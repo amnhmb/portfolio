@@ -425,7 +425,7 @@ function App() {
       <nav className="fixed top-0 w-full z-50 bg-[#FAFAFA]/80 backdrop-blur-xl border-b border-gray-200/50">
         <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
           <div className="font-sans font-bold text-xl tracking-tight text-[#111111] nav-logo">
-            aiman<span className="text-accent">_</span>
+            amnhmb<span className="text-accent">_</span>
           </div>
           <div className="flex items-center gap-8">
             <div className="hidden md:flex gap-8 text-sm font-medium text-gray-500">
