@@ -262,9 +262,12 @@ function AnimatedTextNumber({ text }) {
   
   useEffect(() => {
     if (!nodeRef.current) return;
-    const match = String(text).match(/^(.*?)(\d+(?:\.\d+)?)(.*)$/);
+    // Only count up genuine metrics: an optional word label, then a number at
+    // the end, with an optional % or unit. This avoids animating model numbers
+    // embedded in prose (ESP32, ETS-88, DHT22, "4 months").
+    const match = String(text).match(/^((?:[A-Za-z.]+ )*)(\d+(?:\.\d+)?)(\s*%?)$/);
     if (!match) return;
-    
+
     const prefix = match[1];
     const numStr = match[2];
     const suffix = match[3];
