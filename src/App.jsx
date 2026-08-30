@@ -847,16 +847,17 @@ function App() {
                 {/* Action */}
                 <div className="mt-auto pt-4 border-t border-gray-100">
                   {item.link ? (
-                    <a 
-                      href={item.link} 
-                      target="_blank" 
+                    <a
+                      href={item.link}
+                      target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center text-accent hover:text-accent/80 font-mono text-sm tracking-wide transition-colors"
+                      className="group/btn inline-flex items-center gap-2 px-4 py-2 border border-accent text-accent rounded-md font-mono text-sm tracking-wide hover:bg-accent hover:text-white active:scale-95 transition-all duration-300"
                     >
-                      {t('projects.viewLive')} &rarr;
+                      {t('projects.viewLive')}
+                      <span className="transition-transform duration-300 group-hover/btn:translate-x-1">&rarr;</span>
                     </a>
                   ) : (
-                    <span className="inline-flex items-center text-gray-400 font-mono text-sm tracking-wide">
+                    <span className="inline-flex items-center gap-2 px-4 py-2 border border-gray-200 text-gray-400 rounded-md font-mono text-sm tracking-wide">
                       {t('projects.private')}
                     </span>
                   )}
