@@ -489,7 +489,7 @@ function App() {
             </div>
 
             {/* Right Col: Image */}
-            <div className="hero-el order-1 lg:order-2 flex justify-center lg:justify-end w-full">
+            <div className="hero-el order-1 lg:order-2 flex justify-center lg:justify-end w-full pointer-events-none">
               <div 
                 className="relative w-72 sm:w-80 md:w-96 lg:w-[32rem]"
                 style={{
