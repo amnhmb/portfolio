@@ -305,7 +305,7 @@ function AnimatedTextNumber({ text }) {
 
 // Terminal-style decode: characters resolve from random glyphs into the final
 // text, left to right. Lightweight (single rAF loop), respects reduced motion.
-function ScrambleText({ text, className, delay = 0 }) {
+function ScrambleText({ text, className, delay = 0, trigger = 'mount' }) {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -316,33 +316,40 @@ function ScrambleText({ text, className, delay = 0 }) {
 
     const glyphs = '!<>-_\\/[]{}=+*^?#01__';
     const final = String(text);
-    let frame = 0;
-    let started = false;
-    let raf;
     const revealPerFrame = 0.6; // characters locked in per frame
+    let raf, timer, io;
 
-    const tick = () => {
-      const revealed = Math.floor(frame * revealPerFrame);
-      let out = '';
-      for (let i = 0; i < final.length; i++) {
-        if (final[i] === ' ') { out += ' '; continue; }
-        out += i < revealed ? final[i] : glyphs[(Math.random() * glyphs.length) | 0];
-      }
-      el.textContent = out;
-      frame++;
-      if (revealed <= final.length) {
-        raf = requestAnimationFrame(tick);
-      } else {
-        el.textContent = final;
-      }
+    const scramble = (s) => s.replace(/[^ ]/g, () => glyphs[(Math.random() * glyphs.length) | 0]);
+
+    const run = () => {
+      let frame = 0;
+      const tick = () => {
+        const revealed = Math.floor(frame * revealPerFrame);
+        let out = '';
+        for (let i = 0; i < final.length; i++) {
+          if (final[i] === ' ') { out += ' '; continue; }
+          out += i < revealed ? final[i] : glyphs[(Math.random() * glyphs.length) | 0];
+        }
+        el.textContent = out;
+        frame++;
+        if (revealed <= final.length) raf = requestAnimationFrame(tick);
+        else el.textContent = final;
+      };
+      el.textContent = scramble(final);
+      timer = setTimeout(() => { raf = requestAnimationFrame(tick); }, delay);
     };
 
-    // scramble immediately, start resolving after the optional delay
-    el.textContent = final.replace(/[^ ]/g, () => glyphs[(Math.random() * glyphs.length) | 0]);
-    const timer = setTimeout(() => { started = true; raf = requestAnimationFrame(tick); }, delay);
+    if (trigger === 'view') {
+      io = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) { io.disconnect(); io = null; run(); }
+      }, { threshold: 0.35 });
+      io.observe(el);
+    } else {
+      run();
+    }
 
-    return () => { clearTimeout(timer); if (raf) cancelAnimationFrame(raf); };
-  }, [text, delay]);
+    return () => { clearTimeout(timer); if (raf) cancelAnimationFrame(raf); if (io) io.disconnect(); };
+  }, [text, delay, trigger]);
 
   return <span ref={ref} className={className}>{text}</span>;
 }
@@ -581,7 +588,7 @@ function App() {
             </div>
             <div className="md:col-span-7 space-y-8 md:pl-10">
               <h2 className="text-4xl md:text-5xl font-bold flex items-center gap-4 text-[#111111] tracking-tight">
-                {t('about.title')}
+                <ScrambleText text={t('about.title')} trigger="view" />
               </h2>
               <div className="space-y-6 text-gray-600 text-lg md:text-xl leading-relaxed font-light max-w-2xl">
                 <p>{t('about.p1')}</p>
@@ -596,7 +603,7 @@ function App() {
           <div className="grid md:grid-cols-12 gap-16">
             <div className="md:col-span-7">
               <h2 className="text-4xl md:text-5xl font-bold mb-16 text-[#111111] tracking-tight">
-                {t('education.title')}
+                <ScrambleText text={t('education.title')} trigger="view" />
               </h2>
               <div className="space-y-16">
                 {Array.isArray(eduList) && eduList.map((edu, index) => (
@@ -667,7 +674,7 @@ function App() {
         {/* Skills Section */}
         <section id="skills" ref={skillsRef} className="py-32 border-t border-gray-200">
           <h2 className="text-4xl md:text-5xl font-bold mb-16 text-[#111111] tracking-tight">
-            {t('skills.title')}
+            <ScrambleText text={t('skills.title')} trigger="view" />
           </h2>
           <div className="flex flex-wrap gap-4 max-w-4xl">
             {Array.isArray(skillsList) && skillsList.map((skill, index) => (
@@ -682,7 +689,7 @@ function App() {
         {/* Experience Section */}
         <section id="experience" ref={expRef} className="py-32 border-t border-gray-200">
           <h2 className="text-4xl md:text-5xl font-bold mb-16 text-[#111111] tracking-tight">
-            {t('experience.title')}
+            <ScrambleText text={t('experience.title')} trigger="view" />
           </h2>
           
           <div className="space-y-16">
@@ -720,7 +727,7 @@ function App() {
         {/* Projects Section */}
         <section id="projects" ref={projectsRef} className="py-32 border-t border-gray-200">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#111111] tracking-tight">
-            {t('projects.title')}
+            <ScrambleText text={t('projects.title')} trigger="view" />
           </h2>
           <p className="text-lg text-gray-600 font-light mb-16 max-w-2xl leading-relaxed">
             {t('projects.intro')}
@@ -784,7 +791,7 @@ function App() {
         {/* Featured Research Section */}
         <section id="research" ref={researchRef} className="py-32 border-t border-gray-200">
           <h2 className="text-4xl md:text-5xl font-bold mb-16 text-[#111111] tracking-tight">
-            {t('research.title')}
+            <ScrambleText text={t('research.title')} trigger="view" />
           </h2>
           
           <div className="bg-white border border-gray-200 rounded-lg p-8 shadow-sm">
@@ -870,7 +877,7 @@ function App() {
         {/* Achievements Section */}
         <section id="achievements" ref={achievementsRef} className="py-32 border-t border-gray-200">
           <h2 className="text-4xl md:text-5xl font-bold mb-16 text-[#111111] tracking-tight">
-            {t('achievements.title')}
+            <ScrambleText text={t('achievements.title')} trigger="view" />
           </h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl">
             {Array.isArray(t('achievements.items', { returnObjects: true })) && t('achievements.items', { returnObjects: true }).map((item, index) => (
@@ -919,7 +926,7 @@ function App() {
         {/* Contact Footer Section */}
         <section id="contact" className="py-24 border-t border-gray-200 flex flex-col items-center justify-center text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-[#111111] tracking-tight">
-            {t('contact.title')}
+            <ScrambleText text={t('contact.title')} trigger="view" />
           </h2>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16 w-full max-w-2xl">
             <a 
