@@ -53,6 +53,7 @@ const resources = {
         subject: "Subject",
         grade: "Grade",
         credit: "Credit",
+        deansList: "Dean's List",
         items: [
           {
             degree: "Bachelor of Electronic Engineering Technology (Hons)",
@@ -61,7 +62,6 @@ const resources = {
             period: "Sept 2022 - Mar 2026",
             details: [
               "CGPA 3.61",
-              "Dean's List 5/6 semesters",
               "FYP: IoT-based sensor system for Volvariella mushroom cultivation",
               "Mini projects: Intelligent Laundry Clip (IoT), Baby Guard Beacon (IoT)"
             ],
@@ -74,7 +74,6 @@ const resources = {
             period: "Dec 2018 - Aug 2021",
             details: [
               "CGPA 3.60",
-              "Dean's List 4/5 semesters",
               "FYP: Climbing Robot",
               "Mini project: Bluetooth Mobile Robot"
             ],
@@ -169,6 +168,7 @@ const resources = {
         subject: "Subjek",
         grade: "Gred",
         credit: "Kredit",
+        deansList: "Senarai Dekan",
         items: [
           {
             degree: "Sarjana Muda Teknologi Kejuruteraan Elektronik (Kepujian)",
@@ -177,7 +177,6 @@ const resources = {
             period: "Sep 2022 - Mac 2026",
             details: [
               "CGPA 3.61",
-              "Senarai Dekan 5/6 semester",
               "Projek Tahun Akhir: Sistem penderia berasaskan IoT untuk penanaman cendawan Volvariella",
               "Projek Mini: Klip Dobi Pintar (IoT), Pengawal Keselamatan Bayi (IoT)"
             ],
@@ -190,7 +189,6 @@ const resources = {
             period: "Dis 2018 - Ogo 2021",
             details: [
               "CGPA 3.60",
-              "Senarai Dekan 4/5 semester",
               "Projek Tahun Akhir: Robot Memanjat",
               "Projek Mini: Robot Mudah Alih Bluetooth"
             ],
