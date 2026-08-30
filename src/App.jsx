@@ -507,9 +507,9 @@ function App() {
         </div>
       </nav>
 
-      <main className="max-w-6xl mx-auto px-6 pt-32 pb-24 overflow-hidden">
+      <main className="max-w-6xl mx-auto px-6 pt-24 lg:pt-32 pb-24 overflow-hidden">
         {/* Hero Section */}
-        <section ref={heroRef} className="min-h-[85vh] relative flex items-center pt-24 pb-12 lg:py-0">
+        <section ref={heroRef} className="relative flex items-start lg:items-center min-h-0 lg:min-h-[85vh] pt-4 pb-12 lg:pt-24 lg:py-0">
           <div className="absolute right-0 top-0 w-full h-[110%] -z-10 opacity-20 pointer-events-none">
             {isDesktop ? (
               <Suspense fallback={null}>
