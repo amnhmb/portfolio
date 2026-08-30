@@ -71,7 +71,7 @@ function SimpleLineChart({ data, title, type, onPointClick }) {
             <text x={getX(i)} y={h} fontSize="8" fill="#9ca3af" textAnchor="middle" className="font-mono pointer-events-none">S{i+1}</text>
             
             {/* Invisible larger hit area for easier clicking */}
-            <circle cx={getX(i)} cy={getY(val)} r="15" fill="transparent" />
+            <circle cx={getX(i)} cy={getY(val)} r="15" fill="transparent" stroke="none" />
           </g>
         ))}
       </svg>
