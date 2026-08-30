@@ -3,9 +3,9 @@
 @import "tailwindcss/utilities" layer(utilities);
 
 @theme {
-  /* Charcoal (coat) Accent */
-  --color-accent: #1f2937;
-  --color-accent-hover: #111827;
+  /* Navy Blue Accent */
+  --color-accent: #1e3a8a;
+  --color-accent-hover: #172554;
   
   --font-sans: 'Geist Sans', system-ui, -apple-system, sans-serif;
   --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, monospace;
