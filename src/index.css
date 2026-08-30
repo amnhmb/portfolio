@@ -22,6 +22,24 @@
     @apply antialiased font-sans bg-[#ECECEC] text-[#111111];
   }
 
+  /* Subtle polka-dot halftone: fades in from the top so the hero blend stays
+     clean, growing denser toward the lower part of the viewport. */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image: radial-gradient(circle, rgba(17, 17, 17, 0.07) 1px, transparent 1.6px);
+    background-size: 15px 15px;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 38%, black 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, transparent 38%, black 100%);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    body::before { transition: opacity 0.3s ease; }
+  }
+
   h1, h2, h3, h4, h5, h6 {
     @apply font-sans font-medium tracking-tight text-[#111111];
   }
