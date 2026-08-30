@@ -537,7 +537,7 @@ function App() {
                   <img 
                     src={`${import.meta.env.BASE_URL}hero-optimized.jpg`}
                     alt="Aiman Hambali"
-                    className="w-full max-h-[68vh] object-cover object-[center_22%] sm:max-h-none sm:h-auto sm:object-contain"
+                    className="w-full h-auto object-contain"
                   />
                 </picture>
               </div>
