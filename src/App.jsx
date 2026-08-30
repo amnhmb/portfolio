@@ -544,7 +544,7 @@ function App() {
             </div>
 
             {/* greeting + name: overlay over photo on mobile, static left column on desktop */}
-            <div className="hero-content absolute top-2 left-1 z-10 pr-2 max-w-[82%] lg:static lg:max-w-2xl lg:col-start-1 lg:row-start-1 lg:self-center lg:pr-0">
+            <div className="hero-content absolute top-24 left-1 z-10 pr-2 max-w-[82%] lg:static lg:top-auto lg:max-w-2xl lg:col-start-1 lg:row-start-1 lg:self-center lg:pr-0">
               <p className="text-accent font-mono mb-2 sm:mb-6 text-[10px] sm:text-sm tracking-widest uppercase">
                 // <ScrambleText text={t('hero.greeting')} />
               </p>
@@ -555,10 +555,10 @@ function App() {
 
             {/* role, description, CTA, contact: below on mobile, left column row 2 on desktop */}
             <div className="mt-6 lg:mt-0 lg:col-start-1 lg:row-start-2 lg:self-center max-w-2xl">
-              <h2 className="hero-el text-sm sm:text-xl md:text-3xl font-medium text-gray-500 mb-4 sm:mb-8 tracking-tight">
+              <h2 className="hero-el text-xl md:text-3xl font-medium text-gray-500 mb-4 sm:mb-8 tracking-tight">
                 {t('hero.role')}
               </h2>
-              <p className="hero-el text-gray-600 text-base sm:text-lg md:text-xl mb-8 sm:mb-12 max-w-xl leading-relaxed font-light">
+              <p className="hero-el text-gray-600 text-lg md:text-xl mb-8 sm:mb-12 max-w-xl leading-relaxed font-light">
                 {t('hero.description')}
               </p>
 
