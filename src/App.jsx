@@ -491,11 +491,14 @@ function App() {
             {/* Right Col: Image */}
             <div className="hero-el order-1 lg:order-2 flex justify-center lg:justify-end w-full">
               <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-[28rem] lg:h-[28rem] rounded-2xl overflow-hidden border border-gray-100 shadow-xl shadow-gray-100/50 grayscale-[.3] hover:grayscale-0 transition-all duration-700">
-                <img 
-                  src={`${import.meta.env.BASE_URL}profile-photo.jpg`} 
-                  alt="Aiman Hambali" 
-                  className="w-full h-full object-cover"
-                />
+                <picture>
+                  <source srcSet={`${import.meta.env.BASE_URL}hero-optimized.webp`} type="image/webp" />
+                  <img 
+                    src={`${import.meta.env.BASE_URL}hero-optimized.jpg`} 
+                    alt="Aiman Hambali" 
+                    className="w-full h-full object-cover"
+                  />
+                </picture>
               </div>
             </div>
           </div>
