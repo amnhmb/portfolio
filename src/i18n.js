@@ -8,7 +8,7 @@ const resources = {
         greeting: "hello, i am",
         name: "Aiman Hambali Bin Amran.",
         role: "Fresh Graduate Engineer, Electronic & IoT Systems",
-        description: "Recent graduate (CGPA 3.61) with hands-on experience in semiconductor test equipment and IoT sensor systems. Proficient in Python, Arduino, and ESP32.",
+        description: "Electronic & IoT engineer with hands-on experience in semiconductor test equipment and IoT sensor systems — comfortable across Python, Arduino, and ESP32.",
         resume: "Download Resume",
         contact: "Get in Touch"
       },
@@ -157,7 +157,7 @@ const resources = {
         greeting: "hai, saya",
         name: "Aiman Hambali Bin Amran.",
         role: "Jurutera Siswazah Baharu, Sistem Elektronik & IoT",
-        description: "Siswazah baharu (CGPA 3.61) dengan pengalaman praktikal dalam peralatan ujian semikonduktor dan sistem penderia IoT. Mahir dalam Python, Arduino, dan ESP32.",
+        description: "Jurutera Electronic & IoT dengan pengalaman praktikal dalam peralatan ujian semikonduktor dan sistem penderia IoT — mahir dalam Python, Arduino, dan ESP32.",
         resume: "Muat turun Resume",
         contact: "Hubungi Saya"
       },
