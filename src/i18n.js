@@ -139,13 +139,13 @@ const resources = {
         button: "View full paper",
         stats: {
           period: "~85%",
-          periodSub: "in target range (My work)",
+          periodSub: "in target range",
           acc: "93.12%",
-          accSub: "accuracy (Collaborator)",
+          accSub: "classification accuracy",
           f1: "87.9%",
-          f1Sub: "macro F1 (Collaborator)",
+          f1Sub: "macro-average F1",
           map: "0.78",
-          mapSub: "mAP@0.5 (Collaborator)"
+          mapSub: "mAP@0.5"
         },
         tags: ["IoT (Mine)", "ESP32", "DHT22", "MQ135", "YOLOv8 (Co-author)", "Deep Learning", "Python"]
       }
@@ -288,13 +288,13 @@ const resources = {
         button: "Lihat kertas penuh",
         stats: {
           period: "~85%",
-          periodSub: "dalam julat sasaran (Tugas Saya)",
+          periodSub: "dalam julat sasaran",
           acc: "93.12%",
-          accSub: "ketepatan (Rakan Kolaborasi)",
+          accSub: "ketepatan klasifikasi",
           f1: "87.9%",
-          f1Sub: "makro F1 (Rakan Kolaborasi)",
+          f1Sub: "makro-purata F1",
           map: "0.78",
-          mapSub: "mAP@0.5 (Rakan Kolaborasi)"
+          mapSub: "mAP@0.5"
         },
         tags: ["IoT (Saya)", "ESP32", "DHT22", "MQ135", "YOLOv8 (Rakan Kolaborasi)", "Deep Learning", "Python"]
       }
