@@ -201,7 +201,12 @@ function SlideOverDrawer({ transcript, onClose, onSelectTranscript, t }) {
             </div>
             
             <div className="flex-1 overflow-y-auto p-6">
-              <div className="flex items-center justify-between mb-8 p-4 bg-gray-50 rounded-lg border border-gray-100">
+              <div className="flex items-center justify-between mb-8 p-4 bg-gray-50 rounded-lg border border-gray-100 relative mt-2">
+                {semData.gpa !== null && semData.gpa >= 3.5 && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#fff1f2] border border-[#f43f5e] text-[#e11d48] px-3 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-widest shadow-sm whitespace-nowrap">
+                    {t('education.deansList')}
+                  </div>
+                )}
                 <div>
                   <p className="text-xs text-gray-500 font-mono uppercase tracking-widest mb-1">GPA</p>
                   <p className="text-3xl font-bold text-[#e11d48]">{semData.gpa !== null ? semData.gpa.toFixed(2) : '—'}</p>
