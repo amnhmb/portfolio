@@ -156,7 +156,7 @@ function SlideOverDrawer({ transcript, onClose, onSelectTranscript, t }) {
               <div className="flex items-center justify-between mb-4">
                 <div>
                   <h2 id="drawer-title" className="text-xl font-bold text-[#111111] tracking-tight">{data.level}</h2>
-                  <p className="text-sm text-gray-500 font-mono tracking-widest uppercase mt-1">{t('education.semester')} {semData.sem} — {semData.term}</p>
+                  <p className="text-sm text-gray-500 font-mono tracking-widest uppercase mt-1">{t('education.semester')} {semData.sem} · {semData.term}</p>
                 </div>
                 <button onClick={onClose} className="p-2 text-gray-400 hover:text-[#111111] hover:bg-gray-100 rounded-md transition-colors" aria-label="Close">
                   <X size={20} />
@@ -209,7 +209,7 @@ function SlideOverDrawer({ transcript, onClose, onSelectTranscript, t }) {
                 )}
                 <div>
                   <p className="text-xs text-gray-500 font-mono uppercase tracking-widest mb-1">GPA</p>
-                  <p className="text-3xl font-bold text-[#e11d48]">{semData.gpa !== null ? semData.gpa.toFixed(2) : '—'}</p>
+                  <p className="text-3xl font-bold text-[#e11d48]">{semData.gpa !== null ? semData.gpa.toFixed(2) : 'N/A'}</p>
                 </div>
                 <div className="text-right">
                   <p className="text-xs text-gray-500 font-mono uppercase tracking-widest mb-1">CGPA</p>
@@ -445,7 +445,7 @@ function App() {
                       
                       <div className="flex flex-wrap items-center gap-4 text-sm font-mono tracking-widest uppercase mb-1">
                         <span className="text-accent">{edu.school}</span>
-                        <span className="text-gray-400">—</span>
+                        <span className="text-gray-400">·</span>
                         <span className="text-gray-500">{edu.location}</span>
                       </div>
                       <span className="text-xs text-gray-400 font-mono tracking-widest uppercase">{edu.period}</span>
@@ -520,7 +520,7 @@ function App() {
                   <h3 className="text-2xl md:text-3xl font-bold mb-2 text-[#111111]">{exp.role}</h3>
                   <div className="flex flex-wrap items-center gap-4 text-sm font-mono tracking-widest uppercase">
                     <span className="text-accent">{exp.company}</span>
-                    <span className="text-gray-400">—</span>
+                    <span className="text-gray-400">·</span>
                     <span className="text-gray-500">{exp.period}</span>
                   </div>
                 </div>

@@ -1,4 +1,4 @@
-// Academic transcript data for Aiman Hambali — source of truth for the
+// Academic transcript data for Aiman Hambali: source of truth for the
 // interactive GPA chart + per-semester detail drawer.
 // GPA/CGPA and per-course grades transcribed from official transcripts.
 // Diploma = Politeknik Ungku Omar; Degree = UniKL British Malaysian Institute.
@@ -9,11 +9,11 @@ export const academics = {
     qualification: 'Diploma of Electronic Engineering (Communication)',
     institution: 'Politeknik Ungku Omar',
     location: 'Ipoh, Perak',
-    period: 'Dec 2018 – Aug 2021',
+    period: 'Dec 2018 - Aug 2021',
     cgpa: 3.60,
     deansList: '4 of 5 semesters',
     // Only the 5 graded semesters carry a GPA point on the chart.
-    // Sem 6 = industrial training (no GPA) — shown in drawer but not plotted.
+    // Sem 6 = industrial training (no GPA); shown in drawer but not plotted.
     semesters: [
       {
         sem: 1, term: 'Jun 2018', gpa: 3.30, cgpa: 3.30, credits: 18.0,
@@ -78,7 +78,7 @@ export const academics = {
       },
       {
         sem: 6, term: 'Dec 2020', gpa: null, cgpa: 3.60, credits: null,
-        note: 'Industrial Training (Latihan Industri) — completed with excellent result.',
+        note: 'Industrial Training (Latihan Industri): completed with excellent result.',
         courses: [],
       },
     ],
@@ -89,7 +89,7 @@ export const academics = {
     qualification: 'Bachelor of Electronic Engineering Technology with Honours',
     institution: 'Universiti Kuala Lumpur British Malaysian Institute',
     location: 'Gombak, Selangor',
-    period: 'Sept 2022 – Mar 2026',
+    period: 'Sept 2022 - Mar 2026',
     cgpa: 3.61,
     deansList: '5 of 6 semesters',
     semesters: [
@@ -156,8 +156,8 @@ export const academics = {
         ],
       },
       {
-        sem: 7, term: 'Jul 2025 – Jan 2026', gpa: null, cgpa: 3.60, credits: null,
-        note: 'Industrial Training (Latihan Industri) — Unisem (M) Berhad, Engineer Intern. Independently managed the semiconductor test line and trained new staff.',
+        sem: 7, term: 'Jul 2025 - Jan 2026', gpa: null, cgpa: 3.60, credits: null,
+        note: 'Industrial Training (Latihan Industri): Unisem (M) Berhad, Engineer Intern. Independently managed the semiconductor test line and trained new staff.',
         courses: [],
       },
     ],
