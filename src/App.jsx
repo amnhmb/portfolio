@@ -319,7 +319,7 @@ function ScrambleText({ text, className, delay = 0, trigger = 'mount' }) {
     const revealPerFrame = 0.6; // characters locked in per frame
     let raf, timer, io;
 
-    const scramble = (s) => s.replace(/[^ ]/g, () => glyphs[(Math.random() * glyphs.length) | 0]);
+    const scramble = (s) => s.replace(/[^ \n]/g, () => glyphs[(Math.random() * glyphs.length) | 0]);
 
     const run = () => {
       let frame = 0;
@@ -327,7 +327,7 @@ function ScrambleText({ text, className, delay = 0, trigger = 'mount' }) {
         const revealed = Math.floor(frame * revealPerFrame);
         let out = '';
         for (let i = 0; i < final.length; i++) {
-          if (final[i] === ' ') { out += ' '; continue; }
+          if (final[i] === ' ' || final[i] === '\n') { out += final[i]; continue; }
           out += i < revealed ? final[i] : glyphs[(Math.random() * glyphs.length) | 0];
         }
         el.textContent = out;
@@ -520,19 +520,41 @@ function App() {
             )}
           </div>
           
-          <div className="w-full grid grid-cols-2 gap-x-4 sm:gap-x-8 gap-y-6 lg:gap-y-8 items-start lg:items-center">
-            {/* Block A: greeting + name (beside photo on mobile) */}
-            <div className="hero-content col-start-1 row-start-1 self-center max-w-2xl">
-              <p className="text-accent font-mono mb-3 sm:mb-6 text-[10px] sm:text-sm tracking-widest uppercase">
+          <div className="relative w-full lg:grid lg:grid-cols-2 lg:gap-x-8 lg:gap-y-8 lg:items-center">
+            {/* Photo: mobile = full-width backdrop; desktop = right column */}
+            <div className="hero-el w-full flex justify-center pointer-events-none lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:justify-end lg:self-center">
+              <div
+                className="relative w-full sm:w-80 md:w-96 lg:w-[32rem]"
+                style={{
+                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%)',
+                  WebkitMaskComposite: 'source-in',
+                  maskImage: 'linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%)',
+                  maskComposite: 'intersect'
+                }}
+              >
+                <picture>
+                  <source srcSet={`${import.meta.env.BASE_URL}hero-optimized.webp`} type="image/webp" />
+                  <img 
+                    src={`${import.meta.env.BASE_URL}hero-optimized.jpg`} 
+                    alt="Aiman Hambali" 
+                    className="w-full h-auto object-contain"
+                  />
+                </picture>
+              </div>
+            </div>
+
+            {/* greeting + name: overlay over photo on mobile, static left column on desktop */}
+            <div className="hero-content absolute top-2 left-1 z-10 pr-2 max-w-[82%] lg:static lg:max-w-2xl lg:col-start-1 lg:row-start-1 lg:self-center lg:pr-0">
+              <p className="text-accent font-mono mb-2 sm:mb-6 text-[10px] sm:text-sm tracking-widest uppercase">
                 // <ScrambleText text={t('hero.greeting')} />
               </p>
-              <h1 className="text-2xl sm:text-4xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[1.05] text-[#111111]">
-                <ScrambleText text={t('hero.name')} delay={250} />
+              <h1 className="whitespace-pre-line text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[1.05] text-[#111111]">
+                <ScrambleText text={t('hero.name').replace(/ Bin /, '\nBin ')} delay={250} />
               </h1>
             </div>
 
-            {/* Block B: role, description, CTA, contact (below on mobile, left col on desktop) */}
-            <div className="col-span-2 row-start-2 lg:col-span-1 lg:col-start-1 lg:row-start-2 max-w-2xl">
+            {/* role, description, CTA, contact: below on mobile, left column row 2 on desktop */}
+            <div className="mt-6 lg:mt-0 lg:col-start-1 lg:row-start-2 lg:self-center max-w-2xl">
               <h2 className="hero-el text-sm sm:text-xl md:text-3xl font-medium text-gray-500 mb-4 sm:mb-8 tracking-tight">
                 {t('hero.role')}
               </h2>
@@ -552,28 +574,6 @@ function App() {
               <div className="hero-el flex flex-wrap items-center gap-4 sm:gap-8 mt-8 sm:mt-16 text-gray-600">
                 <span className="font-mono text-xs sm:text-sm tracking-widest uppercase">aimannhambalii@gmail.com</span>
                 <span className="font-mono text-xs sm:text-sm tracking-widest uppercase">+60 11-2550 7190</span>
-              </div>
-            </div>
-
-            {/* Photo: beside name on mobile, full-height right column on desktop */}
-            <div className="hero-el col-start-2 row-start-1 lg:row-span-2 self-center flex justify-center lg:justify-end w-full pointer-events-none">
-              <div
-                className="relative w-full sm:w-80 md:w-96 lg:w-[32rem]"
-                style={{
-                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%)',
-                  WebkitMaskComposite: 'source-in',
-                  maskImage: 'linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%)',
-                  maskComposite: 'intersect'
-                }}
-              >
-                <picture>
-                  <source srcSet={`${import.meta.env.BASE_URL}hero-optimized.webp`} type="image/webp" />
-                  <img 
-                    src={`${import.meta.env.BASE_URL}hero-optimized.jpg`} 
-                    alt="Aiman Hambali" 
-                    className="w-full h-auto object-contain"
-                  />
-                </picture>
               </div>
             </div>
           </div>
