@@ -545,7 +545,7 @@ function App() {
                 </a>
               </div>
   
-              <div className="hero-el flex flex-wrap items-center gap-8 mt-16 text-gray-400">
+              <div className="hero-el flex flex-wrap items-center gap-8 mt-16 text-gray-600">
                 <span className="font-mono text-sm tracking-widest uppercase">aimannhambalii@gmail.com</span>
                 <span className="font-mono text-sm tracking-widest uppercase">+60 11-2550 7190</span>
               </div>
