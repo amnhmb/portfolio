@@ -507,9 +507,9 @@ function App() {
         </div>
       </nav>
 
-      <main className="max-w-6xl mx-auto px-6 pt-24 lg:pt-32 pb-24 overflow-hidden">
+      <main className="max-w-6xl mx-auto px-6 pt-20 lg:pt-32 pb-24 overflow-hidden">
         {/* Hero Section */}
-        <section ref={heroRef} className="relative flex items-start lg:items-center min-h-0 lg:min-h-[85vh] pt-4 pb-12 lg:pt-24 lg:py-0">
+        <section ref={heroRef} className="relative flex items-start lg:items-center min-h-0 lg:min-h-[85vh] pt-0 pb-12 lg:pt-24 lg:py-0">
           <div className="absolute right-0 top-0 w-full h-[110%] -z-10 opacity-20 pointer-events-none">
             {isDesktop ? (
               <Suspense fallback={null}>
@@ -544,7 +544,7 @@ function App() {
             </div>
 
             {/* greeting + name: overlay over photo on mobile, static left column on desktop */}
-            <div className="hero-content absolute top-24 left-1 z-10 pr-2 max-w-[82%] lg:static lg:top-auto lg:max-w-2xl lg:col-start-1 lg:row-start-1 lg:self-center lg:pr-0">
+            <div className="hero-content absolute top-6 left-1 z-10 pr-2 max-w-[82%] lg:static lg:top-auto lg:max-w-2xl lg:col-start-1 lg:row-start-1 lg:self-center lg:pr-0">
               <p className="text-accent font-mono mb-2 sm:mb-6 text-[10px] sm:text-sm tracking-widest uppercase">
                 // <ScrambleText text={t('hero.greeting')} />
               </p>
