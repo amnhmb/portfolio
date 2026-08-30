@@ -17,6 +17,7 @@ const resources = {
         skills: "Skills",
         education: "Education",
         experience: "Experience",
+        research: "Research",
         contact: "Contact"
       },
       about: {
@@ -163,6 +164,7 @@ const resources = {
         skills: "Kemahiran",
         education: "Pendidikan",
         experience: "Pengalaman",
+        research: "Penyelidikan",
         contact: "Hubungi"
       },
       about: {

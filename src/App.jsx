@@ -266,6 +266,7 @@ function App() {
   const educationRef = useRef();
   const skillsRef = useRef();
   const expRef = useRef();
+  const researchRef = useRef();
   
   const toggleLanguage = () => {
     const newLang = lang === 'en' ? 'ms' : 'en';
@@ -299,7 +300,7 @@ function App() {
           }
         });
 
-        const revealSections = [aboutRef, educationRef, skillsRef, expRef];
+        const revealSections = [aboutRef, educationRef, skillsRef, expRef, researchRef];
         revealSections.forEach((ref) => {
           if (ref.current) {
             gsap.fromTo(ref.current.children,
@@ -344,6 +345,7 @@ function App() {
               <a href="#education" className="hover:text-accent transition-colors">{t('nav.education')}</a>
               <a href="#skills" className="hover:text-accent transition-colors">{t('nav.skills')}</a>
               <a href="#experience" className="hover:text-accent transition-colors">{t('nav.experience')}</a>
+              <a href="#research" className="hover:text-accent transition-colors">{t('nav.research')}</a>
             </div>
             <button 
               onClick={toggleLanguage}
@@ -538,6 +540,86 @@ function App() {
                 )}
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* Featured Research Section */}
+        <section id="research" ref={researchRef} className="py-32 border-t border-gray-200">
+          <h2 className="text-4xl md:text-5xl font-bold mb-16 text-[#111111] tracking-tight">
+            {t('research.title')}
+          </h2>
+          
+          <div className="bg-white border border-gray-200 rounded-lg p-8 shadow-sm">
+            <div className="flex flex-col lg:flex-row justify-between gap-8 mb-8 pb-8 border-b border-gray-100">
+              <div className="lg:w-2/3">
+                <div className="flex flex-wrap items-center gap-3 mb-4">
+                  <span className="bg-[#111111] text-white px-3 py-1 text-xs font-mono tracking-widest uppercase rounded">
+                    {t('research.meta')}
+                  </span>
+                  <span className="text-accent text-xs font-mono tracking-widest uppercase">
+                    • {t('research.status')}
+                  </span>
+                </div>
+                <h3 className="text-2xl md:text-3xl font-bold text-[#111111] leading-tight mb-4">
+                  {t('research.paperTitle')}
+                </h3>
+                <p className="text-gray-500 font-mono text-sm tracking-widest uppercase">
+                  {t('research.role')}
+                </p>
+              </div>
+              <div className="lg:w-1/3 flex items-start lg:justify-end">
+                <a 
+                  href={`${import.meta.env.BASE_URL}iot-mushroom-research-paper.pdf`}
+                  target="_blank" 
+                  rel="noopener"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-[#111111] text-white rounded-md font-medium hover:bg-accent hover:scale-[0.98] transition-all duration-300"
+                >
+                  {t('research.button')}
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-12 mb-12">
+              <div>
+                <h4 className="text-sm font-mono text-gray-400 uppercase tracking-widest mb-4">{t('research.overviewLabel')}</h4>
+                <p className="text-gray-600 text-lg leading-relaxed font-light">{t('research.overview')}</p>
+              </div>
+              <div>
+                <h4 className="text-sm font-mono text-gray-400 uppercase tracking-widest mb-4">{t('research.approachLabel')}</h4>
+                <p className="text-gray-600 text-lg leading-relaxed font-light">{t('research.approach')}</p>
+              </div>
+            </div>
+
+            <div className="bg-[#FAFAFA] border border-gray-100 rounded-md p-6 mb-8">
+              <h4 className="text-sm font-mono text-gray-400 uppercase tracking-widest mb-6 text-center">{t('research.resultsLabel')}</h4>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div>
+                  <div className="text-3xl font-bold text-[#e11d48] mb-1">{t('research.stats.period')}</div>
+                  <div className="text-xs text-gray-500 font-mono tracking-wide">{t('research.stats.periodSub')}</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-[#111111] mb-1">{t('research.stats.acc')}</div>
+                  <div className="text-xs text-gray-500 font-mono tracking-wide">{t('research.stats.accSub')}</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-[#111111] mb-1">{t('research.stats.f1')}</div>
+                  <div className="text-xs text-gray-500 font-mono tracking-wide">{t('research.stats.f1Sub')}</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-[#111111] mb-1">{t('research.stats.map')}</div>
+                  <div className="text-xs text-gray-500 font-mono tracking-wide">{t('research.stats.mapSub')}</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-3">
+              {Array.isArray(t('research.tags', { returnObjects: true })) && t('research.tags', { returnObjects: true }).map((tag, index) => (
+                <span key={index} className="px-3 py-1 bg-gray-100 text-gray-500 text-xs font-mono tracking-widest uppercase rounded">
+                  {tag}
+                </span>
+              ))}
+            </div>
           </div>
         </section>
 
