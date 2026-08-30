@@ -490,7 +490,13 @@ function App() {
 
             {/* Right Col: Image */}
             <div className="hero-el order-1 lg:order-2 flex justify-center lg:justify-end w-full">
-              <div className="relative w-72 sm:w-80 md:w-96 lg:w-[32rem]">
+              <div 
+                className="relative w-72 sm:w-80 md:w-96 lg:w-[32rem]"
+                style={{
+                  WebkitMaskImage: 'radial-gradient(ellipse at center, black 45%, transparent 70%)',
+                  maskImage: 'radial-gradient(ellipse at center, black 45%, transparent 70%)'
+                }}
+              >
                 <picture>
                   <source srcSet={`${import.meta.env.BASE_URL}hero-optimized.webp`} type="image/webp" />
                   <img 
