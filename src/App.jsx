@@ -54,18 +54,19 @@ function SimpleLineChart({ data, title, type, onPointClick }) {
             onClick={() => onPointClick(type, i)}
           >
             {hoveredIdx === i && (
-              <rect x={getX(i) - 25} y={getY(val) - 32} width="50" height="20" rx="4" fill="#111111" />
+              <rect x={getX(i) - 25} y={getY(val) - 34} width="50" height="20" rx="4" fill="#111111" />
             )}
             <circle 
-              cx={getX(i)} cy={getY(val)} r={hoveredIdx === i ? "5" : "4"} 
+              cx={getX(i)} cy={getY(val)} 
+              r={hoveredIdx === i ? "4.5" : "3.5"} 
               fill={hoveredIdx === i ? "#e11d48" : "#FAFAFA"} 
-              strokeWidth="2" 
+              strokeWidth={hoveredIdx === i ? "0" : "1.5"} 
               stroke="#e11d48"
             />
             {hoveredIdx === i ? (
-              <text x={getX(i)} y={getY(val) - 18} fontSize="10" fill="#FAFAFA" textAnchor="middle" className="font-mono font-bold pointer-events-none">{val.toFixed(2)}</text>
+              <text x={getX(i)} y={getY(val) - 20} fontSize="10" fill="#FAFAFA" textAnchor="middle" className="font-mono font-bold pointer-events-none">{val.toFixed(2)}</text>
             ) : (
-              <text x={getX(i)} y={getY(val) - 10} fontSize="8" fill="#111111" textAnchor="middle" className="font-mono pointer-events-none">{val.toFixed(2)}</text>
+              <text x={getX(i)} y={getY(val) - 12} fontSize="8" fill="#111111" textAnchor="middle" className="font-mono pointer-events-none">{val.toFixed(2)}</text>
             )}
             <text x={getX(i)} y={h} fontSize="8" fill="#9ca3af" textAnchor="middle" className="font-mono pointer-events-none">S{i+1}</text>
             
