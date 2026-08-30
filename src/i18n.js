@@ -23,7 +23,7 @@ const resources = {
       about: {
         title: "About Me",
         p1: "I am Aiman Hambali, a fresh graduate electronic engineer based in Kota Bharu, Kelantan, Malaysia.",
-        p2: "My background blends hardware and embedded software. I have been actively involved in robotics clubs, FIRA competitions, and have even participated in a student exchange program in Fukuoka, Japan."
+        p2: "My background blends hardware and embedded software. I have been actively involved in robotics clubs, FIRA competitions, and took part in a student exchange program hosting a visiting delegation from Fukuoka, Japan at my polytechnic."
       },
       skills: {
         title: "Technical Skills",
@@ -118,7 +118,7 @@ const resources = {
         items: [
           "Robotics Club PUO",
           "FIRA 2019 Port Dickson",
-          "Student Exchange Fukuoka Japan (Diploma)",
+          "Hosted a student exchange delegation from Fukuoka, Japan (Diploma)",
           "Pitch Perfect 5.0",
           "MIMOS IC-design Field Trip"
         ]
@@ -172,7 +172,7 @@ const resources = {
       about: {
         title: "Mengenai Saya",
         p1: "Saya Aiman Hambali, seorang jurutera elektronik siswazah baharu yang berpangkalan di Kota Bharu, Kelantan, Malaysia.",
-        p2: "Latar belakang saya menggabungkan perkakasan dan perisian terbenam. Saya aktif dalam kelab robotik, pertandingan FIRA, dan pernah menyertai program pertukaran pelajar di Fukuoka, Jepun."
+        p2: "Latar belakang saya menggabungkan perkakasan dan perisian terbenam. Saya aktif dalam kelab robotik, pertandingan FIRA, dan pernah menyertai program pertukaran pelajar sebagai hos kepada delegasi pelajar dari Fukuoka, Jepun yang berkunjung ke politeknik saya."
       },
       skills: {
         title: "Kemahiran Teknikal",
@@ -267,7 +267,7 @@ const resources = {
         items: [
           "Kelab Robotik PUO",
           "FIRA 2019 Port Dickson",
-          "Pertukaran Pelajar Fukuoka Jepun (Diploma)",
+          "Menjadi hos delegasi pertukaran pelajar dari Fukuoka, Jepun (Diploma)",
           "Pitch Perfect 5.0",
           "Lawatan Sambil Belajar Reka Bentuk IC MIMOS"
         ]
