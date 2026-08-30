@@ -64,11 +64,11 @@ function SimpleLineChart({ data, title, type, onPointClick }) {
               stroke="#1e3a8a"
             />
             {hoveredIdx === i ? (
-              <text x={getX(i)} y={getY(val) - 20} fontSize="10" fill="#1e3a8a" textAnchor="middle" className="font-mono font-bold pointer-events-none">{val.toFixed(2)}</text>
+              <text x={getX(i)} y={getY(val) - 20} fontSize="10" fill="#1e3a8a" stroke="none" textAnchor="middle" className="font-mono font-medium pointer-events-none">{val.toFixed(2)}</text>
             ) : (
-              <text x={getX(i)} y={getY(val) - 12} fontSize="11" fill="#111111" textAnchor="middle" className="font-mono font-bold pointer-events-none">{val.toFixed(2)}</text>
+              <text x={getX(i)} y={getY(val) - 12} fontSize="10.5" fill="#1e3a8a" stroke="none" textAnchor="middle" className="font-mono pointer-events-none">{val.toFixed(2)}</text>
             )}
-            <text x={getX(i)} y={h} fontSize="10" fill="#6b7280" textAnchor="middle" className="font-mono pointer-events-none">S{i+1}</text>
+            <text x={getX(i)} y={h} fontSize="10" fill="#6b7280" stroke="none" textAnchor="middle" className="font-mono pointer-events-none">S{i+1}</text>
             
             {/* Invisible larger hit area for easier clicking */}
             <circle cx={getX(i)} cy={getY(val)} r="15" fill="transparent" stroke="none" />
