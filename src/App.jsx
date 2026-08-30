@@ -450,38 +450,53 @@ function App() {
 
       <main className="max-w-6xl mx-auto px-6 pt-32 pb-24 overflow-hidden">
         {/* Hero Section */}
-        <section ref={heroRef} className="min-h-[85vh] relative flex items-center">
-          <div className="absolute right-0 top-0 w-full md:w-3/5 h-[110%] -z-10 opacity-70 md:opacity-100 pointer-events-none md:pointer-events-auto">
+        <section ref={heroRef} className="min-h-[85vh] relative flex items-center pt-24 pb-12 lg:py-0">
+          <div className="absolute right-0 top-0 w-full h-[110%] -z-10 opacity-20 pointer-events-none">
             <Suspense fallback={null}>
               <Scene />
             </Suspense>
           </div>
-          <div className="max-w-2xl hero-content">
-            <p className="hero-el text-accent font-mono mb-6 text-sm tracking-widest uppercase">
-              // {t('hero.greeting')}
-            </p>
-            <h1 className="hero-el text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-6 leading-[1.05] text-[#111111]">
-              {t('hero.name')}
-            </h1>
-            <h2 className="hero-el text-xl md:text-3xl font-medium text-gray-500 mb-8 tracking-tight">
-              {t('hero.role')}
-            </h2>
-            <p className="hero-el text-gray-600 text-lg md:text-xl mb-12 max-w-xl leading-relaxed font-light">
-              {t('hero.description')}
-            </p>
-            
-            <div className="hero-el flex flex-wrap items-center gap-6">
-              <a href="mailto:aimannhambalii@gmail.com" className="px-8 py-4 bg-[#111111] text-white rounded-md font-medium hover:bg-accent hover:scale-[0.98] transition-all duration-300">
-                {t('hero.contact')}
-              </a>
-              <a href="/Aiman_Hambali_CV.docx" download className="px-8 py-4 border border-gray-300 text-[#111111] rounded-md font-medium hover:border-accent hover:text-accent transition-all duration-300">
-                {t('hero.resume')}
-              </a>
+          
+          <div className="w-full grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+            {/* Left Col: Text */}
+            <div className="max-w-2xl hero-content order-2 lg:order-1">
+              <p className="hero-el text-accent font-mono mb-6 text-sm tracking-widest uppercase">
+                // {t('hero.greeting')}
+              </p>
+              <h1 className="hero-el text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-6 leading-[1.05] text-[#111111]">
+                {t('hero.name')}
+              </h1>
+              <h2 className="hero-el text-xl md:text-3xl font-medium text-gray-500 mb-8 tracking-tight">
+                {t('hero.role')}
+              </h2>
+              <p className="hero-el text-gray-600 text-lg md:text-xl mb-12 max-w-xl leading-relaxed font-light">
+                {t('hero.description')}
+              </p>
+              
+              <div className="hero-el flex flex-wrap items-center gap-6">
+                <a href="mailto:aimannhambalii@gmail.com" className="px-8 py-4 bg-[#111111] text-white rounded-md font-medium hover:bg-accent hover:scale-[0.98] transition-all duration-300">
+                  {t('hero.contact')}
+                </a>
+                <a href="/Aiman_Hambali_CV.docx" download className="px-8 py-4 border border-gray-300 text-[#111111] rounded-md font-medium hover:border-accent hover:text-accent transition-all duration-300">
+                  {t('hero.resume')}
+                </a>
+              </div>
+  
+              <div className="hero-el flex flex-wrap items-center gap-8 mt-16 text-gray-400">
+                <span className="font-mono text-sm tracking-widest uppercase">aimannhambalii@gmail.com</span>
+                <span className="font-mono text-sm tracking-widest uppercase">+60 11-2550 7190</span>
+              </div>
             </div>
 
-            <div className="hero-el flex items-center gap-8 mt-16 text-gray-400">
-              <span className="font-mono text-sm tracking-widest uppercase">aimannhambalii@gmail.com</span>
-              <span className="font-mono text-sm tracking-widest uppercase">+60 11-2550 7190</span>
+            {/* Right Col: Image */}
+            <div className="hero-el order-1 lg:order-2 flex justify-center lg:justify-end w-full">
+              <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-[28rem] lg:h-[28rem] rounded-2xl overflow-hidden border border-gray-100 shadow-xl shadow-gray-100/50 grayscale-[.3] hover:grayscale-0 transition-all duration-700">
+                <img 
+                  src={`${import.meta.env.BASE_URL}profile-photo.jpg`} 
+                  alt="Aiman Hambali" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
           </div>
         </section>
