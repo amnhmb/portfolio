@@ -17,6 +17,7 @@ const resources = {
         skills: "Skills",
         education: "Education",
         experience: "Experience",
+        projects: "Projects",
         research: "Research",
         contact: "Contact"
       },
@@ -146,6 +147,27 @@ const resources = {
         title: "Get in Touch",
         copyright: "© 2026 Aiman Hambali Bin Amran"
       },
+      projects: {
+        title: "Projects",
+        intro: "Currently supporting my cousin's business, ThirtyOne Lab, in customer service while designing and building its digital systems.",
+        viewLive: "View live",
+        private: "Private",
+        items: [
+          {
+            image: "project-catalog.png",
+            title: "ThirtyOne Lab · Catalog & Admin Panel",
+            description: "A product catalog web app with a built-in admin panel for the business. Customers browse the catalog and build quote requests; the owner manages products and content through the admin panel.",
+            tech: ["React", "Vite", "Tailwind", "Supabase", "Cloudflare Pages"],
+            link: "https://31lab.pages.dev"
+          },
+          {
+            image: "project-oms.png",
+            title: "Order Management System (OMS)",
+            description: "A private internal system to manage orders, invoices, and order-status tracking for the business, with automated daily status reporting to Telegram.",
+            tech: ["React", "Vite", "Supabase", "Tailwind"]
+          }
+        ]
+      },
       research: {
         title: "Featured Research",
         paperTitle: "An IoT-Enabled Growth Management System with Deep Learning-Based Monitoring for Volvariella volvacea Mushroom Cultivation in Controlled Environments",
@@ -189,6 +211,7 @@ const resources = {
         skills: "Kemahiran",
         education: "Pendidikan",
         experience: "Pengalaman",
+        projects: "Projek",
         research: "Penyelidikan",
         contact: "Hubungi"
       },
@@ -317,6 +340,27 @@ const resources = {
       contact: {
         title: "Hubungi Saya",
         copyright: "© 2026 Aiman Hambali Bin Amran"
+      },
+      projects: {
+        title: "Projek",
+        intro: "Kini menyokong perniagaan sepupu saya, ThirtyOne Lab, dalam perkhidmatan pelanggan sambil mereka bentuk dan membina sistem digital mereka.",
+        viewLive: "Lihat tapak web",
+        private: "Peribadi",
+        items: [
+          {
+            image: "project-catalog.png",
+            title: "ThirtyOne Lab · Katalog & Panel Pentadbir",
+            description: "Aplikasi web katalog produk dengan panel pentadbir terbina dalam untuk perniagaan. Pelanggan melayari katalog dan membuat permintaan sebut harga; pemilik menguruskan produk dan kandungan melalui panel pentadbir.",
+            tech: ["React", "Vite", "Tailwind", "Supabase", "Cloudflare Pages"],
+            link: "https://31lab.pages.dev"
+          },
+          {
+            image: "project-oms.png",
+            title: "Sistem Pengurusan Pesanan (OMS)",
+            description: "Sistem dalaman peribadi untuk menguruskan pesanan, invois, dan penjejakan status pesanan untuk perniagaan, dengan pelaporan status harian automatik ke Telegram.",
+            tech: ["React", "Vite", "Supabase", "Tailwind"]
+          }
+        ]
       },
       research: {
         title: "Kajian Kes",

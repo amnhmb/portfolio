@@ -344,6 +344,7 @@ function App() {
   const educationRef = useRef();
   const skillsRef = useRef();
   const expRef = useRef();
+  const projectsRef = useRef();
   const achievementsRef = useRef();
   const researchRef = useRef();
   
@@ -379,7 +380,7 @@ function App() {
           }
         });
 
-        const revealSections = [aboutRef, educationRef, skillsRef, expRef, achievementsRef, researchRef];
+        const revealSections = [aboutRef, educationRef, skillsRef, expRef, projectsRef, achievementsRef, researchRef];
         revealSections.forEach((ref) => {
           if (ref.current) {
             gsap.fromTo(ref.current.children,
@@ -432,6 +433,7 @@ function App() {
               <a href="#education" className="hover:text-accent transition-colors">{t('nav.education')}</a>
               <a href="#skills" className="hover:text-accent transition-colors">{t('nav.skills')}</a>
               <a href="#experience" className="hover:text-accent transition-colors">{t('nav.experience')}</a>
+              <a href="#projects" className="hover:text-accent transition-colors">{t('nav.projects')}</a>
               <a href="#research" className="hover:text-accent transition-colors">{t('nav.research')}</a>
               <a href="#contact" className="hover:text-accent transition-colors">{t('nav.contact')}</a>
             </div>
@@ -626,6 +628,71 @@ function App() {
                     {exp.description}
                   </p>
                 )}
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Projects Section */}
+        <section id="projects" ref={projectsRef} className="py-32 border-t border-gray-200">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#111111] tracking-tight">
+            {t('projects.title')}
+          </h2>
+          <p className="text-lg text-gray-600 font-light mb-16 max-w-2xl leading-relaxed">
+            {t('projects.intro')}
+          </p>
+          <div className="grid md:grid-cols-2 gap-8 max-w-6xl">
+            {Array.isArray(t('projects.items', { returnObjects: true })) && t('projects.items', { returnObjects: true }).map((item, index) => (
+              <div 
+                key={index}
+                className="group flex flex-col bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:border-gray-300 hover:shadow-md transition-all duration-300"
+              >
+                <div 
+                  className="w-full aspect-[16/9] overflow-hidden rounded-md border border-gray-100 mb-6 bg-gray-50 cursor-pointer"
+                  onClick={() => setLightboxImage({ src: `${import.meta.env.BASE_URL}${item.image}`, alt: item.title })}
+                >
+                  <img 
+                    src={`${import.meta.env.BASE_URL}${item.image}`} 
+                    alt={item.title} 
+                    loading="lazy" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                  />
+                </div>
+                <h3 className="text-2xl font-bold text-[#111111] tracking-tight mb-3">
+                  {item.title}
+                </h3>
+                <p className="text-base text-gray-600 font-light leading-relaxed mb-6 flex-grow">
+                  {item.description}
+                </p>
+                
+                {/* Tech Chips */}
+                {item.tech && item.tech.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {item.tech.map((tItem, tIndex) => (
+                      <span key={tIndex} className="px-3 py-1 bg-gray-50 border border-gray-200 text-gray-600 text-xs font-mono tracking-wide rounded-md">
+                        {tItem}
+                      </span>
+                    ))}
+                  </div>
+                )}
+                
+                {/* Action */}
+                <div className="mt-auto pt-4 border-t border-gray-100">
+                  {item.link ? (
+                    <a 
+                      href={item.link} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center text-accent hover:text-accent/80 font-mono text-sm tracking-wide transition-colors"
+                    >
+                      {t('projects.viewLive')} &rarr;
+                    </a>
+                  ) : (
+                    <span className="inline-flex items-center text-gray-400 font-mono text-sm tracking-wide">
+                      {t('projects.private')}
+                    </span>
+                  )}
+                </div>
               </div>
             ))}
           </div>
