@@ -386,9 +386,11 @@ function App() {
       const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       
       if (!isReducedMotion) {
-        gsap.fromTo(".hero-el", 
-          { y: 40, opacity: 0 }, 
-          { y: 0, opacity: 1, duration: 1.2, stagger: 0.15, ease: "power4.out", delay: 0.2 }
+        // Hold the rest of the hero hidden until the decode animation on the
+        // name + greeting has resolved, then reveal it.
+        gsap.fromTo(".hero-el",
+          { y: 40, opacity: 0 },
+          { y: 0, opacity: 1, duration: 1, stagger: 0.12, ease: "power4.out", delay: 1.3 }
         );
 
         gsap.to(".hero-content", {
