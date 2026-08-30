@@ -113,16 +113,6 @@ const resources = {
           }
         ]
       },
-      activities: {
-        title: "Extra-Curricular",
-        items: [
-          "Robotics Club PUO",
-          "FIRA 2019 Port Dickson",
-          "Hosted a student exchange delegation from Fukuoka, Japan (Diploma)",
-          "Pitch Perfect 5.0",
-          "MIMOS IC-design Field Trip"
-        ]
-      },
       achievements: {
         title: "Achievements & Activities",
         items: [
@@ -148,6 +138,8 @@ const resources = {
             caption: "Electronic Design Project (EDP) site visit · Ayubi Lobster Farm"
           }
         ],
+        otherLabel: "Other Activities",
+        other: ["Robotics Club, Politeknik Ungku Omar", "Pitch Perfect 5.0"],
         close: "Close"
       },
       research: {
@@ -289,16 +281,6 @@ const resources = {
           }
         ]
       },
-      activities: {
-        title: "Kokurikulum",
-        items: [
-          "Kelab Robotik PUO",
-          "FIRA 2019 Port Dickson",
-          "Menjadi hos delegasi pertukaran pelajar dari Fukuoka, Jepun (Diploma)",
-          "Pitch Perfect 5.0",
-          "Lawatan Sambil Belajar Reka Bentuk IC MIMOS"
-        ]
-      },
       achievements: {
         title: "Pencapaian & Aktiviti",
         items: [
@@ -324,6 +306,8 @@ const resources = {
             caption: "Lawatan tapak Projek Reka Bentuk Elektronik (EDP) · Ladang Udang Kara Ayubi"
           }
         ],
+        otherLabel: "Aktiviti Lain",
+        other: ["Kelab Robotik, Politeknik Ungku Omar", "Pitch Perfect 5.0"],
         close: "Tutup"
       },
       research: {
