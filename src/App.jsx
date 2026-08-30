@@ -752,21 +752,18 @@ function App() {
               </div>
             ))}
           </div>
-        </section>
 
-        {/* Activities Section */}
-        <section id="activities" className="py-32 border-t border-gray-200">
-          <h2 className="text-4xl md:text-5xl font-bold mb-16 text-[#111111] tracking-tight">
-            {t('activities.title')}
-          </h2>
-          <ul className="grid md:grid-cols-2 gap-6 max-w-4xl">
-            {Array.isArray(t('activities.items', { returnObjects: true })) && t('activities.items', { returnObjects: true }).map((activity, index) => (
-              <li key={index} className="flex items-center gap-4 text-gray-600 text-lg font-light">
-                <span className="w-1.5 h-1.5 rounded-full bg-accent block shrink-0"></span>
-                <span>{activity}</span>
-              </li>
-            ))}
-          </ul>
+          {/* Other Activities Chips */}
+          <div className="mt-16">
+            <h3 className="text-sm font-mono text-gray-400 uppercase tracking-widest mb-6">{t('achievements.otherLabel')}</h3>
+            <div className="flex flex-wrap gap-3">
+              {Array.isArray(t('achievements.other', { returnObjects: true })) && t('achievements.other', { returnObjects: true }).map((activity, index) => (
+                <span key={index} className="px-4 py-2 bg-gray-50 border border-gray-200 text-gray-600 text-sm font-mono tracking-wide rounded-md hover:border-gray-300 transition-colors">
+                  {activity}
+                </span>
+              ))}
+            </div>
+          </div>
         </section>
 
       </main>
