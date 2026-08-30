@@ -22,22 +22,18 @@
     @apply antialiased font-sans bg-[#ECECEC] text-[#111111];
   }
 
-  /* Subtle polka-dot halftone: fades in from the top so the hero blend stays
-     clean, growing denser toward the lower part of the viewport. */
-  body::before {
-    content: "";
-    position: fixed;
+  /* Subtle polka-dot halftone layer. Anchored to the page (not the viewport)
+     so the hero at the top stays clean and the dots grow denser further down,
+     matching the reference. Rendered behind all content. */
+  .dot-layer {
+    position: absolute;
     inset: 0;
-    z-index: -1;
+    z-index: -10;
     pointer-events: none;
     background-image: radial-gradient(circle, rgba(17, 17, 17, 0.16) 1.4px, transparent 1.8px);
     background-size: 14px 14px;
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 14%, black 65%);
-    mask-image: linear-gradient(to bottom, transparent 0%, transparent 14%, black 65%);
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    body::before { transition: opacity 0.3s ease; }
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 4%, black 22%);
+    mask-image: linear-gradient(to bottom, transparent 0%, transparent 4%, black 22%);
   }
 
   h1, h2, h3, h4, h5, h6 {
