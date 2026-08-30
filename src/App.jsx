@@ -354,9 +354,81 @@ function ScrambleText({ text, className, delay = 0, trigger = 'mount' }) {
   return <span ref={ref} className={className}>{text}</span>;
 }
 
+// Entry splash: "amnhmb" decodes in, a navy line draws from a to b, then it
+// fades to reveal the site. Shows once per browser session.
+function SplashScreen({ onDone }) {
+  const rootRef = useRef(null);
+  const textRef = useRef(null);
+  const lineRef = useRef(null);
+
+  useEffect(() => {
+    const finish = () => { try { sessionStorage.setItem('amnhmb_splash', '1'); } catch (e) {} onDone(); };
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const el = textRef.current;
+    const line = lineRef.current;
+    const root = rootRef.current;
+    const final = 'amnhmb';
+    document.body.style.overflow = 'hidden';
+
+    if (reduce || !el) {
+      const tmo = setTimeout(finish, 500);
+      return () => { clearTimeout(tmo); document.body.style.overflow = ''; };
+    }
+
+    const glyphs = '!<>-_\\/[]{}=+*^?#01__';
+    let raf, frame = 0;
+    const revealPerFrame = 0.18;
+    let lineTween, exitTween, holdTimer;
+
+    const drawLine = () => {
+      lineTween = gsap.to(line, {
+        scaleX: 1, duration: 0.6, ease: 'power3.inOut',
+        onComplete: () => {
+          holdTimer = setTimeout(() => {
+            exitTween = gsap.to(root, { opacity: 0, duration: 0.5, ease: 'power2.out', onComplete: finish });
+          }, 350);
+        }
+      });
+    };
+
+    const tick = () => {
+      const revealed = Math.floor(frame * revealPerFrame);
+      let out = '';
+      for (let i = 0; i < final.length; i++) {
+        out += i < revealed ? final[i] : glyphs[(Math.random() * glyphs.length) | 0];
+      }
+      el.textContent = out;
+      frame++;
+      if (revealed <= final.length) raf = requestAnimationFrame(tick);
+      else { el.textContent = final; drawLine(); }
+    };
+    raf = requestAnimationFrame(tick);
+
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      if (lineTween) lineTween.kill();
+      if (exitTween) exitTween.kill();
+      if (holdTimer) clearTimeout(holdTimer);
+      document.body.style.overflow = '';
+    };
+  }, [onDone]);
+
+  return (
+    <div ref={rootRef} className="fixed inset-0 z-[200] flex items-center justify-center bg-[#ECECEC]">
+      <div className="flex flex-col items-center">
+        <span ref={textRef} className="font-mono font-bold text-4xl sm:text-6xl tracking-tight text-[#111111]">amnhmb</span>
+        <div ref={lineRef} className="h-[3px] w-full bg-accent origin-left mt-3" style={{ transform: 'scaleX(0)' }}></div>
+      </div>
+    </div>
+  );
+}
+
 function App() {
   const { t, i18n } = useTranslation();
   const [lang, setLang] = useState(i18n.language);
+  const [showSplash, setShowSplash] = useState(() => {
+    try { return sessionStorage.getItem('amnhmb_splash') !== '1'; } catch (e) { return true; }
+  });
   const [selectedTranscript, setSelectedTranscript] = useState(null); // { type, semIndex }
   const [isDesktop, setIsDesktop] = useState(true);
 
@@ -471,6 +543,8 @@ function App() {
   
   return (
     <div className="min-h-screen font-sans selection:bg-accent selection:text-white" ref={mainRef}>
+
+      {showSplash && <SplashScreen onDone={() => setShowSplash(false)} />}
 
       {/* SlideOver Drawer */}
       <SlideOverDrawer 
