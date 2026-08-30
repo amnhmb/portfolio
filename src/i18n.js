@@ -32,16 +32,23 @@ const resources = {
         title: "Experience",
         items: [
           {
-            role: "PM Technician (Intern)",
+            role: "Engineer Intern",
             company: "Unisem (M) Berhad",
             period: "Jul 2025 - Jan 2026",
-            description: "Performed preventive maintenance (PM) across ETS-88, ETS-364, ASL-1000, CCT, and LTX test machines. Conducted calibration logging and equipment troubleshooting."
+            description: [
+              "Hired at an engineer level, but stepped up to cover hands-on PM Technician duties due to team understaffing.",
+              "Completed 1 month of structured training followed by 1 month of supervised hands-on practice.",
+              "Independently ran the test line responsibilities for 4 months after technician staff were reassigned to the Gopeng plant.",
+              "Managed preventive maintenance and troubleshooting on semiconductor test equipment (ETS-88, ETS-364, ASL-1000, CCT, and LTX).",
+              "Coordinated daily across functional lines with supervisors, operators, customers, the engineering team, and line technicians.",
+              "Successfully onboarded and trained a new staff member before the internship concluded."
+            ]
           },
           {
             role: "Electrical Technician (Intern)",
             company: "Kejuruteraan Elektrik Usahamaju Sdn Bhd",
             period: "Jun 2021 - Aug 2021",
-            description: "Assisted with distribution board (DB) boxes, conduit installation, and general house wiring."
+            description: "Assisted in Distribution Board (DB) box installation, conduit fitting, and general house wiring."
           }
         ]
       },
@@ -147,10 +154,17 @@ const resources = {
         title: "Pengalaman",
         items: [
           {
-            role: "Juruteknik PM (Pelatih)",
+            role: "Pelatih Jurutera",
             company: "Unisem (M) Berhad",
             period: "Jul 2025 - Jan 2026",
-            description: "Melaksanakan penyelenggaraan pencegahan (PM) pada mesin ujian ETS-88, ETS-364, ASL-1000, CCT, dan LTX. Mengendalikan log penentukuran dan penyelesaian masalah peralatan."
+            description: [
+              "Diserap pada tahap jurutera, namun mengambil inisiatif menggalas tugas Juruteknik PM kerana kekurangan kakitangan pasukan.",
+              "Menamatkan latihan berstruktur selama 1 bulan diikuti latihan amali berselia selama 1 bulan.",
+              "Mengendalikan tanggungjawab barisan ujian secara bebas selama 4 bulan selepas kakitangan juruteknik dipindahkan ke kilang Gopeng.",
+              "Mengurus penyelenggaraan pencegahan dan penyelesaian masalah pada mesin ujian semikonduktor (ETS-88, ETS-364, ASL-1000, CCT, dan LTX).",
+              "Menyelaras tugas harian merentasi pelbagai bahagian bersama penyelia, operator, pelanggan, pasukan kejuruteraan, dan juruteknik barisan.",
+              "Berjaya melatih dan membimbing kakitangan baharu sebelum tempoh latihan industri tamat."
+            ]
           },
           {
             role: "Juruteknik Elektrik (Pelatih)",

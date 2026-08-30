@@ -522,9 +522,20 @@ function App() {
                     <span className="text-gray-500">{exp.period}</span>
                   </div>
                 </div>
-                <p className="text-gray-600 text-lg md:text-xl leading-relaxed max-w-3xl font-light mt-6">
-                  {exp.description}
-                </p>
+                {Array.isArray(exp.description) ? (
+                  <ul className="text-gray-600 text-lg leading-relaxed font-light mt-4 space-y-3 max-w-3xl">
+                    {exp.description.map((detail, idx) => (
+                      <li key={idx} className="flex items-start gap-4">
+                        <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2.5 shrink-0"></span>
+                        <span>{detail}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-gray-600 text-lg leading-relaxed font-light max-w-3xl">
+                    {exp.description}
+                  </p>
+                )}
               </div>
             ))}
           </div>

@@ -157,7 +157,7 @@ export const academics = {
       },
       {
         sem: 7, term: 'Jul 2025 – Jan 2026', gpa: null, cgpa: 3.60, credits: null,
-        note: 'Industrial Training (Latihan Industri) — Unisem (M) Berhad, PM Technician (Intern). Preventive maintenance on semiconductor test equipment.',
+        note: 'Industrial Training (Latihan Industri) — Unisem (M) Berhad, Engineer Intern. Independently managed the semiconductor test line and trained new staff.',
         courses: [],
       },
     ],
