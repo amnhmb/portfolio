@@ -123,6 +123,19 @@ const resources = {
           "MIMOS IC-design Field Trip"
         ]
       },
+      achievements: {
+        title: "Achievements & Activities",
+        fira: {
+          title: "FIRA 2019 Robotics Competition",
+          caption: "Port Dickson · Robotics Club, Politeknik Ungku Omar"
+        },
+        integrity: {
+          title: "Integrity Award",
+          caption: "PRS (Pembimbing Rakan Sebaya) Annual Dinner · Politeknik Ungku Omar",
+          note: "Member of Pembimbing Rakan Sebaya (PRS) during Diploma."
+        },
+        close: "Close"
+      },
       research: {
         title: "Featured Research",
         paperTitle: "An IoT-Enabled Growth Management System with Deep Learning-Based Monitoring for Volvariella volvacea Mushroom Cultivation in Controlled Environments",
@@ -271,6 +284,19 @@ const resources = {
           "Pitch Perfect 5.0",
           "Lawatan Sambil Belajar Reka Bentuk IC MIMOS"
         ]
+      },
+      achievements: {
+        title: "Pencapaian & Aktiviti",
+        fira: {
+          title: "Pertandingan Robotik FIRA 2019",
+          caption: "Port Dickson · Kelab Robotik, Politeknik Ungku Omar"
+        },
+        integrity: {
+          title: "Anugerah Integriti",
+          caption: "Makan Malam Tahunan PRS (Pembimbing Rakan Sebaya) · Politeknik Ungku Omar",
+          note: "Ahli Pembimbing Rakan Sebaya (PRS) semasa Diploma."
+        },
+        close: "Tutup"
       },
       research: {
         title: "Kajian Kes",

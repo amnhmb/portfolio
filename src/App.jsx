@@ -79,6 +79,83 @@ function SimpleLineChart({ data, title, type, onPointClick }) {
   );
 }
 
+function Lightbox({ image, alt, onClose, t }) {
+  const overlayRef = useRef();
+
+  useEffect(() => {
+    if (!image) return;
+    document.body.style.overflow = 'hidden';
+
+    const focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+    const focusableContent = overlayRef.current?.querySelectorAll(focusableElements);
+    const firstFocusableElement = focusableContent?.[0];
+    const lastFocusableElement = focusableContent?.[focusableContent.length - 1];
+
+    if (firstFocusableElement) {
+      firstFocusableElement.focus();
+    }
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') onClose();
+      
+      if (e.key === 'Tab') {
+        if (e.shiftKey) {
+          if (document.activeElement === firstFocusableElement) {
+            lastFocusableElement?.focus();
+            e.preventDefault();
+          }
+        } else {
+          if (document.activeElement === lastFocusableElement) {
+            firstFocusableElement?.focus();
+            e.preventDefault();
+          }
+        }
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = 'unset';
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [image, onClose]);
+
+  if (!image) return null;
+
+  return (
+    <div 
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8" 
+      role="dialog" 
+      aria-modal="true" 
+      aria-label="Image lightbox"
+    >
+      <div 
+        className="fixed inset-0 bg-[#111111]/90 backdrop-blur-md transition-opacity duration-300"
+        onClick={onClose} 
+        aria-hidden="true" 
+      />
+      <div 
+        ref={overlayRef}
+        className="relative w-full max-w-5xl max-h-full flex flex-col items-center justify-center pointer-events-auto"
+      >
+        <button 
+          onClick={onClose} 
+          className="absolute -top-12 right-0 p-2 text-white/50 hover:text-white transition-colors flex items-center gap-2"
+          aria-label={t('achievements.close')}
+        >
+          <span className="text-sm font-mono uppercase tracking-widest">{t('achievements.close')}</span>
+          <X size={20} />
+        </button>
+        <img 
+          src={image} 
+          alt={alt} 
+          className="w-full h-auto max-h-[85vh] object-contain rounded-lg shadow-2xl border border-white/10"
+        />
+      </div>
+    </div>
+  );
+}
+
 function SlideOverDrawer({ transcript, onClose, onSelectTranscript, t }) {
   const drawerRef = useRef();
 
@@ -259,6 +336,7 @@ function App() {
   const { t, i18n } = useTranslation();
   const [lang, setLang] = useState(i18n.language);
   const [selectedTranscript, setSelectedTranscript] = useState(null); // { type, semIndex }
+  const [lightboxImage, setLightboxImage] = useState(null);
   
   const mainRef = useRef();
   const heroRef = useRef();
@@ -266,6 +344,7 @@ function App() {
   const educationRef = useRef();
   const skillsRef = useRef();
   const expRef = useRef();
+  const achievementsRef = useRef();
   const researchRef = useRef();
   
   const toggleLanguage = () => {
@@ -300,7 +379,7 @@ function App() {
           }
         });
 
-        const revealSections = [aboutRef, educationRef, skillsRef, expRef, researchRef];
+        const revealSections = [aboutRef, educationRef, skillsRef, expRef, achievementsRef, researchRef];
         revealSections.forEach((ref) => {
           if (ref.current) {
             gsap.fromTo(ref.current.children,
@@ -325,6 +404,14 @@ function App() {
   return (
     <div className="min-h-screen font-sans selection:bg-accent selection:text-white" ref={mainRef}>
       
+      {/* Lightbox */}
+      <Lightbox 
+        image={lightboxImage?.src} 
+        alt={lightboxImage?.alt} 
+        onClose={() => setLightboxImage(null)} 
+        t={t} 
+      />
+
       {/* SlideOver Drawer */}
       <SlideOverDrawer 
         transcript={selectedTranscript} 
@@ -625,6 +712,61 @@ function App() {
                   {tag}
                 </span>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Achievements Section */}
+        <section id="achievements" ref={achievementsRef} className="py-32 border-t border-gray-200">
+          <h2 className="text-4xl md:text-5xl font-bold mb-16 text-[#111111] tracking-tight">
+            {t('achievements.title')}
+          </h2>
+          <div className="grid md:grid-cols-2 gap-8 max-w-6xl">
+            {/* Card 1 */}
+            <div 
+              className="group cursor-pointer flex flex-col items-start bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:border-gray-300 hover:shadow-md transition-all duration-300"
+              onClick={() => setLightboxImage({ src: `${import.meta.env.BASE_URL}fira-2019.jpg`, alt: t('achievements.fira.title') })}
+            >
+              <div className="w-full aspect-[4/3] overflow-hidden rounded-md border border-gray-100 mb-6 bg-gray-50">
+                <img 
+                  src={`${import.meta.env.BASE_URL}fira-2019.jpg`} 
+                  alt={t('achievements.fira.title')} 
+                  loading="lazy" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                />
+              </div>
+              <h3 className="text-xl font-bold text-[#111111] tracking-tight mb-2 group-hover:text-accent transition-colors">
+                {t('achievements.fira.title')}
+              </h3>
+              <p className="text-sm text-gray-500 font-mono tracking-wide uppercase leading-relaxed">
+                {t('achievements.fira.caption')}
+              </p>
+            </div>
+
+            {/* Card 2 */}
+            <div 
+              className="group cursor-pointer flex flex-col items-start bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:border-gray-300 hover:shadow-md transition-all duration-300"
+              onClick={() => setLightboxImage({ src: `${import.meta.env.BASE_URL}award-integrity.jpg`, alt: t('achievements.integrity.title') })}
+            >
+              <div className="w-full aspect-[4/3] overflow-hidden rounded-md border border-gray-100 mb-6 bg-gray-50">
+                <img 
+                  src={`${import.meta.env.BASE_URL}award-integrity.jpg`} 
+                  alt={t('achievements.integrity.title')} 
+                  loading="lazy" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                />
+              </div>
+              <h3 className="text-xl font-bold text-[#111111] tracking-tight mb-2 group-hover:text-accent transition-colors">
+                {t('achievements.integrity.title')}
+              </h3>
+              <p className="text-sm text-gray-500 font-mono tracking-wide uppercase leading-relaxed mb-3">
+                {t('achievements.integrity.caption')}
+              </p>
+              <div className="mt-auto pt-3 border-t border-gray-100 w-full">
+                <p className="text-sm text-gray-400 font-light italic">
+                  {t('achievements.integrity.note')}
+                </p>
+              </div>
             </div>
           </div>
         </section>
