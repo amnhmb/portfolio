@@ -586,8 +586,14 @@ function App() {
                 <p className="text-gray-600 text-lg leading-relaxed font-light">{t('research.overview')}</p>
               </div>
               <div>
-                <h4 className="text-sm font-mono text-gray-400 uppercase tracking-widest mb-4">{t('research.approachLabel')}</h4>
-                <p className="text-gray-600 text-lg leading-relaxed font-light">{t('research.approach')}</p>
+                <div className="mb-8">
+                  <h4 className="text-sm font-mono text-gray-400 uppercase tracking-widest mb-4">{t('research.approachLabel')}</h4>
+                  <p className="text-gray-600 text-lg leading-relaxed font-light">{t('research.approach')}</p>
+                </div>
+                <div>
+                  <h4 className="text-sm font-mono text-gray-400 uppercase tracking-widest mb-4">{t('research.collabLabel')}</h4>
+                  <p className="text-gray-600 text-lg leading-relaxed font-light">{t('research.collab')}</p>
+                </div>
               </div>
             </div>
 

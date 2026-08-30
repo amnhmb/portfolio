@@ -128,24 +128,26 @@ const resources = {
         paperTitle: "An IoT-Enabled Growth Management System with Deep Learning-Based Monitoring for Volvariella volvacea Mushroom Cultivation in Controlled Environments",
         meta: "Wiley · Applied Research (Research Article)",
         status: "Under peer review",
-        role: "Co-author (originated from UniKL BMI Final Year Project)",
+        role: "Co-author (Joint paper combining two Final Year Projects)",
         overviewLabel: "Overview",
-        overview: "Volvariella mushrooms are in high demand in Malaysia, but traditional cultivation struggles to hold ideal environmental conditions, causing variable yield and quality.",
-        approachLabel: "Approach",
-        approach: "An IoT environmental-control system (ESP32 microcontroller; DHT22 for temperature/humidity, MQ135 for CO2, HW-038 for water level; actuators: foggers, water pumps, heaters, ventilation fans) that auto-maintains 28-35 C, 75-95% RH, CO2 < 1000 ppm — combined with a YOLOv8 deep-learning model that classifies four growth stages (Tiny, Button, Egg, Mature).",
+        overview: "Volvariella mushrooms are in high demand in Malaysia, but traditional cultivation struggles to hold ideal environmental conditions, causing variable yield and quality. This paper merges my IoT environmental-control project with a fellow student's deep-learning monitoring project into a single comprehensive system.",
+        approachLabel: "My Contribution (IoT System)",
+        approach: "I designed and built the IoT environmental-control system using an ESP32 microcontroller with DHT22 (temperature/humidity), MQ135 (CO2), and HW-038 (water level) sensors. It controls actuators (foggers, water pumps, heaters, ventilation fans) to automatically maintain ideal conditions: 28-35°C, 75-95% RH, and CO2 < 1000 ppm.",
+        collabLabel: "Collaborator's Contribution (AI Model)",
+        collab: "A co-author contributed the YOLOv8 deep-learning component for monitoring four mushroom growth stages (Tiny, Button, Egg, Mature).",
         resultsLabel: "Key Results",
         button: "View full paper",
         stats: {
           period: "~85%",
-          periodSub: "in target range",
+          periodSub: "in target range (My work)",
           acc: "93.12%",
-          accSub: "classification accuracy",
+          accSub: "accuracy (Collaborator)",
           f1: "87.9%",
-          f1Sub: "macro-average F1",
+          f1Sub: "macro F1 (Collaborator)",
           map: "0.78",
-          mapSub: "mAP@0.5"
+          mapSub: "mAP@0.5 (Collaborator)"
         },
-        tags: ["IoT", "ESP32", "DHT22", "MQ135", "YOLOv8", "Deep Learning", "Python"]
+        tags: ["IoT (Mine)", "ESP32", "DHT22", "MQ135", "YOLOv8 (Co-author)", "Deep Learning", "Python"]
       }
     }
   },
@@ -275,24 +277,26 @@ const resources = {
         paperTitle: "An IoT-Enabled Growth Management System with Deep Learning-Based Monitoring for Volvariella volvacea Mushroom Cultivation in Controlled Environments",
         meta: "Wiley · Applied Research (Artikel Penyelidikan)",
         status: "Dalam semakan rakan sebaya (Under peer review)",
-        role: "Pengarang bersama (berasal daripada Projek Tahun Akhir UniKL BMI)",
+        role: "Pengarang bersama (Kertas kerja gabungan dua Projek Tahun Akhir)",
         overviewLabel: "Gambaran Keseluruhan",
-        overview: "Cendawan Volvariella mendapat permintaan tinggi di Malaysia, tetapi penanaman tradisional sukar mengekalkan keadaan persekitaran yang ideal, menyebabkan hasil dan kualiti yang tidak menentu.",
-        approachLabel: "Pendekatan",
-        approach: "Sistem kawalan persekitaran IoT (mikropengawal ESP32; DHT22 untuk suhu/kelembapan, MQ135 untuk CO2, HW-038 untuk paras air; penggerak: penyembur kabus, pam air, pemanas, kipas pengudaraan) yang mengekalkan 28-35 C, 75-95% RH, CO2 < 1000 ppm secara automatik — digabungkan dengan model pembelajaran mendalam YOLOv8 yang mengklasifikasikan empat peringkat pertumbuhan (Tiny, Button, Egg, Mature).",
+        overview: "Cendawan Volvariella mendapat permintaan tinggi di Malaysia, tetapi penanaman tradisional sukar mengekalkan keadaan persekitaran yang ideal, menyebabkan hasil dan kualiti yang tidak menentu. Kertas kerja ini menggabungkan projek kawalan persekitaran IoT saya dengan projek pemantauan pembelajaran mendalam rakan pelajar menjadi satu sistem yang komprehensif.",
+        approachLabel: "Sumbangan Saya (Sistem IoT)",
+        approach: "Saya mereka bentuk dan membina sistem kawalan persekitaran IoT menggunakan mikropengawal ESP32 dengan penderia DHT22 (suhu/kelembapan), MQ135 (CO2), dan HW-038 (paras air). Ia mengawal penggerak (penyembur kabus, pam air, pemanas, kipas pengudaraan) untuk mengekalkan keadaan ideal secara automatik: 28-35°C, 75-95% RH, dan CO2 < 1000 ppm.",
+        collabLabel: "Sumbangan Rakan Kolaborasi (Model AI)",
+        collab: "Pengarang bersama menyumbang komponen pembelajaran mendalam YOLOv8 untuk memantau empat peringkat pertumbuhan cendawan (Tiny, Button, Egg, Mature).",
         resultsLabel: "Keputusan Utama",
         button: "Lihat kertas penuh",
         stats: {
           period: "~85%",
-          periodSub: "dalam julat sasaran",
+          periodSub: "dalam julat sasaran (Tugas Saya)",
           acc: "93.12%",
-          accSub: "ketepatan klasifikasi",
+          accSub: "ketepatan (Rakan Kolaborasi)",
           f1: "87.9%",
-          f1Sub: "makro-purata F1",
+          f1Sub: "makro F1 (Rakan Kolaborasi)",
           map: "0.78",
-          mapSub: "mAP@0.5"
+          mapSub: "mAP@0.5 (Rakan Kolaborasi)"
         },
-        tags: ["IoT", "ESP32", "DHT22", "MQ135", "YOLOv8", "Deep Learning", "Python"]
+        tags: ["IoT (Saya)", "ESP32", "DHT22", "MQ135", "YOLOv8 (Rakan Kolaborasi)", "Deep Learning", "Python"]
       }
     }
   }
