@@ -79,82 +79,6 @@ function SimpleLineChart({ data, title, type, onPointClick }) {
   );
 }
 
-function Lightbox({ image, alt, onClose, t }) {
-  const overlayRef = useRef();
-
-  useEffect(() => {
-    if (!image) return;
-    document.body.style.overflow = 'hidden';
-
-    const focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
-    const focusableContent = overlayRef.current?.querySelectorAll(focusableElements);
-    const firstFocusableElement = focusableContent?.[0];
-    const lastFocusableElement = focusableContent?.[focusableContent.length - 1];
-
-    if (firstFocusableElement) {
-      firstFocusableElement.focus();
-    }
-
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') onClose();
-      
-      if (e.key === 'Tab') {
-        if (e.shiftKey) {
-          if (document.activeElement === firstFocusableElement) {
-            lastFocusableElement?.focus();
-            e.preventDefault();
-          }
-        } else {
-          if (document.activeElement === lastFocusableElement) {
-            firstFocusableElement?.focus();
-            e.preventDefault();
-          }
-        }
-      }
-    };
-
-    document.addEventListener('keydown', handleKeyDown);
-    return () => {
-      document.body.style.overflow = 'unset';
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [image, onClose]);
-
-  if (!image) return null;
-
-  return (
-    <div 
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8" 
-      role="dialog" 
-      aria-modal="true" 
-      aria-label="Image lightbox"
-    >
-      <div 
-        className="fixed inset-0 bg-[#111111]/90 backdrop-blur-md transition-opacity duration-300"
-        onClick={onClose} 
-        aria-hidden="true" 
-      />
-      <div 
-        ref={overlayRef}
-        className="relative w-full max-w-5xl max-h-full flex flex-col items-center justify-center pointer-events-auto"
-      >
-        <button 
-          onClick={onClose} 
-          className="absolute -top-12 right-0 p-2 text-white/50 hover:text-white transition-colors flex items-center gap-2"
-          aria-label={t('achievements.close')}
-        >
-          <span className="text-sm font-mono uppercase tracking-widest">{t('achievements.close')}</span>
-          <X size={20} />
-        </button>
-        <img 
-          src={image} 
-          alt={alt} 
-          className="w-full h-auto max-h-[85vh] object-contain rounded-lg shadow-2xl border border-white/10"
-        />
-      </div>
-    </div>
-  );
-}
 
 function SlideOverDrawer({ transcript, onClose, onSelectTranscript, t }) {
   const drawerRef = useRef();
@@ -336,7 +260,6 @@ function App() {
   const { t, i18n } = useTranslation();
   const [lang, setLang] = useState(i18n.language);
   const [selectedTranscript, setSelectedTranscript] = useState(null); // { type, semIndex }
-  const [lightboxImage, setLightboxImage] = useState(null);
   
   const mainRef = useRef();
   const heroRef = useRef();
@@ -674,14 +597,13 @@ function App() {
                 className="group flex flex-col bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:border-gray-300 hover:shadow-md transition-all duration-300"
               >
                 <div 
-                  className="w-full aspect-[16/9] overflow-hidden rounded-md border border-gray-100 mb-6 bg-gray-50 cursor-pointer"
-                  onClick={() => setLightboxImage({ src: `${import.meta.env.BASE_URL}${item.image}`, alt: item.title })}
+                  className="w-full aspect-[16/9] overflow-hidden rounded-md border border-gray-100 mb-6 bg-gray-50"
                 >
                   <img 
                     src={`${import.meta.env.BASE_URL}${item.image}`} 
                     alt={item.title} 
                     loading="lazy" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                    className="w-full h-full object-cover transition-transform duration-700" 
                   />
                 </div>
                 <h3 className="text-2xl font-bold text-[#111111] tracking-tight mb-3">
@@ -819,15 +741,14 @@ function App() {
             {Array.isArray(t('achievements.items', { returnObjects: true })) && t('achievements.items', { returnObjects: true }).map((item, index) => (
               <div 
                 key={index}
-                className="group cursor-pointer flex flex-col items-start bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:border-gray-300 hover:shadow-md transition-all duration-300"
-                onClick={() => setLightboxImage({ src: `${import.meta.env.BASE_URL}${item.image}`, alt: item.title })}
+                className="group flex flex-col items-start bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:border-gray-300 hover:shadow-md transition-all duration-300"
               >
                 <div className="w-full aspect-[4/3] overflow-hidden rounded-md border border-gray-100 mb-6 bg-gray-50">
                   <img 
                     src={`${import.meta.env.BASE_URL}${item.image}`} 
                     alt={item.title} 
                     loading="lazy" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                    className="w-full h-full object-cover transition-transform duration-700" 
                   />
                 </div>
                 <h3 className="text-xl font-bold text-[#111111] tracking-tight mb-2 group-hover:text-accent transition-colors">
