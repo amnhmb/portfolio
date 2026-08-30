@@ -256,10 +256,63 @@ function SlideOverDrawer({ transcript, onClose, onSelectTranscript, t }) {
   );
 }
 
+
+function AnimatedTextNumber({ text }) {
+  const nodeRef = useRef(null);
+  
+  useEffect(() => {
+    if (!nodeRef.current) return;
+    const match = String(text).match(/^(.*?)(\d+(?:\.\d+)?)(.*)$/);
+    if (!match) return;
+    
+    const prefix = match[1];
+    const numStr = match[2];
+    const suffix = match[3];
+    const isFloat = numStr.includes('.');
+    const decimals = isFloat ? numStr.split('.')[1].length : 0;
+    const endValue = parseFloat(numStr);
+    
+    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (isReducedMotion) return;
+    
+    const obj = { val: 0 };
+    const ctx = gsap.context(() => {
+      gsap.to(obj, {
+        val: endValue,
+        duration: 2,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: nodeRef.current,
+          start: "top 90%"
+        },
+        onUpdate: () => {
+          if (nodeRef.current) {
+            const currentVal = isFloat ? obj.val.toFixed(decimals) : Math.round(obj.val);
+            nodeRef.current.innerHTML = `${prefix}${currentVal}${suffix}`;
+          }
+        }
+      });
+    });
+    
+    return () => ctx.revert();
+  }, [text]);
+
+  return <span ref={nodeRef}>{text}</span>;
+}
+
 function App() {
   const { t, i18n } = useTranslation();
   const [lang, setLang] = useState(i18n.language);
   const [selectedTranscript, setSelectedTranscript] = useState(null); // { type, semIndex }
+  const [isDesktop, setIsDesktop] = useState(true);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(min-width: 768px)');
+    setIsDesktop(mediaQuery.matches);
+    const handler = (e) => setIsDesktop(e.matches);
+    mediaQuery.addEventListener('change', handler);
+    return () => mediaQuery.removeEventListener('change', handler);
+  }, []);
   
   const mainRef = useRef();
   const heroRef = useRef();
@@ -313,8 +366,64 @@ function App() {
                 start: "top 80%",
               }}
             );
+
+              const lines = ref.current.querySelectorAll(".timeline-line");
+              if (lines.length > 0) {
+                gsap.to(lines, {
+                  scaleY: 1,
+                  duration: 1.5,
+                  stagger: 0.3,
+                  ease: "power3.inOut",
+                  scrollTrigger: {
+                    trigger: ref.current,
+                    start: "top 75%",
+                  }
+                });
+              }
+              const dots = ref.current.querySelectorAll(".timeline-dot");
+              if (dots.length > 0) {
+                gsap.to(dots, {
+                  scale: 1,
+                  duration: 0.5,
+                  stagger: 0.3,
+                  ease: "back.out(1.7)",
+                  scrollTrigger: {
+                    trigger: ref.current,
+                    start: "top 75%",
+                  }
+                });
+              }
+
           }
         });
+
+              const lines = ref.current.querySelectorAll(".timeline-line");
+              if (lines.length > 0) {
+                gsap.to(lines, {
+                  scaleY: 1,
+                  duration: 1.5,
+                  stagger: 0.3,
+                  ease: "power3.inOut",
+                  scrollTrigger: {
+                    trigger: ref.current,
+                    start: "top 75%",
+                  }
+                });
+              }
+              const dots = ref.current.querySelectorAll(".timeline-dot");
+              if (dots.length > 0) {
+                gsap.to(dots, {
+                  scale: 1,
+                  duration: 0.5,
+                  stagger: 0.3,
+                  ease: "back.out(1.7)",
+                  scrollTrigger: {
+                    trigger: ref.current,
+                    start: "top 75%",
+                  }
+                });
+              }
+
       }
     }, mainRef);
 
@@ -367,9 +476,13 @@ function App() {
         {/* Hero Section */}
         <section ref={heroRef} className="min-h-[85vh] relative flex items-center pt-24 pb-12 lg:py-0">
           <div className="absolute right-0 top-0 w-full h-[110%] -z-10 opacity-20 pointer-events-none">
-            <Suspense fallback={null}>
-              <Scene />
-            </Suspense>
+            {isDesktop ? (
+              <Suspense fallback={null}>
+                <Scene />
+              </Suspense>
+            ) : (
+              <div className="absolute right-0 top-0 w-[150%] h-[150%] rounded-full bg-gradient-to-tr from-gray-300 to-gray-100 blur-3xl opacity-50 transform translate-x-1/4 -translate-y-1/4"></div>
+            )}
           </div>
           
           <div className="w-full grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
@@ -487,7 +600,7 @@ function App() {
                         {edu.details.map((detail, idx) => (
                           <li key={idx} className="flex items-start gap-3">
                             <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0"></span>
-                            <span>{detail}</span>
+                            <span><AnimatedTextNumber text={detail} /></span>
                           </li>
                         ))}
                       </ul>
@@ -529,7 +642,7 @@ function App() {
           </h2>
           <div className="flex flex-wrap gap-4 max-w-4xl">
             {Array.isArray(skillsList) && skillsList.map((skill, index) => (
-              <div key={index} className="skill-item px-6 py-3 bg-white border border-gray-200 rounded-md text-sm font-medium shadow-sm hover:border-accent hover:text-accent transition-colors flex items-center gap-3">
+              <div key={index} className="skill-item px-6 py-3 bg-white border border-gray-200 rounded-md text-sm font-medium shadow-sm hover:border-accent hover:text-accent hover:-translate-y-1 hover:shadow-md active:scale-95 transition-all duration-300 flex items-center gap-3">
                 <span className="text-[#111111] group-hover:text-accent transition-colors">{skill}</span>
                 <span className="text-gray-400 font-mono text-[10px] tracking-wider uppercase">TECH</span>
               </div>
@@ -560,7 +673,7 @@ function App() {
                     {exp.description.map((detail, idx) => (
                       <li key={idx} className="flex items-start gap-4">
                         <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2.5 shrink-0"></span>
-                        <span>{detail}</span>
+                        <span><AnimatedTextNumber text={detail} /></span>
                       </li>
                     ))}
                   </ul>
@@ -586,7 +699,7 @@ function App() {
             {Array.isArray(t('projects.items', { returnObjects: true })) && t('projects.items', { returnObjects: true }).map((item, index) => (
               <div 
                 key={index}
-                className="group flex flex-col bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:border-gray-300 hover:shadow-md transition-all duration-300"
+                className="group flex flex-col bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:border-gray-300 hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] transition-all duration-300"
               >
                 <div 
                   className="w-full aspect-[16/9] overflow-hidden rounded-md border border-gray-100 mb-6 bg-gray-50"
@@ -686,7 +799,7 @@ function App() {
                   <p className="text-gray-600 text-lg leading-relaxed font-light mb-6">{t('research.approach')}</p>
                   
                   <div className="bg-[#ECECEC] border border-gray-100 rounded-md p-5 inline-block">
-                    <div className="text-3xl font-bold text-[#e11d48] mb-1">{t('research.stats.period')}</div>
+                    <div className="text-3xl font-bold text-[#e11d48] mb-1"><AnimatedTextNumber text={t('research.stats.period')} /></div>
                     <div className="text-xs text-gray-500 font-mono tracking-wide">{t('research.stats.periodSub')}</div>
                   </div>
                 </div>
@@ -697,15 +810,15 @@ function App() {
                   <div className="bg-[#ECECEC] border border-gray-100 rounded-md p-5">
                     <div className="grid grid-cols-3 gap-4">
                       <div>
-                        <div className="text-2xl font-bold text-[#111111] mb-1">{t('research.stats.acc')}</div>
+                        <div className="text-2xl font-bold text-[#111111] mb-1"><AnimatedTextNumber text={t('research.stats.acc')} /></div>
                         <div className="text-xs text-gray-500 font-mono tracking-wide leading-tight">{t('research.stats.accSub')}</div>
                       </div>
                       <div>
-                        <div className="text-2xl font-bold text-[#111111] mb-1">{t('research.stats.f1')}</div>
+                        <div className="text-2xl font-bold text-[#111111] mb-1"><AnimatedTextNumber text={t('research.stats.f1')} /></div>
                         <div className="text-xs text-gray-500 font-mono tracking-wide leading-tight">{t('research.stats.f1Sub')}</div>
                       </div>
                       <div>
-                        <div className="text-2xl font-bold text-[#111111] mb-1">{t('research.stats.map')}</div>
+                        <div className="text-2xl font-bold text-[#111111] mb-1"><AnimatedTextNumber text={t('research.stats.map')} /></div>
                         <div className="text-xs text-gray-500 font-mono tracking-wide leading-tight">{t('research.stats.mapSub')}</div>
                       </div>
                     </div>
@@ -733,7 +846,7 @@ function App() {
             {Array.isArray(t('achievements.items', { returnObjects: true })) && t('achievements.items', { returnObjects: true }).map((item, index) => (
               <div 
                 key={index}
-                className="group flex flex-col items-start bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:border-gray-300 hover:shadow-md transition-all duration-300"
+                className="group flex flex-col items-start bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:border-gray-300 hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] transition-all duration-300"
               >
                 <div className="w-full aspect-[4/3] overflow-hidden rounded-md border border-gray-100 mb-6 bg-gray-50">
                   <img 
