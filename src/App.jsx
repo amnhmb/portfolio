@@ -586,35 +586,35 @@ function App() {
                 <p className="text-gray-600 text-lg leading-relaxed font-light">{t('research.overview')}</p>
               </div>
               <div>
-                <div className="mb-8">
+                <div className="mb-10">
                   <h4 className="text-sm font-mono text-gray-400 uppercase tracking-widest mb-4">{t('research.approachLabel')}</h4>
-                  <p className="text-gray-600 text-lg leading-relaxed font-light">{t('research.approach')}</p>
+                  <p className="text-gray-600 text-lg leading-relaxed font-light mb-6">{t('research.approach')}</p>
+                  
+                  <div className="bg-[#FAFAFA] border border-gray-100 rounded-md p-5 inline-block">
+                    <div className="text-3xl font-bold text-[#e11d48] mb-1">{t('research.stats.period')}</div>
+                    <div className="text-xs text-gray-500 font-mono tracking-wide">{t('research.stats.periodSub')}</div>
+                  </div>
                 </div>
                 <div>
                   <h4 className="text-sm font-mono text-gray-400 uppercase tracking-widest mb-4">{t('research.collabLabel')}</h4>
-                  <p className="text-gray-600 text-lg leading-relaxed font-light">{t('research.collab')}</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-[#FAFAFA] border border-gray-100 rounded-md p-6 mb-8">
-              <h4 className="text-sm font-mono text-gray-400 uppercase tracking-widest mb-6 text-center">{t('research.resultsLabel')}</h4>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                <div>
-                  <div className="text-3xl font-bold text-[#e11d48] mb-1">{t('research.stats.period')}</div>
-                  <div className="text-xs text-gray-500 font-mono tracking-wide">{t('research.stats.periodSub')}</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-[#111111] mb-1">{t('research.stats.acc')}</div>
-                  <div className="text-xs text-gray-500 font-mono tracking-wide">{t('research.stats.accSub')}</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-[#111111] mb-1">{t('research.stats.f1')}</div>
-                  <div className="text-xs text-gray-500 font-mono tracking-wide">{t('research.stats.f1Sub')}</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-[#111111] mb-1">{t('research.stats.map')}</div>
-                  <div className="text-xs text-gray-500 font-mono tracking-wide">{t('research.stats.mapSub')}</div>
+                  <p className="text-gray-600 text-lg leading-relaxed font-light mb-6">{t('research.collab')}</p>
+                  
+                  <div className="bg-[#FAFAFA] border border-gray-100 rounded-md p-5">
+                    <div className="grid grid-cols-3 gap-4">
+                      <div>
+                        <div className="text-2xl font-bold text-[#111111] mb-1">{t('research.stats.acc')}</div>
+                        <div className="text-xs text-gray-500 font-mono tracking-wide leading-tight">{t('research.stats.accSub')}</div>
+                      </div>
+                      <div>
+                        <div className="text-2xl font-bold text-[#111111] mb-1">{t('research.stats.f1')}</div>
+                        <div className="text-xs text-gray-500 font-mono tracking-wide leading-tight">{t('research.stats.f1Sub')}</div>
+                      </div>
+                      <div>
+                        <div className="text-2xl font-bold text-[#111111] mb-1">{t('research.stats.map')}</div>
+                        <div className="text-xs text-gray-500 font-mono tracking-wide leading-tight">{t('research.stats.mapSub')}</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
