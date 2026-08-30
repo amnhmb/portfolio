@@ -327,14 +327,6 @@ function App() {
   
   return (
     <div className="min-h-screen font-sans selection:bg-accent selection:text-white" ref={mainRef}>
-      
-      {/* Lightbox */}
-      <Lightbox 
-        image={lightboxImage?.src} 
-        alt={lightboxImage?.alt} 
-        onClose={() => setLightboxImage(null)} 
-        t={t} 
-      />
 
       {/* SlideOver Drawer */}
       <SlideOverDrawer 
