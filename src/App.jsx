@@ -18,7 +18,7 @@ const Scene = lazy(() => import('./Scene'));
 // God can easily inject the real pointers here. 
 // y-axis is scaled automatically between 3.0 and 4.0.
 export const diplomaGPA = [3.30, 3.78, 3.59, 3.67, 3.67]; 
-export const degreeGPA = [3.50, 3.60, 3.70, 3.60, 3.60, 3.61]; 
+export const degreeGPA = [3.61, 3.19, 3.64, 3.65, 3.79, 3.89];
 
 function SimpleLineChart({ data, title }) {
   if (!data || data.length === 0) return null;
