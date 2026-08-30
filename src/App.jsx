@@ -17,7 +17,7 @@ const Scene = lazy(() => import('./Scene'));
 // PLACEHOLDER ARRAYS FOR ACADEMIC PERFORMANCE (GPA)
 // God can easily inject the real pointers here. 
 // y-axis is scaled automatically between 3.0 and 4.0.
-export const diplomaGPA = [3.50, 3.60, 3.70, 3.60, 3.60]; 
+export const diplomaGPA = [3.30, 3.78, 3.59, 3.67, 3.67]; 
 export const degreeGPA = [3.50, 3.60, 3.70, 3.60, 3.60, 3.61]; 
 
 function SimpleLineChart({ data, title }) {
@@ -227,9 +227,25 @@ function App() {
                       </div>
                       <span className="text-xs text-gray-400 font-mono tracking-widest uppercase">{edu.period}</span>
                     </div>
-                    <p className="text-gray-600 text-lg leading-relaxed max-w-2xl font-light mt-4">
-                      {edu.details}
-                    </p>
+                    {edu.details && (
+                      <p className="text-gray-600 text-lg leading-relaxed max-w-2xl font-light mt-4">
+                        {edu.details}
+                      </p>
+                    )}
+                    
+                    {edu.results && (
+                      <div className="mt-6">
+                        <span className="text-xs font-mono text-gray-400 uppercase tracking-widest mb-3 block">{edu.resultsTitle}</span>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-y-2 gap-x-4 max-w-2xl">
+                          {edu.results.map((res, i) => (
+                            <div key={i} className="flex justify-between items-center py-1.5 border-b border-gray-100">
+                              <span className="text-sm text-gray-500 font-light truncate mr-2">{res.subject}</span>
+                              <span className="text-sm font-medium text-[#111111]">{res.grade}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>

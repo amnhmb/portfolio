@@ -62,6 +62,24 @@ const resources = {
             location: "Ipoh, Perak",
             period: "Dec 2018 - Aug 2021",
             details: "CGPA: 3.60 (Dean's List 4/5 semesters). FYP: Climbing Robot. Mini Project: Bluetooth Mobile Robot."
+          },
+          {
+            degree: "Sijil Pelajaran Malaysia (SPM)",
+            school: "SMK Long Gafar",
+            location: "Secondary School",
+            period: "—",
+            resultsTitle: "Results",
+            results: [
+              { subject: "Bahasa Melayu", grade: "A-" },
+              { subject: "Bahasa Inggeris", grade: "D" },
+              { subject: "Pendidikan Islam", grade: "A-" },
+              { subject: "Sejarah", grade: "B" },
+              { subject: "Mathematics", grade: "A" },
+              { subject: "Science", grade: "A" },
+              { subject: "Additional Mathematics", grade: "D" },
+              { subject: "Perdagangan", grade: "C" },
+              { subject: "Prinsip Perakaunan", grade: "A-" }
+            ]
           }
         ]
       },
@@ -137,6 +155,24 @@ const resources = {
             location: "Ipoh, Perak",
             period: "Dis 2018 - Ogo 2021",
             details: "CGPA: 3.60 (Senarai Dekan 4/5 semester). Projek Tahun Akhir: Robot Memanjat. Projek Mini: Robot Mudah Alih Bluetooth."
+          },
+          {
+            degree: "Sijil Pelajaran Malaysia (SPM)",
+            school: "SMK Long Gafar",
+            location: "Sekolah Menengah",
+            period: "—",
+            resultsTitle: "Keputusan",
+            results: [
+              { subject: "Bahasa Melayu", grade: "A-" },
+              { subject: "Bahasa Inggeris", grade: "D" },
+              { subject: "Pendidikan Islam", grade: "A-" },
+              { subject: "Sejarah", grade: "B" },
+              { subject: "Matematik", grade: "A" },
+              { subject: "Sains", grade: "A" },
+              { subject: "Matematik Tambahan", grade: "D" },
+              { subject: "Perdagangan", grade: "C" },
+              { subject: "Prinsip Perakaunan", grade: "A-" }
+            ]
           }
         ]
       },
