@@ -24,12 +24,16 @@
   body {
     @apply antialiased font-sans text-[#111111];
     background-color: #ECECEC;
+    /* First layer keeps the landing screen (~first viewport) completely clean,
+       then reveals a uniform, evenly spaced polka-dot field for the rest of the
+       page. Dots are faint. */
     background-image:
-      linear-gradient(to bottom, #ECECEC 0%, rgba(236, 236, 236, 0) 20%),
-      radial-gradient(circle, rgba(17, 17, 17, 0.16) 1.4px, transparent 1.8px);
-    background-size: 100% 900px, 14px 14px;
+      linear-gradient(to bottom, #ECECEC 0, #ECECEC 90vh, rgba(236, 236, 236, 0) 100vh),
+      radial-gradient(circle, rgba(17, 17, 17, 0.11) 1.3px, transparent 1.7px);
+    background-size: 100% 100vh, 14px 14px;
     background-repeat: no-repeat, repeat;
     background-position: top left, top left;
+    background-attachment: scroll, scroll;
   }
 
   h1, h2, h3, h4, h5, h6 {
