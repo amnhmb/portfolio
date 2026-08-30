@@ -34,7 +34,7 @@ function SimpleLineChart({ data, title, type, onPointClick }) {
   return (
     <div className="flex flex-col items-start mt-4 relative w-full overflow-visible">
       <span className="text-xs font-mono text-gray-500 mb-2 uppercase tracking-widest">{title}</span>
-      <svg width="100%" viewBox={`0 0 ${w} ${h}`} className="overflow-visible stroke-[#e11d48]">
+      <svg width="100%" viewBox={`0 0 ${w} ${h}`} className="overflow-visible stroke-[#059669]">
         {/* Grid lines */}
         <line x1={padding} y1={getY(4.0)} x2={w-padding} y2={getY(4.0)} stroke="#e5e7eb" strokeWidth="1" strokeDasharray="4" />
         <line x1={padding} y1={getY(3.5)} x2={w-padding} y2={getY(3.5)} stroke="#e5e7eb" strokeWidth="1" strokeDasharray="4" />
@@ -59,9 +59,9 @@ function SimpleLineChart({ data, title, type, onPointClick }) {
             <circle 
               cx={getX(i)} cy={getY(val)} 
               r={hoveredIdx === i ? "4.5" : "3.5"} 
-              fill={hoveredIdx === i ? "#e11d48" : "#ECECEC"} 
+              fill={hoveredIdx === i ? "#059669" : "#ECECEC"} 
               strokeWidth={hoveredIdx === i ? "0" : "1.5"} 
-              stroke="#e11d48"
+              stroke="#059669"
             />
             {hoveredIdx === i ? (
               <text x={getX(i)} y={getY(val) - 20} fontSize="10" fill="#ECECEC" textAnchor="middle" className="font-mono font-bold pointer-events-none">{val.toFixed(2)}</text>
@@ -180,7 +180,7 @@ function SlideOverDrawer({ transcript, onClose, onSelectTranscript, t }) {
                       onClick={() => onSelectTranscript({ type: transcript.type, semIndex: i })}
                       className={`w-8 h-8 rounded-full text-xs font-mono flex items-center justify-center transition-colors ${
                         transcript.semIndex === i 
-                          ? 'bg-[#e11d48] text-white font-bold' 
+                          ? 'bg-[#059669] text-white font-bold' 
                           : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
                       }`}
                       aria-selected={transcript.semIndex === i}
@@ -204,13 +204,13 @@ function SlideOverDrawer({ transcript, onClose, onSelectTranscript, t }) {
             <div className="flex-1 overflow-y-auto p-6">
               <div className="flex items-center justify-between mb-8 p-4 bg-gray-50 rounded-lg border border-gray-100 relative mt-2">
                 {semData.gpa !== null && semData.gpa >= 3.5 && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#fff1f2] border border-[#f43f5e] text-[#e11d48] px-3 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-widest shadow-sm whitespace-nowrap">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#ecfdf5] border border-[#10b981] text-[#059669] px-3 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-widest shadow-sm whitespace-nowrap">
                     {t('education.deansList')}
                   </div>
                 )}
                 <div>
                   <p className="text-xs text-gray-500 font-mono uppercase tracking-widest mb-1">GPA</p>
-                  <p className="text-3xl font-bold text-[#e11d48]">{semData.gpa !== null ? semData.gpa.toFixed(2) : 'N/A'}</p>
+                  <p className="text-3xl font-bold text-[#059669]">{semData.gpa !== null ? semData.gpa.toFixed(2) : 'N/A'}</p>
                 </div>
                 <div className="text-right">
                   <p className="text-xs text-gray-500 font-mono uppercase tracking-widest mb-1">CGPA</p>
@@ -237,7 +237,7 @@ function SlideOverDrawer({ transcript, onClose, onSelectTranscript, t }) {
                           <p className="font-medium text-[#111111] leading-snug">{course.name}</p>
                           <p className="text-gray-400 font-mono text-xs mt-1">{course.code}</p>
                         </div>
-                        <div className="col-span-2 text-center font-bold text-[#e11d48] self-center">
+                        <div className="col-span-2 text-center font-bold text-[#059669] self-center">
                           {course.grade}
                         </div>
                         <div className="col-span-2 text-right font-mono text-gray-500 self-center">
@@ -836,7 +836,7 @@ function App() {
                   <p className="text-gray-600 text-lg leading-relaxed font-light mb-6">{t('research.approach')}</p>
                   
                   <div className="bg-[#ECECEC] border border-gray-100 rounded-md p-5 inline-block">
-                    <div className="text-3xl font-bold text-[#e11d48] mb-1"><AnimatedTextNumber text={t('research.stats.period')} /></div>
+                    <div className="text-3xl font-bold text-[#059669] mb-1"><AnimatedTextNumber text={t('research.stats.period')} /></div>
                     <div className="text-xs text-gray-500 font-mono tracking-wide">{t('research.stats.periodSub')}</div>
                   </div>
                 </div>

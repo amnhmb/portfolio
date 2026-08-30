@@ -3,9 +3,9 @@
 @import "tailwindcss/utilities" layer(utilities);
 
 @theme {
-  /* Deep Rose Accent */
-  --color-accent: #e11d48;
-  --color-accent-hover: #be123c;
+  /* Emerald Accent */
+  --color-accent: #059669;
+  --color-accent-hover: #047857;
   
   --font-sans: 'Geist Sans', system-ui, -apple-system, sans-serif;
   --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, monospace;
