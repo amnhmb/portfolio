@@ -372,29 +372,35 @@ function App() {
 
               const lines = ref.current.querySelectorAll(".timeline-line");
               if (lines.length > 0) {
-                gsap.to(lines, {
-                  scaleY: 1,
-                  duration: 1.5,
-                  stagger: 0.3,
-                  ease: "power3.inOut",
-                  scrollTrigger: {
-                    trigger: ref.current,
-                    start: "top 75%",
+                gsap.fromTo(lines,
+                  { scaleY: 0 },
+                  {
+                    scaleY: 1,
+                    duration: 1.5,
+                    stagger: 0.3,
+                    ease: "power3.inOut",
+                    scrollTrigger: {
+                      trigger: ref.current,
+                      start: "top 75%",
+                    }
                   }
-                });
+                );
               }
               const dots = ref.current.querySelectorAll(".timeline-dot");
               if (dots.length > 0) {
-                gsap.to(dots, {
-                  scale: 1,
-                  duration: 0.5,
-                  stagger: 0.3,
-                  ease: "back.out(1.7)",
-                  scrollTrigger: {
-                    trigger: ref.current,
-                    start: "top 75%",
+                gsap.fromTo(dots,
+                  { scale: 0 },
+                  {
+                    scale: 1,
+                    duration: 0.5,
+                    stagger: 0.3,
+                    ease: "back.out(1.7)",
+                    scrollTrigger: {
+                      trigger: ref.current,
+                      start: "top 75%",
+                    }
                   }
-                });
+                );
               }
 
           }
@@ -548,8 +554,9 @@ function App() {
               </h2>
               <div className="space-y-16">
                 {Array.isArray(eduList) && eduList.map((edu, index) => (
-                  <div key={index} className="relative pl-8 border-l border-accent">
-                    <div className="absolute w-3 h-3 rounded-full bg-accent -left-[6.5px] top-2 ring-4 ring-[#ECECEC]"></div>
+                  <div key={index} className="relative pl-8">
+                    <div className="timeline-line absolute left-0 top-0 h-full w-px bg-accent origin-top"></div>
+                    <div className="timeline-dot absolute w-3 h-3 rounded-full bg-accent -left-[6.5px] top-2 ring-4 ring-[#ECECEC]"></div>
                     <div className="mb-4">
                       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-2">
                         <h3 className="text-2xl font-bold text-[#111111] max-w-md leading-tight">{edu.degree}</h3>
@@ -634,8 +641,9 @@ function App() {
           
           <div className="space-y-16">
             {Array.isArray(expList) && expList.map((exp, index) => (
-              <div key={index} className="relative pl-8 md:pl-12 border-l border-accent ml-2 md:ml-4">
-                <div className="absolute w-3 h-3 rounded-full bg-accent -left-[6.5px] top-2 ring-4 ring-[#ECECEC]"></div>
+              <div key={index} className="relative pl-8 md:pl-12 ml-2 md:ml-4">
+                <div className="timeline-line absolute left-0 top-0 h-full w-px bg-accent origin-top"></div>
+                <div className="timeline-dot absolute w-3 h-3 rounded-full bg-accent -left-[6.5px] top-2 ring-4 ring-[#ECECEC]"></div>
                 <div className="mb-4">
                   <h3 className="text-2xl md:text-3xl font-bold mb-2 text-[#111111]">{exp.role}</h3>
                   <div className="flex flex-wrap items-center gap-4 text-sm font-mono tracking-widest uppercase">
