@@ -48,20 +48,37 @@ const resources = {
       education: {
         title: "Education History",
         performance: "Academic Performance",
+        viewTranscript: "View transcript",
+        semester: "Semester",
+        subject: "Subject",
+        grade: "Grade",
+        credit: "Credit",
         items: [
           {
             degree: "Bachelor of Electronic Engineering Technology (Hons)",
             school: "Universiti Kuala Lumpur British Malaysian Institute",
             location: "Gombak, Selangor",
             period: "Sept 2022 - Mar 2026",
-            details: "CGPA: 3.61 (Dean's List 5/6 semesters). FYP: IoT-based sensor system for Volvariella mushroom cultivation. Mini Projects: Intelligent Laundry Clip (IoT), Baby Guard Beacon (IoT)."
+            details: [
+              "CGPA 3.61",
+              "Dean's List 5/6 semesters",
+              "FYP: IoT-based sensor system for Volvariella mushroom cultivation",
+              "Mini projects: Intelligent Laundry Clip (IoT), Baby Guard Beacon (IoT)"
+            ],
+            type: "degree"
           },
           {
             degree: "Diploma of Electronic Engineering (Communication)",
             school: "Politeknik Ungku Omar",
             location: "Ipoh, Perak",
             period: "Dec 2018 - Aug 2021",
-            details: "CGPA: 3.60 (Dean's List 4/5 semesters). FYP: Climbing Robot. Mini Project: Bluetooth Mobile Robot."
+            details: [
+              "CGPA 3.60",
+              "Dean's List 4/5 semesters",
+              "FYP: Climbing Robot",
+              "Mini project: Bluetooth Mobile Robot"
+            ],
+            type: "diploma"
           },
           {
             degree: "Sijil Pelajaran Malaysia (SPM)",
@@ -147,20 +164,37 @@ const resources = {
       education: {
         title: "Sejarah Pendidikan",
         performance: "Prestasi Akademik",
+        viewTranscript: "Lihat transkrip",
+        semester: "Semester",
+        subject: "Subjek",
+        grade: "Gred",
+        credit: "Kredit",
         items: [
           {
             degree: "Sarjana Muda Teknologi Kejuruteraan Elektronik (Kepujian)",
             school: "Universiti Kuala Lumpur British Malaysian Institute",
             location: "Gombak, Selangor",
             period: "Sep 2022 - Mac 2026",
-            details: "CGPA: 3.61 (Senarai Dekan 5/6 semester). Projek Tahun Akhir: Sistem penderia berasaskan IoT untuk penanaman cendawan Volvariella. Projek Mini: Klip Dobi Pintar (IoT), Pengawal Keselamatan Bayi (IoT)."
+            details: [
+              "CGPA 3.61",
+              "Senarai Dekan 5/6 semester",
+              "Projek Tahun Akhir: Sistem penderia berasaskan IoT untuk penanaman cendawan Volvariella",
+              "Projek Mini: Klip Dobi Pintar (IoT), Pengawal Keselamatan Bayi (IoT)"
+            ],
+            type: "degree"
           },
           {
             degree: "Diploma Kejuruteraan Elektronik (Komunikasi)",
             school: "Politeknik Ungku Omar",
             location: "Ipoh, Perak",
             period: "Dis 2018 - Ogo 2021",
-            details: "CGPA: 3.60 (Senarai Dekan 4/5 semester). Projek Tahun Akhir: Robot Memanjat. Projek Mini: Robot Mudah Alih Bluetooth."
+            details: [
+              "CGPA 3.60",
+              "Senarai Dekan 4/5 semester",
+              "Projek Tahun Akhir: Robot Memanjat",
+              "Projek Mini: Robot Mudah Alih Bluetooth"
+            ],
+            type: "diploma"
           },
           {
             degree: "Sijil Pelajaran Malaysia (SPM)",
