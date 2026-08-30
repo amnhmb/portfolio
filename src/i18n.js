@@ -135,8 +135,8 @@ const resources = {
           },
           {
             image: "ayubi.jpg",
-            title: "Ayubi Lobster Farm Visit",
-            caption: "Electronic Design Project (EDP) site visit · Ayubi Lobster Farm"
+            title: "Ayubie Lobster Farm Visit",
+            caption: "Electronic Design Project (EDP) site visit · Ayubie Lobster Farm"
           }
         ],
         otherLabel: "Other Activities",
@@ -329,8 +329,8 @@ const resources = {
           },
           {
             image: "ayubi.jpg",
-            title: "Lawatan Ladang Udang Kara Ayubi",
-            caption: "Lawatan tapak Projek Reka Bentuk Elektronik (EDP) · Ladang Udang Kara Ayubi"
+            title: "Lawatan Ladang Udang Kara Ayubie",
+            caption: "Lawatan tapak Projek Reka Bentuk Elektronik (EDP) · Ladang Udang Kara Ayubie"
           }
         ],
         otherLabel: "Aktiviti Lain",
