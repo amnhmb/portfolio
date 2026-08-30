@@ -722,52 +722,35 @@ function App() {
             {t('achievements.title')}
           </h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl">
-            {/* Card 1 */}
-            <div 
-              className="group cursor-pointer flex flex-col items-start bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:border-gray-300 hover:shadow-md transition-all duration-300"
-              onClick={() => setLightboxImage({ src: `${import.meta.env.BASE_URL}fira-2019.jpg`, alt: t('achievements.fira.title') })}
-            >
-              <div className="w-full aspect-[4/3] overflow-hidden rounded-md border border-gray-100 mb-6 bg-gray-50">
-                <img 
-                  src={`${import.meta.env.BASE_URL}fira-2019.jpg`} 
-                  alt={t('achievements.fira.title')} 
-                  loading="lazy" 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
-                />
-              </div>
-              <h3 className="text-xl font-bold text-[#111111] tracking-tight mb-2 group-hover:text-accent transition-colors">
-                {t('achievements.fira.title')}
-              </h3>
-              <p className="text-sm text-gray-500 font-mono tracking-wide uppercase leading-relaxed">
-                {t('achievements.fira.caption')}
-              </p>
-            </div>
-
-            {/* Card 2 */}
-            <div 
-              className="group cursor-pointer flex flex-col items-start bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:border-gray-300 hover:shadow-md transition-all duration-300"
-              onClick={() => setLightboxImage({ src: `${import.meta.env.BASE_URL}award-integrity.jpg`, alt: t('achievements.integrity.title') })}
-            >
-              <div className="w-full aspect-[4/3] overflow-hidden rounded-md border border-gray-100 mb-6 bg-gray-50">
-                <img 
-                  src={`${import.meta.env.BASE_URL}award-integrity.jpg`} 
-                  alt={t('achievements.integrity.title')} 
-                  loading="lazy" 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
-                />
-              </div>
-              <h3 className="text-xl font-bold text-[#111111] tracking-tight mb-2 group-hover:text-accent transition-colors">
-                {t('achievements.integrity.title')}
-              </h3>
-              <p className="text-sm text-gray-500 font-mono tracking-wide uppercase leading-relaxed mb-3">
-                {t('achievements.integrity.caption')}
-              </p>
-              <div className="mt-auto pt-3 border-t border-gray-100 w-full">
-                <p className="text-sm text-gray-400 font-light italic">
-                  {t('achievements.integrity.note')}
+            {Array.isArray(t('achievements.items', { returnObjects: true })) && t('achievements.items', { returnObjects: true }).map((item, index) => (
+              <div 
+                key={index}
+                className="group cursor-pointer flex flex-col items-start bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:border-gray-300 hover:shadow-md transition-all duration-300"
+                onClick={() => setLightboxImage({ src: `${import.meta.env.BASE_URL}${item.image}`, alt: item.title })}
+              >
+                <div className="w-full aspect-[4/3] overflow-hidden rounded-md border border-gray-100 mb-6 bg-gray-50">
+                  <img 
+                    src={`${import.meta.env.BASE_URL}${item.image}`} 
+                    alt={item.title} 
+                    loading="lazy" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                  />
+                </div>
+                <h3 className="text-xl font-bold text-[#111111] tracking-tight mb-2 group-hover:text-accent transition-colors">
+                  {item.title}
+                </h3>
+                <p className={`text-sm text-gray-500 font-mono tracking-wide uppercase leading-relaxed ${item.note ? 'mb-3' : ''}`}>
+                  {item.caption}
                 </p>
+                {item.note && (
+                  <div className="mt-auto pt-3 border-t border-gray-100 w-full">
+                    <p className="text-sm text-gray-400 font-light italic">
+                      {item.note}
+                    </p>
+                  </div>
+                )}
               </div>
-            </div>
+            ))}
           </div>
         </section>
 

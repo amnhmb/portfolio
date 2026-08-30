@@ -125,15 +125,29 @@ const resources = {
       },
       achievements: {
         title: "Achievements & Activities",
-        fira: {
-          title: "FIRA 2019 Robotics Competition",
-          caption: "Port Dickson · Robotics Club, Politeknik Ungku Omar"
-        },
-        integrity: {
-          title: "Integrity Award",
-          caption: "PRS (Pembimbing Rakan Sebaya) Annual Dinner · Politeknik Ungku Omar",
-          note: "Member of Pembimbing Rakan Sebaya (PRS) during Diploma."
-        },
+        items: [
+          {
+            image: "fira-2019.jpg",
+            title: "FIRA 2019 Robotics Competition",
+            caption: "Port Dickson · Robotics Club, Politeknik Ungku Omar"
+          },
+          {
+            image: "award-integrity.jpg",
+            title: "Integrity Award",
+            caption: "PRS (Pembimbing Rakan Sebaya) Annual Dinner · Politeknik Ungku Omar",
+            note: "Member of Pembimbing Rakan Sebaya (PRS) during Diploma."
+          },
+          {
+            image: "mimos.jpg",
+            title: "MIMOS Field Trip",
+            caption: "Analog & Digital IC Design study visit · MIMOS"
+          },
+          {
+            image: "ayubi.jpg",
+            title: "Ayubi Lobster Farm Visit",
+            caption: "Electronic Design Project (EDP) site visit · Ayubi Lobster Farm"
+          }
+        ],
         close: "Close"
       },
       research: {
@@ -287,15 +301,29 @@ const resources = {
       },
       achievements: {
         title: "Pencapaian & Aktiviti",
-        fira: {
-          title: "Pertandingan Robotik FIRA 2019",
-          caption: "Port Dickson · Kelab Robotik, Politeknik Ungku Omar"
-        },
-        integrity: {
-          title: "Anugerah Integriti",
-          caption: "Makan Malam Tahunan PRS (Pembimbing Rakan Sebaya) · Politeknik Ungku Omar",
-          note: "Ahli Pembimbing Rakan Sebaya (PRS) semasa Diploma."
-        },
+        items: [
+          {
+            image: "fira-2019.jpg",
+            title: "Pertandingan Robotik FIRA 2019",
+            caption: "Port Dickson · Kelab Robotik, Politeknik Ungku Omar"
+          },
+          {
+            image: "award-integrity.jpg",
+            title: "Anugerah Integriti",
+            caption: "Makan Malam Tahunan PRS (Pembimbing Rakan Sebaya) · Politeknik Ungku Omar",
+            note: "Ahli Pembimbing Rakan Sebaya (PRS) semasa Diploma."
+          },
+          {
+            image: "mimos.jpg",
+            title: "Lawatan Sambil Belajar MIMOS",
+            caption: "Lawatan sambil belajar Reka Bentuk IC Analog & Digital · MIMOS"
+          },
+          {
+            image: "ayubi.jpg",
+            title: "Lawatan Ladang Udang Kara Ayubi",
+            caption: "Lawatan tapak Projek Reka Bentuk Elektronik (EDP) · Ladang Udang Kara Ayubi"
+          }
+        ],
         close: "Tutup"
       },
       research: {
