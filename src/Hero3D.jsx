@@ -1,26 +1,36 @@
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Icosahedron, MeshDistortMaterial, Float } from '@react-three/drei';
+import { Icosahedron, MeshDistortMaterial, Float, Edges } from '@react-three/drei';
 
 export default function Hero3D() {
   const meshRef = useRef();
 
   useFrame((state) => {
     if (meshRef.current) {
-      meshRef.current.rotation.x = state.clock.elapsedTime * 0.2;
-      meshRef.current.rotation.y = state.clock.elapsedTime * 0.2;
+      // Slower, calmer rotation
+      meshRef.current.rotation.x = state.clock.elapsedTime * 0.05;
+      meshRef.current.rotation.y = state.clock.elapsedTime * 0.08;
     }
   });
 
   return (
-    <Float speed={2} rotationIntensity={1.5} floatIntensity={2}>
-      <Icosahedron args={[1.5, 2]} ref={meshRef}>
+    <Float speed={1.5} rotationIntensity={0.5} floatIntensity={1}>
+      <Icosahedron args={[1.8, 1]} ref={meshRef}>
         <MeshDistortMaterial 
-          color="#aa3bff" 
-          wireframe={true}
-          distort={0.4} 
-          speed={2} 
-          roughness={0.2}
+          color="#0ea5e9" 
+          transparent
+          opacity={0.15}
+          distort={0.2} 
+          speed={1.5} 
+          roughness={0.5}
+        />
+        {/* Wireframe edges for a tech/hardware feel but kept calm and thin */}
+        <Edges
+          scale={1}
+          threshold={15} 
+          color="#0ea5e9"
+          transparent
+          opacity={0.4}
         />
       </Icosahedron>
     </Float>

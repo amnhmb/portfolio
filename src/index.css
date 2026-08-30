@@ -3,24 +3,27 @@
 @import "tailwindcss/utilities" layer(utilities);
 
 @theme {
-  --color-accent: #aa3bff;
-  --color-accent-hover: #912ae0;
+  /* Electric Blue Accent */
+  --color-accent: #0ea5e9;
+  --color-accent-hover: #0284c7;
   
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-display: 'Outfit', system-ui, -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* Force dark mode background for the entire app */
+    background-color: #09090b;
+    color: #fafafa;
   }
   
   body {
-    @apply antialiased font-sans bg-[#FAFAFA] text-[#111111] dark:bg-[#0A0A0A] dark:text-[#F2F2F2];
-    /* Adjusted base colors to be richer: very light gray for light mode, deep rich black for dark mode */
+    @apply antialiased font-sans bg-[#09090b] text-zinc-300;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display tracking-tight;
+    @apply font-sans font-medium tracking-tight text-white;
   }
 }
