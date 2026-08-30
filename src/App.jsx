@@ -520,22 +520,26 @@ function App() {
             )}
           </div>
           
-          <div className="w-full grid grid-cols-2 gap-4 sm:gap-8 lg:gap-8 items-center">
-            {/* Left Col: Text */}
-            <div className="max-w-2xl hero-content order-1">
+          <div className="w-full grid grid-cols-2 gap-x-4 sm:gap-x-8 gap-y-6 lg:gap-y-8 items-start lg:items-center">
+            {/* Block A: greeting + name (beside photo on mobile) */}
+            <div className="hero-content col-start-1 row-start-1 self-center max-w-2xl">
               <p className="text-accent font-mono mb-3 sm:mb-6 text-[10px] sm:text-sm tracking-widest uppercase">
                 // <ScrambleText text={t('hero.greeting')} />
               </p>
-              <h1 className="text-2xl sm:text-4xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-3 sm:mb-6 leading-[1.05] text-[#111111]">
+              <h1 className="text-2xl sm:text-4xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[1.05] text-[#111111]">
                 <ScrambleText text={t('hero.name')} delay={250} />
               </h1>
+            </div>
+
+            {/* Block B: role, description, CTA, contact (below on mobile, left col on desktop) */}
+            <div className="col-span-2 row-start-2 lg:col-span-1 lg:col-start-1 lg:row-start-2 max-w-2xl">
               <h2 className="hero-el text-sm sm:text-xl md:text-3xl font-medium text-gray-500 mb-4 sm:mb-8 tracking-tight">
                 {t('hero.role')}
               </h2>
-              <p className="hero-el hidden sm:block text-gray-600 text-lg md:text-xl mb-12 max-w-xl leading-relaxed font-light">
+              <p className="hero-el text-gray-600 text-base sm:text-lg md:text-xl mb-8 sm:mb-12 max-w-xl leading-relaxed font-light">
                 {t('hero.description')}
               </p>
-              
+
               <div className="hero-el flex flex-wrap items-center gap-3 sm:gap-6">
                 <a href="mailto:aimannhambalii@gmail.com" className="px-4 py-2.5 text-sm sm:text-base sm:px-8 sm:py-4 bg-[#111111] text-white rounded-md font-medium hover:bg-accent hover:scale-[0.98] transition-all duration-300">
                   {t('hero.contact')}
@@ -545,14 +549,14 @@ function App() {
                 </a>
               </div>
 
-              <div className="hero-el hidden sm:flex flex-wrap items-center gap-8 mt-16 text-gray-600">
-                <span className="font-mono text-sm tracking-widest uppercase">aimannhambalii@gmail.com</span>
-                <span className="font-mono text-sm tracking-widest uppercase">+60 11-2550 7190</span>
+              <div className="hero-el flex flex-wrap items-center gap-4 sm:gap-8 mt-8 sm:mt-16 text-gray-600">
+                <span className="font-mono text-xs sm:text-sm tracking-widest uppercase">aimannhambalii@gmail.com</span>
+                <span className="font-mono text-xs sm:text-sm tracking-widest uppercase">+60 11-2550 7190</span>
               </div>
             </div>
 
-            {/* Right Col: Image */}
-            <div className="hero-el order-2 flex justify-center lg:justify-end w-full pointer-events-none">
+            {/* Photo: beside name on mobile, full-height right column on desktop */}
+            <div className="hero-el col-start-2 row-start-1 lg:row-span-2 self-center flex justify-center lg:justify-end w-full pointer-events-none">
               <div
                 className="relative w-full sm:w-80 md:w-96 lg:w-[32rem]"
                 style={{
