@@ -493,8 +493,8 @@ function App() {
               <div 
                 className="relative w-72 sm:w-80 md:w-96 lg:w-[32rem]"
                 style={{
-                  WebkitMaskImage: 'radial-gradient(ellipse at center, black 45%, transparent 70%)',
-                  maskImage: 'radial-gradient(ellipse at center, black 45%, transparent 70%)'
+                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)',
+                  maskImage: 'linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)'
                 }}
               >
                 <picture>
