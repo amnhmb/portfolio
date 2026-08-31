@@ -717,7 +717,7 @@ function App() {
         {/* About Section */}
         <section id="about" ref={aboutRef} className="py-32 border-t border-gray-200 mt-20">
           <div className="grid md:grid-cols-12 gap-16 items-start">
-            <div className="md:col-span-5 relative w-full max-w-[18rem] mx-auto md:max-w-none md:mx-0 aspect-square">
+            <div className="md:col-span-5 relative w-full max-w-[22rem] mx-auto md:max-w-none md:mx-0 aspect-square">
               <div className="absolute inset-0 bg-gray-100 border border-gray-200 rounded-lg translate-x-4 translate-y-4"></div>
               <img 
                 src={`${import.meta.env.BASE_URL}profile-photo.jpg`}
