@@ -671,7 +671,7 @@ function App() {
             {/* Photo: mobile = portrait below name; desktop = right column */}
             <div className="hero-el w-full flex justify-center pointer-events-none lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:justify-end lg:self-center">
               <div
-                className="relative w-1/2 sm:w-80 md:w-96 lg:w-[32rem]"
+                className="relative w-3/4 sm:w-80 md:w-96 lg:w-[32rem]"
                 style={{
                   WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%)',
                   WebkitMaskComposite: 'source-in',
@@ -719,7 +719,7 @@ function App() {
         {/* About Section */}
         <section id="about" ref={aboutRef} className="py-32 border-t border-gray-200 mt-20">
           <div className="grid md:grid-cols-12 gap-16 items-start">
-            <div className="md:col-span-5 relative w-full max-w-[22rem] mx-auto md:max-w-none md:mx-0 aspect-square">
+            <div className="md:col-span-5 relative w-full max-w-[16rem] mx-auto md:max-w-none md:mx-0 aspect-square">
               <div className="absolute inset-0 bg-gray-100 border border-gray-200 rounded-lg translate-x-4 translate-y-4"></div>
               <img 
                 src={`${import.meta.env.BASE_URL}profile-photo.jpg`}
