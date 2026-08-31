@@ -7,7 +7,7 @@ const resources = {
       hero: {
         greeting: "hello, i am",
         name: "Aiman Hambali Bin Amran.",
-        role: "Fresh Graduate Engineer, Electronic & IoT Systems",
+        role: "Fresh Graduate Engineer · Electronic & IoT Systems",
         description: "Electronic & IoT engineer with hands-on experience in semiconductor test equipment and IoT sensor systems. Comfortable across Python, Arduino, and ESP32.",
         resume: "Download Resume",
         contact: "Get in Touch"
