@@ -681,7 +681,7 @@ function App() {
             </div>
 
             {/* greeting + name: overlay over photo on mobile, static left column on desktop */}
-            <div className="hero-content absolute top-6 left-1 z-10 pr-2 max-w-[82%] lg:static lg:top-auto lg:max-w-2xl lg:col-start-1 lg:row-start-1 lg:self-center lg:pr-0">
+            <div className="hero-content absolute top-6 left-1 z-10 pr-2 max-w-[58%] sm:max-w-[70%] lg:static lg:top-auto lg:max-w-2xl lg:col-start-1 lg:row-start-1 lg:self-center lg:pr-0">
               <p className="text-accent font-mono mb-2 sm:mb-6 text-[10px] sm:text-sm tracking-widest uppercase">
                 // <ScrambleText text={t('hero.greeting')} active={heroReady} />
               </p>
