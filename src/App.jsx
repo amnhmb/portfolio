@@ -718,7 +718,7 @@ function App() {
 
         {/* About Section */}
         <section id="about" ref={aboutRef} className="py-20 md:py-32 border-t border-gray-200 mt-10 md:mt-20">
-          <div className="grid md:grid-cols-12 gap-16 items-start">
+          <div className="grid md:grid-cols-12 gap-8 md:gap-16 items-start">
             <div className="md:col-span-5 relative w-full max-w-[16rem] mx-auto md:max-w-none md:mx-0 aspect-square">
               <div className="absolute inset-0 bg-gray-100 border border-gray-200 rounded-lg translate-x-4 translate-y-4"></div>
               <img 
@@ -742,7 +742,7 @@ function App() {
 
         {/* Education & Academic Performance Section */}
         <section id="education" ref={educationRef} className="py-20 md:py-32 border-t border-gray-200">
-          <div className="grid md:grid-cols-12 gap-16">
+          <div className="grid md:grid-cols-12 gap-8 md:gap-16">
             <div className="md:col-span-7">
               <h2 className="text-4xl md:text-5xl font-bold mb-16 text-[#111111] tracking-tight">
                 <ScrambleText text={t('education.title')} trigger="view" />
