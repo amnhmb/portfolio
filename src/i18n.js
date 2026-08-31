@@ -162,6 +162,7 @@ const resources = {
       },
       contact: {
         title: "Get in Touch",
+        quote: "Dunia adalah ujian. Ini bukannya syurga untuk segalanya cantik dan baik.",
         copyright: "© 2026 Aiman Hambali Bin Amran"
       },
       projects: {
@@ -373,6 +374,7 @@ const resources = {
       },
       contact: {
         title: "Hubungi Saya",
+        quote: "Dunia adalah ujian. Ini bukannya syurga untuk segalanya cantik dan baik.",
         copyright: "© 2026 Aiman Hambali Bin Amran"
       },
       projects: {

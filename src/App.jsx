@@ -1163,6 +1163,15 @@ function App() {
               +60 11-2550 7190
             </a>
           </div>
+
+          <img
+            src={`${import.meta.env.BASE_URL}favicon-512.png`}
+            alt="amnhmb"
+            className="w-9 h-9 opacity-25 mb-5"
+          />
+          <p className="italic text-xs text-gray-400 max-w-sm leading-relaxed mb-5">
+            &ldquo;{t('contact.quote')}&rdquo;
+          </p>
           <p className="text-sm text-gray-400 font-mono tracking-wider">
             {t('contact.copyright')}
           </p>
