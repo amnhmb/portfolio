@@ -671,7 +671,7 @@ function App() {
             {/* Photo: mobile = portrait below name; desktop = right column */}
             <div className="hero-el w-full flex justify-center pointer-events-none lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:justify-end lg:self-center">
               <div
-                className="relative w-3/4 sm:w-80 md:w-96 lg:w-[32rem]"
+                className="relative w-3/5 sm:w-80 md:w-96 lg:w-[32rem]"
                 style={{
                   WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%)',
                   WebkitMaskComposite: 'source-in',
