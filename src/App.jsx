@@ -1044,17 +1044,17 @@ function App() {
                   <p className="text-gray-600 text-lg leading-relaxed font-light mb-6">{t('research.collab')}</p>
                   
                   <div className="bg-[#ECECEC] border border-gray-100 rounded-md p-5">
-                    <div className="grid grid-cols-3 gap-4">
+                    <div className="grid grid-cols-3 gap-x-6 gap-y-4">
                       <div>
-                        <div className="text-2xl font-bold text-[#111111] mb-1"><AnimatedTextNumber text={t('research.stats.acc')} /></div>
+                        <div className="text-lg sm:text-2xl font-bold text-[#111111] mb-1"><AnimatedTextNumber text={t('research.stats.acc')} /></div>
                         <div className="text-xs text-gray-500 font-mono tracking-wide leading-tight">{t('research.stats.accSub')}</div>
                       </div>
                       <div>
-                        <div className="text-2xl font-bold text-[#111111] mb-1"><AnimatedTextNumber text={t('research.stats.f1')} /></div>
+                        <div className="text-lg sm:text-2xl font-bold text-[#111111] mb-1"><AnimatedTextNumber text={t('research.stats.f1')} /></div>
                         <div className="text-xs text-gray-500 font-mono tracking-wide leading-tight">{t('research.stats.f1Sub')}</div>
                       </div>
                       <div>
-                        <div className="text-2xl font-bold text-[#111111] mb-1"><AnimatedTextNumber text={t('research.stats.map')} /></div>
+                        <div className="text-lg sm:text-2xl font-bold text-[#111111] mb-1"><AnimatedTextNumber text={t('research.stats.map')} /></div>
                         <div className="text-xs text-gray-500 font-mono tracking-wide leading-tight">{t('research.stats.mapSub')}</div>
                       </div>
                     </div>
