@@ -120,7 +120,8 @@ const resources = {
           {
             image: "fira-2019.jpg",
             title: "FIRA 2019 Robotics Competition",
-            caption: "Port Dickson · Robotics Club, Politeknik Ungku Omar"
+            caption: "2nd Place (Team) · Port Dickson",
+            note: "Competed with the Politeknik Ungku Omar robotics club team, which placed 2nd."
           },
           {
             image: "award-integrity.jpg",
@@ -314,7 +315,8 @@ const resources = {
           {
             image: "fira-2019.jpg",
             title: "Pertandingan Robotik FIRA 2019",
-            caption: "Port Dickson · Kelab Robotik, Politeknik Ungku Omar"
+            caption: "Tempat Kedua (Pasukan) · Port Dickson",
+            note: "Bertanding bersama pasukan kelab robotik Politeknik Ungku Omar yang menduduki tempat kedua."
           },
           {
             image: "award-integrity.jpg",
