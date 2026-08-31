@@ -148,7 +148,7 @@ export const academics = {
         ],
       },
       {
-        sem: 6, term: 'Mar 2025', gpa: 3.89, cgpa: 3.60, credits: 11,
+        sem: 6, term: 'Mar 2025', gpa: 3.89, cgpa: 3.61, credits: 11,
         courses: [
           { code: 'BPB49906', name: 'Final Year Project 2', grade: 'A', credit: 6 },
           { code: 'BTB42503', name: 'Network Security Operation', grade: 'A-', credit: 3 },
@@ -156,7 +156,7 @@ export const academics = {
         ],
       },
       {
-        sem: 7, term: 'Jul 2025 - Jan 2026', gpa: null, cgpa: 3.60, credits: null,
+        sem: 7, term: 'Jul 2025 - Jan 2026', gpa: null, cgpa: 3.61, credits: null,
         note: 'Industrial Training (Latihan Industri): Unisem (M) Berhad, Engineer Intern. Independently managed the semiconductor test line and trained new staff.',
         courses: [],
       },
