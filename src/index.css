@@ -47,9 +47,10 @@
     text-wrap: balance;
   }
 
-  /* Tidier paragraph wrapping: avoids single-word last lines and keeps a more
-     even right edge. */
+  /* Trial: justified paragraphs with hyphenation to reduce uneven gaps. */
   p {
     text-wrap: pretty;
+    text-align: justify;
+    hyphens: auto;
   }
 }
