@@ -732,6 +732,7 @@ function App() {
               <div className="space-y-6 text-gray-600 text-lg md:text-xl leading-relaxed font-light max-w-2xl">
                 <p>{t('about.p1')}</p>
                 <p>{t('about.p2')}</p>
+                <p>{t('about.p3')}</p>
               </div>
             </div>
           </div>

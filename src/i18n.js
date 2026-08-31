@@ -24,7 +24,8 @@ const resources = {
       about: {
         title: "About Me",
         p1: "I am Aiman Hambali, a fresh graduate electronic engineer based in Kota Bharu, Kelantan, Malaysia.",
-        p2: "My background blends hardware and embedded software. I have been actively involved in robotics clubs, FIRA competitions, and took part in a student exchange program hosting a visiting delegation from Fukuoka, Japan at my polytechnic."
+        p2: "My work blends hardware and embedded software, from IC and circuit design tools like Proteus, Quartus, and Microwind to building IoT sensor systems on ESP32 and Arduino.",
+        p3: "Beyond the lab, I have been active in robotics clubs and FIRA competitions, and hosted a visiting student delegation from Fukuoka, Japan at my polytechnic. I am now looking to grow as an electronic and embedded systems engineer."
       },
       skills: {
         title: "Technical Skills",
@@ -219,7 +220,8 @@ const resources = {
       about: {
         title: "Mengenai Saya",
         p1: "Saya Aiman Hambali, seorang jurutera elektronik siswazah baharu yang berpangkalan di Kota Bharu, Kelantan, Malaysia.",
-        p2: "Latar belakang saya menggabungkan perkakasan dan perisian terbenam. Saya aktif dalam kelab robotik, pertandingan FIRA, dan pernah menyertai program pertukaran pelajar sebagai hos kepada delegasi pelajar dari Fukuoka, Jepun yang berkunjung ke politeknik saya."
+        p2: "Kerja saya menggabungkan perkakasan dan perisian terbenam, daripada alatan reka bentuk IC dan litar seperti Proteus, Quartus, dan Microwind sehingga membina sistem penderia IoT atas ESP32 dan Arduino.",
+        p3: "Di luar makmal, saya aktif dalam kelab robotik dan pertandingan FIRA, serta menjadi hos kepada delegasi pelajar dari Fukuoka, Jepun yang berkunjung ke politeknik saya. Kini saya berhasrat untuk berkembang sebagai jurutera elektronik dan sistem terbenam."
       },
       skills: {
         title: "Kemahiran Teknikal",
