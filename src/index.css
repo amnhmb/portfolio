@@ -44,5 +44,12 @@
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-sans font-medium tracking-tight text-[#111111];
+    text-wrap: balance;
+  }
+
+  /* Tidier paragraph wrapping: avoids single-word last lines and keeps a more
+     even right edge. */
+  p {
+    text-wrap: pretty;
   }
 }
