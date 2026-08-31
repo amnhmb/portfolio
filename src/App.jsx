@@ -724,7 +724,7 @@ function App() {
               <img 
                 src={`${import.meta.env.BASE_URL}profile-photo.jpg`}
                 alt="Aiman Hambali"
-                className="absolute inset-0 w-full h-full object-cover rounded-lg grayscale hover:grayscale-0 transition-all duration-700 z-10 border border-gray-200"
+                className="absolute inset-0 w-full h-full object-cover rounded-lg grayscale-0 md:grayscale md:hover:grayscale-0 transition-all duration-700 z-10 border border-gray-200"
               />
             </div>
             <div className="md:col-span-7 space-y-8 md:pl-10">
