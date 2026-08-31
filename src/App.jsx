@@ -765,9 +765,9 @@ function App() {
                         )}
                       </div>
                       
-                      <div className="flex flex-wrap items-center gap-4 text-sm font-mono tracking-widest uppercase mb-1">
+                      <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-y-1 sm:gap-4 text-sm font-mono tracking-widest uppercase mb-1">
                         <span className="text-accent">{edu.school}</span>
-                        <span className="text-gray-400">·</span>
+                        <span className="hidden sm:inline text-gray-400">·</span>
                         <span className="text-gray-500">{edu.location}</span>
                       </div>
                       <span className="text-xs text-gray-400 font-mono tracking-widest uppercase">{edu.period}</span>
