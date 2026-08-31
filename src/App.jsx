@@ -818,12 +818,12 @@ function App() {
           <h2 className="text-4xl md:text-5xl font-bold mb-16 text-[#111111] tracking-tight">
             <ScrambleText text={t('skills.title')} trigger="view" />
           </h2>
-          <div className="flex flex-wrap gap-4 max-w-4xl">
+          <div className="grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:gap-4 max-w-4xl">
             {Array.isArray(skillsList) && skillsList.map((skill, index) => {
               const Icon = SKILL_ICONS[skill];
               const logo = SKILL_LOGOS[skill];
               return (
-              <div key={index} className="group skill-item px-6 py-3 bg-white border border-gray-200 rounded-md text-sm font-medium shadow-sm hover:border-accent hover:text-accent hover:-translate-y-1 hover:shadow-md active:scale-95 transition-all duration-300 flex items-center gap-3">
+              <div key={index} className="group skill-item px-5 sm:px-6 py-3 bg-white border border-gray-200 rounded-md text-sm font-medium shadow-sm hover:border-accent hover:text-accent hover:-translate-y-1 hover:shadow-md active:scale-95 transition-all duration-300 flex items-center justify-between sm:justify-start gap-3">
                 <span className="text-[#111111] group-hover:text-accent transition-colors">{skill}</span>
                 <span className="relative inline-flex items-center justify-end min-w-[3.25rem] h-4">
                   <span className="text-gray-400 font-mono text-[10px] tracking-wider uppercase transition-opacity duration-200 group-hover:opacity-0">TECH</span>
@@ -855,9 +855,9 @@ function App() {
           <h3 className="text-2xl font-bold mt-16 mb-6 text-[#111111] tracking-tight">
             <ScrambleText text={t('skills.softTitle')} trigger="view" />
           </h3>
-          <div className="flex flex-wrap gap-4 max-w-4xl">
+          <div className="grid grid-cols-1 gap-3 sm:flex sm:flex-wrap sm:gap-4 max-w-4xl">
             {Array.isArray(softList) && softList.map((skill, index) => (
-              <div key={index} className="skill-item px-6 py-3 bg-white border border-gray-200 rounded-md text-sm font-medium shadow-sm hover:border-accent hover:text-accent hover:-translate-y-1 hover:shadow-md active:scale-95 transition-all duration-300 flex items-center gap-3">
+              <div key={index} className="skill-item px-5 sm:px-6 py-3 bg-white border border-gray-200 rounded-md text-sm font-medium shadow-sm hover:border-accent hover:text-accent hover:-translate-y-1 hover:shadow-md active:scale-95 transition-all duration-300 flex items-center justify-between sm:justify-start gap-3">
                 <span className="text-[#111111]">{skill}</span>
                 <span className="text-gray-400 font-mono text-[10px] tracking-wider uppercase">SOFT</span>
               </div>
@@ -867,9 +867,9 @@ function App() {
           <h3 className="text-2xl font-bold mt-16 mb-6 text-[#111111] tracking-tight">
             <ScrambleText text={t('skills.langTitle')} trigger="view" />
           </h3>
-          <div className="flex flex-wrap gap-4 max-w-4xl">
+          <div className="grid grid-cols-1 gap-3 sm:flex sm:flex-wrap sm:gap-4 max-w-4xl">
             {Array.isArray(langList) && langList.map((lng, index) => (
-              <div key={index} className="skill-item px-6 py-3 bg-white border border-gray-200 rounded-md shadow-sm hover:border-accent hover:-translate-y-1 hover:shadow-md transition-all duration-300 flex items-center gap-4">
+              <div key={index} className="skill-item px-5 sm:px-6 py-3 bg-white border border-gray-200 rounded-md shadow-sm hover:border-accent hover:-translate-y-1 hover:shadow-md transition-all duration-300 flex items-center justify-between gap-4">
                 <div className="flex flex-col">
                   <span className="text-sm font-medium text-[#111111]">{lng.name}</span>
                   <span className="text-gray-400 font-mono text-[10px] tracking-wider uppercase">{lng.label}</span>
