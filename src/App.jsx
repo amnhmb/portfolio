@@ -695,7 +695,10 @@ function App() {
             {/* role, description, CTA, contact: below on mobile, left column row 2 on desktop */}
             <div className="mt-1 lg:mt-0 lg:col-start-1 lg:row-start-2 lg:self-center max-w-2xl">
               <h2 className="hero-el text-xl md:text-3xl font-medium text-gray-500 mb-4 sm:mb-8 tracking-tight">
-                {t('hero.role')}
+                {(() => {
+                  const [pre, ...rest] = t('hero.role').split(' · ');
+                  return rest.length ? (<>{pre} · <em className="italic">{rest.join(' · ')}</em></>) : t('hero.role');
+                })()}
               </h2>
               <p className="hero-el text-gray-600 text-lg md:text-xl mb-8 sm:mb-12 max-w-xl leading-relaxed font-light">
                 {t('hero.description')}
