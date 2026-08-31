@@ -751,7 +751,7 @@ function App() {
                 {Array.isArray(eduList) && eduList.map((edu, index) => (
                   <div key={index} className="relative pl-8">
                     <div className="timeline-line absolute left-0 top-0 h-full w-px bg-accent origin-top"></div>
-                    <div className="timeline-dot absolute w-3 h-3 rounded-full bg-accent -left-[6.5px] top-2 ring-4 ring-[#ECECEC]"></div>
+                    <div className="timeline-dot absolute w-3 h-3 rounded-full bg-accent -left-[5.5px] top-2 ring-4 ring-[#ECECEC]"></div>
                     <div className="mb-4">
                       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-2">
                         <h3 className="text-2xl font-bold text-[#111111] max-w-md leading-tight">{edu.degree}</h3>
@@ -894,7 +894,7 @@ function App() {
             {Array.isArray(expList) && expList.map((exp, index) => (
               <div key={index} className="relative pl-8 md:pl-12 ml-2 md:ml-4">
                 <div className="timeline-line absolute left-0 top-0 h-full w-px bg-accent origin-top"></div>
-                <div className="timeline-dot absolute w-3 h-3 rounded-full bg-accent -left-[6.5px] top-2 ring-4 ring-[#ECECEC]"></div>
+                <div className="timeline-dot absolute w-3 h-3 rounded-full bg-accent -left-[5.5px] top-2 ring-4 ring-[#ECECEC]"></div>
                 <div className="mb-4">
                   <h3 className="text-2xl md:text-3xl font-bold mb-2 text-[#111111]">{exp.role}</h3>
                   <div className="flex flex-wrap items-center gap-4 text-sm font-mono tracking-widest uppercase">
