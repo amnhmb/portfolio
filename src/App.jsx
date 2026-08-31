@@ -913,7 +913,7 @@ function App() {
                     {exp.description.map((detail, idx) => (
                       <li key={idx} className="flex items-start gap-4">
                         <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2.5 shrink-0"></span>
-                        <span className="flex-1 text-justify hyphens-auto"><AnimatedTextNumber text={detail} /></span>
+                        <span className="flex-1"><AnimatedTextNumber text={detail} /></span>
                       </li>
                     ))}
                   </ul>
