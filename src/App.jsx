@@ -703,7 +703,7 @@ function App() {
                 <a href="mailto:aimannhambalii@gmail.com" className="px-4 py-2.5 text-sm sm:text-base sm:px-8 sm:py-4 bg-[#111111] text-white rounded-md font-medium hover:bg-accent hover:scale-[0.98] transition-all duration-300">
                   {t('hero.contact')}
                 </a>
-                <a href={`${import.meta.env.BASE_URL}Aiman_Hambali_CV.docx`} download className="px-4 py-2.5 text-sm sm:text-base sm:px-8 sm:py-4 border border-gray-300 text-[#111111] rounded-md font-medium hover:border-accent hover:text-accent transition-all duration-300">
+                <a href={`${import.meta.env.BASE_URL}CV_AIMAN_HAMBALI.pdf`} download="CV_AIMAN_HAMBALI.pdf" className="px-4 py-2.5 text-sm sm:text-base sm:px-8 sm:py-4 border border-gray-300 text-[#111111] rounded-md font-medium hover:border-accent hover:text-accent transition-all duration-300">
                   {t('hero.resume')}
                 </a>
               </div>
