@@ -468,7 +468,9 @@ function App() {
     { id: 'research', key: 'nav.research' },
     { id: 'contact', key: 'nav.contact' },
   ];
-  const [isDesktop, setIsDesktop] = useState(true);
+  const [isDesktop, setIsDesktop] = useState(() => {
+    try { return window.matchMedia('(min-width: 768px)').matches; } catch (e) { return false; }
+  });
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(min-width: 768px)');
