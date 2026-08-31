@@ -658,7 +658,17 @@ function App() {
           </div>
           
           <div className="relative w-full lg:grid lg:grid-cols-2 lg:gap-x-8 lg:gap-y-8 lg:items-center">
-            {/* Photo: mobile = full-width backdrop; desktop = right column */}
+            {/* greeting + name: stacked above photo on mobile, left column on desktop */}
+            <div className="hero-content mb-6 lg:mb-0 lg:max-w-2xl lg:col-start-1 lg:row-start-1 lg:self-center">
+              <p className="text-accent font-mono mb-2 sm:mb-6 text-[10px] sm:text-sm tracking-widest uppercase">
+                // <ScrambleText text={t('hero.greeting')} active={heroReady} />
+              </p>
+              <h1 className="whitespace-pre-line text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[1.05] text-[#111111]">
+                <ScrambleText text={t('hero.name').replace(/ Bin /, '\nBin ')} delay={250} active={heroReady} />
+              </h1>
+            </div>
+
+            {/* Photo: mobile = portrait below name; desktop = right column */}
             <div className="hero-el w-full flex justify-center pointer-events-none lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:justify-end lg:self-center">
               <div
                 className="relative w-3/4 sm:w-80 md:w-96 lg:w-[32rem]"
@@ -671,23 +681,13 @@ function App() {
               >
                 <picture>
                   <source srcSet={`${import.meta.env.BASE_URL}hero-optimized.webp`} type="image/webp" />
-                  <img 
+                  <img
                     src={`${import.meta.env.BASE_URL}hero-optimized.jpg`}
                     alt="Aiman Hambali"
                     className="w-full h-auto object-contain"
                   />
                 </picture>
               </div>
-            </div>
-
-            {/* greeting + name: overlay over photo on mobile, static left column on desktop */}
-            <div className="hero-content absolute top-6 left-1 z-10 pr-2 max-w-[58%] sm:max-w-[70%] lg:static lg:top-auto lg:max-w-2xl lg:col-start-1 lg:row-start-1 lg:self-center lg:pr-0">
-              <p className="text-accent font-mono mb-2 sm:mb-6 text-[10px] sm:text-sm tracking-widest uppercase">
-                // <ScrambleText text={t('hero.greeting')} active={heroReady} />
-              </p>
-              <h1 className="whitespace-pre-line text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[1.05] text-[#111111]">
-                <ScrambleText text={t('hero.name').replace(/ Bin /, '\nBin ')} delay={250} active={heroReady} />
-              </h1>
             </div>
 
             {/* role, description, CTA, contact: below on mobile, left column row 2 on desktop */}
