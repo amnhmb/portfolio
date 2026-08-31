@@ -802,7 +802,7 @@ function App() {
               </div>
             </div>
             
-            <div className="md:col-span-5 bg-white border border-gray-200 rounded-lg p-8 self-start shadow-sm mt-16 md:mt-0 sticky top-32">
+            <div className="md:col-span-5 bg-white border border-gray-200 rounded-lg p-8 self-start shadow-sm sticky top-32">
               <h3 className="text-2xl font-bold mb-8 text-[#111111] tracking-tight">
                 {t('education.performance')}
               </h3>
