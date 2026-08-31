@@ -31,7 +31,7 @@ const resources = {
         title: "Technical Skills",
         items: ["Proteus", "Quartus II", "NI Multisim", "Microwind", "L-Edit IC", "AutoCAD", "MATLAB", "Python", "Arduino", "ESP32"],
         softTitle: "Soft Skills",
-        softItems: ["Teamwork", "Mentoring & Leadership", "Problem Solving", "Professional Maturity"]
+        softItems: ["Teamwork", "Mentoring & Leadership", "Problem Solving", "Professional Maturity", "Time Management", "Continuous Learning"]
       },
       experience: {
         title: "Experience",
@@ -229,7 +229,7 @@ const resources = {
         title: "Kemahiran Teknikal",
         items: ["Proteus", "Quartus II", "NI Multisim", "Microwind", "L-Edit IC", "AutoCAD", "MATLAB", "Python", "Arduino", "ESP32"],
         softTitle: "Kemahiran Insaniah",
-        softItems: ["Kerja Berpasukan", "Bimbingan & Kepimpinan", "Penyelesaian Masalah", "Kematangan Profesional"]
+        softItems: ["Kerja Berpasukan", "Bimbingan & Kepimpinan", "Penyelesaian Masalah", "Kematangan Profesional", "Pengurusan Masa", "Pembelajaran Berterusan"]
       },
       experience: {
         title: "Pengalaman",
