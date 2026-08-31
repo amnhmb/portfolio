@@ -852,7 +852,7 @@ function App() {
             })}
           </div>
 
-          <h3 className="text-xl font-bold mt-16 mb-6 text-[#111111] tracking-tight">
+          <h3 className="text-2xl font-bold mt-16 mb-6 text-[#111111] tracking-tight">
             <ScrambleText text={t('skills.softTitle')} trigger="view" />
           </h3>
           <div className="flex flex-wrap gap-4 max-w-4xl">
@@ -864,7 +864,7 @@ function App() {
             ))}
           </div>
 
-          <h3 className="text-xl font-bold mt-16 mb-6 text-[#111111] tracking-tight">
+          <h3 className="text-2xl font-bold mt-16 mb-6 text-[#111111] tracking-tight">
             <ScrambleText text={t('skills.langTitle')} trigger="view" />
           </h3>
           <div className="flex flex-wrap gap-4 max-w-4xl">
