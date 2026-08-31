@@ -16,10 +16,12 @@ const SKILL_ICONS = {
   'Arduino': SiArduino,
   'ESP32': SiEspressif,
 };
-// Skills whose real logo is a colour raster (no brand glyph in react-icons).
+// Skills whose real logo is a raster (no brand glyph in react-icons). Painted
+// as a navy silhouette via CSS mask so they match the other accent glyphs.
+// `w` is the render width in px at 16px tall (mask keeps aspect).
 const SKILL_LOGOS = {
-  'MATLAB': 'logos/matlab.png',
-  'Microwind': 'logos/microwind.png',
+  'MATLAB': { src: 'logos/matlab.png', w: 18 },
+  'Microwind': { src: 'logos/microwind.png', w: 52 },
 };
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -823,7 +825,24 @@ function App() {
                 <span className="relative inline-flex items-center justify-end min-w-[3.25rem] h-4">
                   <span className="text-gray-400 font-mono text-[10px] tracking-wider uppercase transition-opacity duration-200 group-hover:opacity-0">TECH</span>
                   {Icon && <Icon className="absolute right-0 w-4 h-4 text-accent opacity-0 transition-opacity duration-200 group-hover:opacity-100" />}
-                  {logo && <img src={`${import.meta.env.BASE_URL}${logo}`} alt={skill} className="absolute right-0 h-4 w-auto max-w-[3.25rem] object-contain opacity-0 transition-opacity duration-200 group-hover:opacity-100" />}
+                  {logo && (
+                    <span
+                      role="img"
+                      aria-label={skill}
+                      className="absolute right-0 h-4 text-accent bg-current opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+                      style={{
+                        width: `${logo.w}px`,
+                        WebkitMaskImage: `url(${import.meta.env.BASE_URL}${logo.src})`,
+                        maskImage: `url(${import.meta.env.BASE_URL}${logo.src})`,
+                        WebkitMaskSize: 'contain',
+                        maskSize: 'contain',
+                        WebkitMaskRepeat: 'no-repeat',
+                        maskRepeat: 'no-repeat',
+                        WebkitMaskPosition: 'center right',
+                        maskPosition: 'center right',
+                      }}
+                    />
+                  )}
                 </span>
               </div>
               );
