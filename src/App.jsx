@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, Suspense, lazy } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Globe, Mail, X, MoreVertical, Cpu } from 'lucide-react';
+import { Globe, Mail, X, MoreVertical } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 import { SiProteus, SiIntel, SiMultisim, SiSiemens, SiAutocad, SiPython, SiArduino, SiEspressif } from 'react-icons/si';
 
@@ -10,13 +10,16 @@ const SKILL_ICONS = {
   'Proteus': SiProteus,
   'Quartus II': SiIntel,
   'NI Multisim': SiMultisim,
-  'Microwind': Cpu,
   'L-Edit IC': SiSiemens,
   'AutoCAD': SiAutocad,
-  'MATLAB': Cpu,
   'Python': SiPython,
   'Arduino': SiArduino,
   'ESP32': SiEspressif,
+};
+// Skills whose real logo is a colour raster (no brand glyph in react-icons).
+const SKILL_LOGOS = {
+  'MATLAB': 'logos/matlab.png',
+  'Microwind': 'logos/microwind.png',
 };
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -813,12 +816,14 @@ function App() {
           <div className="flex flex-wrap gap-4 max-w-4xl">
             {Array.isArray(skillsList) && skillsList.map((skill, index) => {
               const Icon = SKILL_ICONS[skill];
+              const logo = SKILL_LOGOS[skill];
               return (
               <div key={index} className="group skill-item px-6 py-3 bg-white border border-gray-200 rounded-md text-sm font-medium shadow-sm hover:border-accent hover:text-accent hover:-translate-y-1 hover:shadow-md active:scale-95 transition-all duration-300 flex items-center gap-3">
                 <span className="text-[#111111] group-hover:text-accent transition-colors">{skill}</span>
-                <span className="relative inline-flex items-center justify-end min-w-[2.5rem] h-4">
+                <span className="relative inline-flex items-center justify-end min-w-[3.25rem] h-4">
                   <span className="text-gray-400 font-mono text-[10px] tracking-wider uppercase transition-opacity duration-200 group-hover:opacity-0">TECH</span>
                   {Icon && <Icon className="absolute right-0 w-4 h-4 text-accent opacity-0 transition-opacity duration-200 group-hover:opacity-100" />}
+                  {logo && <img src={`${import.meta.env.BASE_URL}${logo}`} alt={skill} className="absolute right-0 h-4 w-auto max-w-[3.25rem] object-contain opacity-0 transition-opacity duration-200 group-hover:opacity-100" />}
                 </span>
               </div>
               );
