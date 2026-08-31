@@ -659,7 +659,7 @@ function App() {
           
           <div className="relative w-full lg:grid lg:grid-cols-2 lg:gap-x-8 lg:gap-y-8 lg:items-center">
             {/* greeting + name: stacked above photo on mobile, left column on desktop */}
-            <div className="hero-content mb-6 lg:mb-0 lg:max-w-2xl lg:col-start-1 lg:row-start-1 lg:self-center">
+            <div className="hero-content mb-1 lg:mb-0 lg:max-w-2xl lg:col-start-1 lg:row-start-1 lg:self-center">
               <p className="text-accent font-mono mb-2 sm:mb-6 text-[10px] sm:text-sm tracking-widest uppercase">
                 // <ScrambleText text={t('hero.greeting')} active={heroReady} />
               </p>
@@ -691,7 +691,7 @@ function App() {
             </div>
 
             {/* role, description, CTA, contact: below on mobile, left column row 2 on desktop */}
-            <div className="mt-6 lg:mt-0 lg:col-start-1 lg:row-start-2 lg:self-center max-w-2xl">
+            <div className="mt-1 lg:mt-0 lg:col-start-1 lg:row-start-2 lg:self-center max-w-2xl">
               <h2 className="hero-el text-xl md:text-3xl font-medium text-gray-500 mb-4 sm:mb-8 tracking-tight">
                 {t('hero.role')}
               </h2>
