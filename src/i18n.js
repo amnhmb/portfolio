@@ -210,8 +210,8 @@ const resources = {
       hero: {
         greeting: "hai, saya",
         name: "Aiman Hambali Bin Amran.",
-        role: "Jurutera Siswazah Baharu, Sistem Elektronik & IoT",
-        description: "Jurutera Electronic & IoT dengan pengalaman praktikal dalam peralatan ujian semikonduktor dan sistem penderia IoT. Mahir dalam Python, Arduino, dan ESP32.",
+        role: "Fresh Graduate Engineer · Electronic & IoT Systems",
+        description: "Electronic & IoT engineer dengan pengalaman hands-on dalam semiconductor test equipment dan IoT sensor systems. Selesa guna Python, Arduino, dan ESP32.",
         resume: "Muat turun Resume",
         contact: "Hubungi Saya"
       },
@@ -226,15 +226,15 @@ const resources = {
       },
       about: {
         title: "Mengenai Saya",
-        p1: "Saya Aiman Hambali, seorang jurutera elektronik siswazah baharu yang berpangkalan di Kota Bharu, Kelantan, Malaysia.",
-        p2: "Kerja saya menggabungkan perkakasan dan perisian terbenam, daripada alatan reka bentuk IC dan litar seperti Proteus, Quartus, dan Microwind sehingga membina sistem penderia IoT atas ESP32 dan Arduino.",
-        p3: "Semasa diploma, saya aktif dalam kelab robotik dan pertandingan FIRA, serta menjadi hos kepada delegasi pelajar dari Fukuoka, Jepun yang berkunjung ke politeknik saya. Kini saya berhasrat untuk berkembang sebagai jurutera elektronik dan sistem terbenam."
+        p1: "Saya Aiman Hambali, fresh graduate electronic engineer yang duduk di Kota Bharu, Kelantan.",
+        p2: "Kerja saya campur hardware dengan embedded software, dari tools design IC & circuit macam Proteus, Quartus, dan Microwind sampai la bina IoT sensor system atas ESP32 dan Arduino.",
+        p3: "Masa diploma dulu, saya aktif dalam kelab robotik dan pertandingan FIRA, dan pernah jadi hos untuk delegasi pelajar dari Fukuoka, Jepun yang datang ke politeknik saya. Sekarang saya nak terus berkembang sebagai electronic & embedded systems engineer."
       },
       skills: {
         title: "Kemahiran Teknikal",
         items: ["Proteus", "Quartus II", "NI Multisim", "Microwind", "L-Edit IC", "AutoCAD", "MATLAB", "Python", "Arduino", "ESP32"],
-        softTitle: "Kemahiran Insaniah",
-        softItems: ["Kerja Berpasukan", "Bimbingan & Kepimpinan", "Penyelesaian Masalah", "Kematangan Profesional", "Pengurusan Masa", "Pembelajaran Berterusan"],
+        softTitle: "Soft Skills",
+        softItems: ["Teamwork", "Mentoring & Leadership", "Problem Solving", "Professional Maturity", "Time Management", "Continuous Learning"],
         langTitle: "Bahasa",
         languages: [
           { name: "Bahasa Malaysia", level: 5, label: "Bahasa Ibunda" },
@@ -249,19 +249,19 @@ const resources = {
             company: "Unisem (M) Berhad",
             period: "Jul 2025 - Jan 2026",
             description: [
-              "Diserap pada tahap jurutera, namun mengambil inisiatif menggalas tugas Juruteknik PM kerana kekurangan kakitangan pasukan.",
-              "Menamatkan latihan berstruktur selama 1 bulan diikuti latihan amali berselia selama 1 bulan.",
-              "Mengendalikan tanggungjawab barisan ujian secara bebas selama 4 bulan selepas kakitangan juruteknik dipindahkan ke kilang Gopeng.",
-              "Mengurus penyelenggaraan pencegahan dan penyelesaian masalah pada mesin ujian semikonduktor (ETS-88, ETS-364, ASL-1000, CCT, dan LTX).",
-              "Menyelaras tugas harian merentasi pelbagai bahagian bersama penyelia, operator, pelanggan, pasukan kejuruteraan, dan juruteknik barisan.",
-              "Berjaya melatih dan membimbing kakitangan baharu sebelum tempoh latihan industri tamat."
+              "Masuk sebagai engineer, tapi ambil inisiatif buat kerja PM Technician juga sebab pasukan kurang orang.",
+              "Habiskan 1 bulan structured training, pastu 1 bulan lagi hands-on training bawah supervision.",
+              "Handle sendiri tanggungjawab test line selama 4 bulan lepas technician dipindahkan ke kilang Gopeng.",
+              "Uruskan preventive maintenance dan troubleshooting mesin semiconductor test (ETS-88, ETS-364, ASL-1000, CCT, dan LTX).",
+              "Selaras kerja harian dengan supervisor, operator, customer, engineering team, dan line technician.",
+              "Sempat train dan bimbing staff baharu sebelum tamat latihan industri."
             ]
           },
           {
             role: "Juruteknik Elektrik (Pelatih)",
             company: "Kejuruteraan Elektrik Usahamaju Sdn Bhd",
             period: "Jun 2021 - Ogo 2021",
-            description: "Membantu pemasangan kotak papan agihan (DB), pemasangan konduit, dan pendawaian rumah am."
+            description: "Bantu pasang Distribution Board (DB) box, conduit fitting, dan house wiring am."
           }
         ]
       },
@@ -361,21 +361,21 @@ const resources = {
       },
       projects: {
         title: "Projek",
-        intro: "Kini menyokong perniagaan sepupu saya, ThirtyOne Lab, dalam perkhidmatan pelanggan sambil mereka bentuk dan membina sistem digital mereka.",
+        intro: "Sekarang saya bantu bisnes sepupu saya, ThirtyOne Lab, dalam customer service sambil design dan bina sistem digital mereka.",
         viewLive: "Lihat tapak web",
         private: "Peribadi",
         items: [
           {
             image: "project-catalog.png",
             title: "ThirtyOne Lab · Katalog & Panel Pentadbir",
-            description: "Aplikasi web katalog produk dengan panel pentadbir terbina dalam untuk perniagaan. Pelanggan melayari katalog dan membuat permintaan sebut harga; pemilik menguruskan produk dan kandungan melalui panel pentadbir.",
+            description: "Web app katalog produk dengan admin panel terbina dalam untuk bisnes. Customer boleh browse katalog dan buat quote request; owner urus produk dan content melalui admin panel.",
             tech: ["React", "Vite", "Tailwind", "Supabase", "Cloudflare Pages"],
             link: "https://31lab.pages.dev"
           },
           {
             image: "project-oms.png",
             title: "Sistem Pengurusan Pesanan (OMS)",
-            description: "Sistem dalaman peribadi untuk menguruskan pesanan, invois, dan penjejakan status pesanan untuk perniagaan, dengan pelaporan status harian automatik ke Telegram.",
+            description: "Sistem dalaman untuk urus order, invois, dan tracking status order untuk bisnes, dengan report status harian automatik ke Telegram.",
             tech: ["React", "Vite", "Supabase", "Tailwind"]
           }
         ]
@@ -385,13 +385,13 @@ const resources = {
         paperTitle: "An IoT-Enabled Growth Management System with Deep Learning-Based Monitoring for Volvariella volvacea Mushroom Cultivation in Controlled Environments",
         meta: "Wiley · Applied Research (Artikel Penyelidikan)",
         status: "Dalam semakan rakan sebaya (Under peer review)",
-        role: "Pengarang bersama (Kertas kerja gabungan dua Projek Tahun Akhir)",
+        role: "Co-author (paper gabungan dua Final Year Project)",
         overviewLabel: "Gambaran Keseluruhan",
-        overview: "Cendawan Volvariella mendapat permintaan tinggi di Malaysia, tetapi penanaman tradisional sukar mengekalkan keadaan persekitaran yang ideal, menyebabkan hasil dan kualiti yang tidak menentu. Kertas kerja ini menggabungkan projek kawalan persekitaran IoT saya dengan projek pemantauan pembelajaran mendalam rakan pelajar menjadi satu sistem yang komprehensif.",
+        overview: "Cendawan Volvariella tinggi permintaan di Malaysia, tapi cara tanam tradisional susah nak kekalkan keadaan persekitaran yang ideal, jadi hasil dan kualiti tak menentu. Paper ni gabungkan projek IoT environmental control saya dengan projek deep learning monitoring rakan pelajar jadi satu sistem lengkap.",
         approachLabel: "Sumbangan Saya (Sistem IoT)",
-        approach: "Saya mereka bentuk dan membina sistem kawalan persekitaran IoT menggunakan mikropengawal ESP32 dengan penderia DHT22 (suhu/kelembapan), MQ135 (CO2), dan HW-038 (paras air). Ia mengawal penggerak (penyembur kabus, pam air, pemanas, kipas pengudaraan) untuk mengekalkan keadaan ideal secara automatik: 28-35°C, 75-95% RH, dan CO2 < 1000 ppm.",
+        approach: "Saya design dan bina IoT environmental control system guna ESP32 microcontroller dengan sensor DHT22 (suhu/kelembapan), MQ135 (CO2), dan HW-038 (paras air). Ia kawal actuator (fogger, water pump, heater, kipas ventilation) untuk kekalkan keadaan ideal secara automatik: 28-35°C, 75-95% RH, dan CO2 < 1000 ppm.",
         collabLabel: "Sumbangan Rakan Kolaborasi (Model AI)",
-        collab: "Pengarang bersama menyumbang komponen pembelajaran mendalam YOLOv8 untuk memantau empat peringkat pertumbuhan cendawan (Tiny, Button, Egg, Mature).",
+        collab: "Rakan co-author sumbangkan komponen deep learning YOLOv8 untuk pantau empat peringkat pertumbuhan cendawan (Tiny, Button, Egg, Mature).",
         resultsLabel: "Keputusan Utama",
         button: "Lihat kertas penuh",
         stats: {
