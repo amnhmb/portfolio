@@ -717,7 +717,7 @@ function App() {
         </section>
 
         {/* About Section */}
-        <section id="about" ref={aboutRef} className="py-32 border-t border-gray-200 mt-20">
+        <section id="about" ref={aboutRef} className="py-20 md:py-32 border-t border-gray-200 mt-10 md:mt-20">
           <div className="grid md:grid-cols-12 gap-16 items-start">
             <div className="md:col-span-5 relative w-full max-w-[16rem] mx-auto md:max-w-none md:mx-0 aspect-square">
               <div className="absolute inset-0 bg-gray-100 border border-gray-200 rounded-lg translate-x-4 translate-y-4"></div>
@@ -741,7 +741,7 @@ function App() {
         </section>
 
         {/* Education & Academic Performance Section */}
-        <section id="education" ref={educationRef} className="py-32 border-t border-gray-200">
+        <section id="education" ref={educationRef} className="py-20 md:py-32 border-t border-gray-200">
           <div className="grid md:grid-cols-12 gap-16">
             <div className="md:col-span-7">
               <h2 className="text-4xl md:text-5xl font-bold mb-16 text-[#111111] tracking-tight">
@@ -814,7 +814,7 @@ function App() {
         </section>
 
         {/* Skills Section */}
-        <section id="skills" ref={skillsRef} className="py-32 border-t border-gray-200">
+        <section id="skills" ref={skillsRef} className="py-20 md:py-32 border-t border-gray-200">
           <h2 className="text-4xl md:text-5xl font-bold mb-16 text-[#111111] tracking-tight">
             <ScrambleText text={t('skills.title')} trigger="view" />
           </h2>
@@ -885,7 +885,7 @@ function App() {
         </section>
 
         {/* Experience Section */}
-        <section id="experience" ref={expRef} className="py-32 border-t border-gray-200">
+        <section id="experience" ref={expRef} className="py-20 md:py-32 border-t border-gray-200">
           <h2 className="text-4xl md:text-5xl font-bold mb-16 text-[#111111] tracking-tight">
             <ScrambleText text={t('experience.title')} trigger="view" />
           </h2>
@@ -923,7 +923,7 @@ function App() {
         </section>
 
         {/* Projects Section */}
-        <section id="projects" ref={projectsRef} className="py-32 border-t border-gray-200">
+        <section id="projects" ref={projectsRef} className="py-20 md:py-32 border-t border-gray-200">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#111111] tracking-tight">
             <ScrambleText text={t('projects.title')} trigger="view" />
           </h2>
@@ -988,7 +988,7 @@ function App() {
         </section>
 
         {/* Featured Research Section */}
-        <section id="research" ref={researchRef} className="py-32 border-t border-gray-200">
+        <section id="research" ref={researchRef} className="py-20 md:py-32 border-t border-gray-200">
           <h2 className="text-4xl md:text-5xl font-bold mb-16 text-[#111111] tracking-tight">
             <ScrambleText text={t('research.title')} trigger="view" />
           </h2>
@@ -1074,7 +1074,7 @@ function App() {
         </section>
 
         {/* Achievements Section */}
-        <section id="achievements" ref={achievementsRef} className="py-32 border-t border-gray-200">
+        <section id="achievements" ref={achievementsRef} className="py-20 md:py-32 border-t border-gray-200">
           <h2 className="text-4xl md:text-5xl font-bold mb-16 text-[#111111] tracking-tight">
             <ScrambleText text={t('achievements.title')} trigger="view" />
           </h2>
