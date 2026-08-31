@@ -362,7 +362,7 @@ const resources = {
       projects: {
         title: "Projek",
         intro: "Sekarang saya bantu bisnes sepupu saya, ThirtyOne Lab, dalam customer service sambil design dan bina sistem digital mereka.",
-        viewLive: "Lihat tapak web",
+        viewLive: "Buka website",
         private: "Peribadi",
         items: [
           {
