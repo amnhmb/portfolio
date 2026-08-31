@@ -17,6 +17,12 @@
     background-color: #ECECEC;
     color: #111111;
   }
+
+  /* Slightly smaller, more compact type on phones only. Scales every
+     rem-based size down ~6%; desktop is untouched. */
+  @media (max-width: 640px) {
+    html { font-size: 15px; }
+  }
   
   /* Subtle polka-dot halftone painted directly as the body background so no
      opaque layer can cover it. A top-to-transparent gradient layer keeps the
