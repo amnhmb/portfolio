@@ -744,10 +744,10 @@ function App() {
         <section id="education" ref={educationRef} className="py-20 md:py-32 border-t border-gray-200">
           <div className="grid md:grid-cols-12 gap-8 md:gap-16">
             <div className="md:col-span-7">
-              <h2 className="text-4xl md:text-5xl font-bold mb-16 text-[#111111] tracking-tight">
+              <h2 className="text-4xl md:text-5xl font-bold mb-8 md:mb-16 text-[#111111] tracking-tight">
                 <ScrambleText text={t('education.title')} trigger="view" />
               </h2>
-              <div className="space-y-16">
+              <div className="space-y-10 md:space-y-16">
                 {Array.isArray(eduList) && eduList.map((edu, index) => (
                   <div key={index} className="relative pl-8">
                     <div className="timeline-line absolute left-0 top-0 h-full w-px bg-accent origin-top"></div>
