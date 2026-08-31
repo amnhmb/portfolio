@@ -526,8 +526,8 @@ function App() {
         revealSections.forEach((ref) => {
           if (ref.current) {
             gsap.fromTo(ref.current.children,
-              { x: (i) => (i % 2 === 0 ? -60 : 60), opacity: 0 },
-              { x: 0, opacity: 1, duration: 1.2, stagger: 0.15, ease: "power4.out", scrollTrigger: {
+              { skewY: 5, y: 44, opacity: 0, transformOrigin: "left center" },
+              { skewY: 0, y: 0, opacity: 1, duration: 1.2, stagger: 0.15, ease: "power4.out", scrollTrigger: {
                 trigger: ref.current,
                 start: "top 80%",
               }}
