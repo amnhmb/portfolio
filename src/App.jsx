@@ -791,7 +791,7 @@ function App() {
                           {edu.results.map((res, i) => (
                             <div key={i} className="flex justify-between items-center py-1.5 border-b border-gray-100">
                               <span className="text-sm text-gray-500 font-light truncate mr-2">{res.subject}</span>
-                              <span className="text-sm font-medium text-[#111111]">{res.grade}</span>
+                              <span className="text-sm font-medium text-[#111111] font-mono w-7 text-left shrink-0">{res.grade}</span>
                             </div>
                           ))}
                         </div>
