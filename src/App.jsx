@@ -576,6 +576,7 @@ function App() {
   }, [lang, heroReady]);
 
   const skillsList = t('skills.items', { returnObjects: true }) || [];
+  const softList = t('skills.softItems', { returnObjects: true }) || [];
   const expList = t('experience.items', { returnObjects: true }) || [];
   const eduList = t('education.items', { returnObjects: true }) || [];
   
@@ -848,6 +849,18 @@ function App() {
               </div>
               );
             })}
+          </div>
+
+          <h3 className="text-xl font-bold mt-16 mb-6 text-[#111111] tracking-tight">
+            <ScrambleText text={t('skills.softTitle')} trigger="view" />
+          </h3>
+          <div className="flex flex-wrap gap-4 max-w-4xl">
+            {Array.isArray(softList) && softList.map((skill, index) => (
+              <div key={index} className="skill-item px-6 py-3 bg-white border border-gray-200 rounded-md text-sm font-medium shadow-sm hover:border-accent hover:text-accent hover:-translate-y-1 hover:shadow-md active:scale-95 transition-all duration-300 flex items-center gap-3">
+                <span className="text-[#111111]">{skill}</span>
+                <span className="text-gray-400 font-mono text-[10px] tracking-wider uppercase">SOFT</span>
+              </div>
+            ))}
           </div>
         </section>
 
