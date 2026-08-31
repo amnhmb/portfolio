@@ -138,6 +138,14 @@ const resources = {
             note: "Member of Pembimbing Rakan Sebaya (PRS) during Diploma."
           },
           {
+            image: "nuclear_malaysia.jpg",
+            title: "Nuclear Malaysia Consultation",
+            caption: "FYP field consultation · Agensi Nuklear Malaysia",
+            note: "Met Dr. Azhar Mohamad, a mushroom cultivation expert, to gather domain knowledge for my Volvariella mushroom FYP.",
+            link: "https://www.researchgate.net/profile/Azhar-Mohamad-2",
+            linkLabel: "Dr. Azhar's research"
+          },
+          {
             image: "mimos.jpg",
             title: "MIMOS Field Trip",
             caption: "Analog & Digital IC Design study visit · MIMOS"
@@ -339,6 +347,14 @@ const resources = {
             title: "Anugerah Integriti",
             caption: "Makan Malam Tahunan PRS (Pembimbing Rakan Sebaya) · Politeknik Ungku Omar",
             note: "Ahli Pembimbing Rakan Sebaya (PRS) semasa Diploma."
+          },
+          {
+            image: "nuclear_malaysia.jpg",
+            title: "Konsultasi di Nuklear Malaysia",
+            caption: "Lawatan konsultasi FYP · Agensi Nuklear Malaysia",
+            note: "Jumpa Dr. Azhar Mohamad, pakar penanaman cendawan, untuk dapatkan ilmu bagi FYP cendawan Volvariella saya.",
+            link: "https://www.researchgate.net/profile/Azhar-Mohamad-2",
+            linkLabel: "Kajian Dr. Azhar"
           },
           {
             image: "mimos.jpg",

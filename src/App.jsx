@@ -1098,11 +1098,23 @@ function App() {
                 <p className={`text-sm text-gray-500 font-mono tracking-wide uppercase leading-relaxed ${item.note ? 'mb-3' : ''}`}>
                   {item.caption}
                 </p>
-                {item.note && (
+                {(item.note || item.link) && (
                   <div className="mt-auto pt-3 border-t border-gray-100 w-full">
-                    <p className="text-sm text-gray-400 font-light italic">
-                      {item.note}
-                    </p>
+                    {item.note && (
+                      <p className="text-sm text-gray-400 font-light italic">
+                        {item.note}
+                      </p>
+                    )}
+                    {item.link && (
+                      <a
+                        href={item.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`inline-flex items-center gap-1 text-xs font-mono text-accent hover:underline ${item.note ? 'mt-2' : ''}`}
+                      >
+                        {item.linkLabel || 'Link'} <span aria-hidden>&rarr;</span>
+                      </a>
+                    )}
                   </div>
                 )}
               </div>
