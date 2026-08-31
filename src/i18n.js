@@ -400,7 +400,7 @@ const resources = {
         title: "Kajian Kes",
         paperTitle: "An IoT-Enabled Growth Management System with Deep Learning-Based Monitoring for Volvariella volvacea Mushroom Cultivation in Controlled Environments",
         meta: "Wiley · Applied Research (Artikel Penyelidikan)",
-        status: "Dalam semakan rakan sebaya (Under peer review)",
+        status: "Under peer review",
         role: "Co-author (paper gabungan dua Final Year Project)",
         overviewLabel: "Gambaran Keseluruhan",
         overview: "Cendawan Volvariella tinggi permintaan di Malaysia, tapi cara tanam tradisional susah nak kekalkan keadaan persekitaran yang ideal, jadi hasil dan kualiti tak menentu. Paper ni gabungkan projek IoT environmental control saya dengan projek deep learning monitoring rakan pelajar jadi satu sistem lengkap.",
