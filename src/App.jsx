@@ -577,6 +577,7 @@ function App() {
 
   const skillsList = t('skills.items', { returnObjects: true }) || [];
   const softList = t('skills.softItems', { returnObjects: true }) || [];
+  const langList = t('skills.languages', { returnObjects: true }) || [];
   const expList = t('experience.items', { returnObjects: true }) || [];
   const eduList = t('education.items', { returnObjects: true }) || [];
   
@@ -859,6 +860,25 @@ function App() {
               <div key={index} className="skill-item px-6 py-3 bg-white border border-gray-200 rounded-md text-sm font-medium shadow-sm hover:border-accent hover:text-accent hover:-translate-y-1 hover:shadow-md active:scale-95 transition-all duration-300 flex items-center gap-3">
                 <span className="text-[#111111]">{skill}</span>
                 <span className="text-gray-400 font-mono text-[10px] tracking-wider uppercase">SOFT</span>
+              </div>
+            ))}
+          </div>
+
+          <h3 className="text-xl font-bold mt-16 mb-6 text-[#111111] tracking-tight">
+            <ScrambleText text={t('skills.langTitle')} trigger="view" />
+          </h3>
+          <div className="flex flex-wrap gap-4 max-w-4xl">
+            {Array.isArray(langList) && langList.map((lng, index) => (
+              <div key={index} className="skill-item px-6 py-3 bg-white border border-gray-200 rounded-md shadow-sm hover:border-accent hover:-translate-y-1 hover:shadow-md transition-all duration-300 flex items-center gap-4">
+                <div className="flex flex-col">
+                  <span className="text-sm font-medium text-[#111111]">{lng.name}</span>
+                  <span className="text-gray-400 font-mono text-[10px] tracking-wider uppercase">{lng.label}</span>
+                </div>
+                <div className="flex gap-1">
+                  {[0, 1, 2, 3, 4].map((i) => (
+                    <span key={i} className={`w-1.5 h-1.5 rounded-full ${i < lng.level ? 'bg-accent' : 'bg-gray-300'}`} />
+                  ))}
+                </div>
               </div>
             ))}
           </div>

@@ -31,7 +31,12 @@ const resources = {
         title: "Technical Skills",
         items: ["Proteus", "Quartus II", "NI Multisim", "Microwind", "L-Edit IC", "AutoCAD", "MATLAB", "Python", "Arduino", "ESP32"],
         softTitle: "Soft Skills",
-        softItems: ["Teamwork", "Mentoring & Leadership", "Problem Solving", "Professional Maturity", "Time Management", "Continuous Learning"]
+        softItems: ["Teamwork", "Mentoring & Leadership", "Problem Solving", "Professional Maturity", "Time Management", "Continuous Learning"],
+        langTitle: "Languages",
+        languages: [
+          { name: "Bahasa Malaysia", level: 5, label: "Native" },
+          { name: "English", level: 3, label: "Intermediate" }
+        ]
       },
       experience: {
         title: "Experience",
@@ -229,7 +234,12 @@ const resources = {
         title: "Kemahiran Teknikal",
         items: ["Proteus", "Quartus II", "NI Multisim", "Microwind", "L-Edit IC", "AutoCAD", "MATLAB", "Python", "Arduino", "ESP32"],
         softTitle: "Kemahiran Insaniah",
-        softItems: ["Kerja Berpasukan", "Bimbingan & Kepimpinan", "Penyelesaian Masalah", "Kematangan Profesional", "Pengurusan Masa", "Pembelajaran Berterusan"]
+        softItems: ["Kerja Berpasukan", "Bimbingan & Kepimpinan", "Penyelesaian Masalah", "Kematangan Profesional", "Pengurusan Masa", "Pembelajaran Berterusan"],
+        langTitle: "Bahasa",
+        languages: [
+          { name: "Bahasa Malaysia", level: 5, label: "Bahasa Ibunda" },
+          { name: "English", level: 3, label: "Sederhana" }
+        ]
       },
       experience: {
         title: "Pengalaman",
