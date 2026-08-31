@@ -1110,9 +1110,10 @@ function App() {
                         href={item.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`inline-flex items-center gap-1 text-xs font-mono text-accent hover:underline ${item.note ? 'mt-2' : ''}`}
+                        className={`group/btn inline-flex items-center gap-2 px-4 py-2 border border-accent text-accent rounded-md font-mono text-sm hover:bg-accent hover:text-white active:scale-95 transition-all ${item.note ? 'mt-3' : ''}`}
                       >
-                        {item.linkLabel || 'Link'} <span aria-hidden>&rarr;</span>
+                        {item.linkLabel || 'Link'}
+                        <span aria-hidden className="transition-transform group-hover/btn:translate-x-1">&rarr;</span>
                       </a>
                     )}
                   </div>
