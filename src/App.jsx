@@ -255,7 +255,7 @@ function SlideOverDrawer({ transcript, onClose, onSelectTranscript, t }) {
                     {semData.courses.map((course, i) => (
                       <li key={i} className="grid grid-cols-12 items-start text-sm border-b border-gray-100 pb-3 last:border-0">
                         <div className="col-span-8 pr-4">
-                          <p className="font-medium text-[#111111] leading-snug">{course.name}</p>
+                          <p className="font-medium text-[#111111] leading-snug text-left">{course.name}</p>
                           <p className="text-gray-400 font-mono text-xs mt-1">{course.code}</p>
                         </div>
                         <div className="col-span-2 text-center font-bold text-[#1e3a8a] self-center">
