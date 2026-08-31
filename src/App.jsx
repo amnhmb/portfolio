@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, Suspense, lazy } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Globe, Mail, X } from 'lucide-react';
+import { Globe, Mail, X, MoreVertical } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -437,6 +437,16 @@ function App() {
     try { return sessionStorage.getItem('amnhmb_splash') === '1'; } catch (e) { return false; }
   });
   const [selectedTranscript, setSelectedTranscript] = useState(null); // { type, semIndex }
+  const [menuOpen, setMenuOpen] = useState(false); // mobile section menu
+  const navLinks = [
+    { id: 'about', key: 'nav.about' },
+    { id: 'education', key: 'nav.education' },
+    { id: 'skills', key: 'nav.skills' },
+    { id: 'experience', key: 'nav.experience' },
+    { id: 'projects', key: 'nav.projects' },
+    { id: 'research', key: 'nav.research' },
+    { id: 'contact', key: 'nav.contact' },
+  ];
   const [isDesktop, setIsDesktop] = useState(true);
 
   useEffect(() => {
@@ -567,23 +577,46 @@ function App() {
           <div className="font-sans font-bold text-xl tracking-tight text-[#111111] nav-logo">
             amnhmb<span className="text-accent">.</span>
           </div>
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-4 md:gap-8">
             <div className="hidden md:flex gap-8 text-sm font-medium text-gray-500">
-              <a href="#about" className="hover:text-accent transition-colors">{t('nav.about')}</a>
-              <a href="#education" className="hover:text-accent transition-colors">{t('nav.education')}</a>
-              <a href="#skills" className="hover:text-accent transition-colors">{t('nav.skills')}</a>
-              <a href="#experience" className="hover:text-accent transition-colors">{t('nav.experience')}</a>
-              <a href="#projects" className="hover:text-accent transition-colors">{t('nav.projects')}</a>
-              <a href="#research" className="hover:text-accent transition-colors">{t('nav.research')}</a>
-              <a href="#contact" className="hover:text-accent transition-colors">{t('nav.contact')}</a>
+              {navLinks.map((l) => (
+                <a key={l.id} href={`#${l.id}`} className="hover:text-accent transition-colors">{t(l.key)}</a>
+              ))}
             </div>
-            <button 
+            <button
               onClick={toggleLanguage}
               className="flex items-center gap-2 text-xs font-mono tracking-widest text-gray-600 hover:text-white hover:bg-[#111111] transition-all bg-white border border-gray-200 px-4 py-2 rounded-md"
             >
               <Globe size={14} />
               {lang.toUpperCase()}
             </button>
+            {/* Mobile dot menu */}
+            <button
+              onClick={() => setMenuOpen((v) => !v)}
+              aria-label="Menu"
+              aria-expanded={menuOpen}
+              className="md:hidden flex items-center justify-center w-9 h-9 rounded-md text-[#111111] hover:text-accent transition-colors"
+            >
+              {menuOpen ? <X size={20} /> : <MoreVertical size={20} />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile menu panel */}
+        <div
+          className={`md:hidden overflow-hidden border-t border-gray-200/50 bg-[#ECECEC]/95 backdrop-blur-xl transition-[max-height,opacity] duration-300 ease-out ${menuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
+        >
+          <div className="max-w-6xl mx-auto px-6 py-2 flex flex-col">
+            {navLinks.map((l) => (
+              <a
+                key={l.id}
+                href={`#${l.id}`}
+                onClick={() => setMenuOpen(false)}
+                className="py-3 text-base font-medium text-gray-700 hover:text-accent border-b border-gray-200/40 last:border-b-0 transition-colors"
+              >
+                {t(l.key)}
+              </a>
+            ))}
           </div>
         </div>
       </nav>
