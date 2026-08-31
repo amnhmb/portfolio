@@ -79,17 +79,17 @@ function SimpleLineChart({ data, title, type, onPointClick }) {
             )}
             <circle 
               cx={getX(i)} cy={getY(val)} 
-              r={hoveredIdx === i ? "4.5" : "3.5"} 
-              fill={hoveredIdx === i ? "#1e3a8a" : "#ECECEC"} 
-              strokeWidth={hoveredIdx === i ? "0" : "1.5"} 
+              r={hoveredIdx === i ? "5" : "4"}
+              fill={hoveredIdx === i ? "#1e3a8a" : "#ECECEC"}
+              strokeWidth={hoveredIdx === i ? "0" : "1.5"}
               stroke="#1e3a8a"
             />
             {hoveredIdx === i ? (
-              <text x={getX(i)} y={getY(val) - 20} fontSize="10" fill="#1e3a8a" stroke="none" textAnchor="middle" className="font-mono font-medium pointer-events-none">{val.toFixed(2)}</text>
+              <text x={getX(i)} y={getY(val) - 16} fontSize="7.5" fill="#1e3a8a" stroke="none" textAnchor="middle" className="font-mono font-medium pointer-events-none">{val.toFixed(2)}</text>
             ) : (
-              <text x={getX(i)} y={getY(val) - 12} fontSize="10.5" fill="#1e3a8a" stroke="none" textAnchor="middle" className="font-mono pointer-events-none">{val.toFixed(2)}</text>
+              <text x={getX(i)} y={getY(val) - 11} fontSize="7.5" fill="#1e3a8a" stroke="none" textAnchor="middle" className="font-mono pointer-events-none">{val.toFixed(2)}</text>
             )}
-            <text x={getX(i)} y={h} fontSize="10" fill="#6b7280" stroke="none" textAnchor="middle" className="font-mono pointer-events-none">S{i+1}</text>
+            <text x={getX(i)} y={h} fontSize="8" fill="#6b7280" stroke="none" textAnchor="middle" className="font-mono pointer-events-none">S{i+1}</text>
             
             {/* Invisible larger hit area for easier clicking */}
             <circle cx={getX(i)} cy={getY(val)} r="15" fill="transparent" stroke="none" />
