@@ -446,6 +446,46 @@ function SplashScreen({ onDone }) {
   );
 }
 
+// Desktop custom cursor: a small solid dot that tracks the pointer exactly plus
+// a larger ring that trails it with easing and swells over interactive elements.
+// Only mounts on fine-pointer devices; native cursor is hidden via CSS there.
+function CustomCursor() {
+  const dotRef = useRef();
+  const ringRef = useRef();
+  useEffect(() => {
+    if (!window.matchMedia('(pointer: fine)').matches) return;
+    const dot = dotRef.current, ring = ringRef.current;
+    let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+    let rx = mx, ry = my, raf;
+    const move = (e) => {
+      mx = e.clientX; my = e.clientY;
+      dot.style.transform = `translate(${mx}px, ${my}px)`;
+    };
+    const over = (e) => {
+      ring.dataset.hover = e.target.closest('a, button, [role="button"]') ? '1' : '';
+    };
+    const tick = () => {
+      rx += (mx - rx) * 0.18; ry += (my - ry) * 0.18;
+      ring.style.transform = `translate(${rx}px, ${ry}px)`;
+      raf = requestAnimationFrame(tick);
+    };
+    window.addEventListener('mousemove', move, { passive: true });
+    window.addEventListener('mouseover', over, { passive: true });
+    tick();
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener('mousemove', move);
+      window.removeEventListener('mouseover', over);
+    };
+  }, []);
+  return (
+    <>
+      <div ref={ringRef} className="cursor-ring" aria-hidden="true" />
+      <div ref={dotRef} className="cursor-dot" aria-hidden="true" />
+    </>
+  );
+}
+
 function App() {
   const { t, i18n } = useTranslation();
   const [lang, setLang] = useState(i18n.language);
@@ -459,6 +499,27 @@ function App() {
   });
   const [selectedTranscript, setSelectedTranscript] = useState(null); // { type, semIndex }
   const [menuOpen, setMenuOpen] = useState(false); // mobile section menu
+  // On phone, the navbar is hidden over the landing hero and slides in once
+  // the user scrolls past it (desktop navbar stays pinned). fahryy-style.
+  const [scrolled, setScrolled] = useState(false);
+  // Deter image saving: swallow right-click / long-press context menu and drag
+  // when it targets an <img>. Links (incl. the CV download) and text untouched.
+  useEffect(() => {
+    const guard = (e) => { if (e.target.tagName === 'IMG') e.preventDefault(); };
+    document.addEventListener('contextmenu', guard);
+    document.addEventListener('dragstart', guard);
+    return () => {
+      document.removeEventListener('contextmenu', guard);
+      document.removeEventListener('dragstart', guard);
+    };
+  }, []);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 80);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
   const navLinks = [
     { id: 'about', key: 'nav.about' },
     { id: 'education', key: 'nav.education' },
@@ -586,6 +647,7 @@ function App() {
   return (
     <div className="min-h-screen font-sans selection:bg-accent selection:text-white" ref={mainRef}>
 
+      {isDesktop && <CustomCursor />}
       {showSplash && <SplashScreen onDone={() => { setShowSplash(false); setHeroReady(true); }} />}
 
       {/* SlideOver Drawer */}
@@ -597,7 +659,7 @@ function App() {
       />
 
       {/* Navbar */}
-      <nav className="fixed top-0 w-full z-50 bg-[#ECECEC]/80 backdrop-blur-xl border-b border-gray-200/50">
+      <nav className={`fixed top-0 w-full z-50 bg-[#ECECEC]/80 backdrop-blur-xl border-b border-gray-200/50 transition-transform duration-300 md:translate-y-0 ${scrolled ? 'translate-y-0' : '-translate-y-full'}`}>
         <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
           <div className="font-sans font-bold text-xl tracking-tight text-[#111111] nav-logo">
             amnhmb<span className="text-accent">.</span>
@@ -646,7 +708,7 @@ function App() {
         </div>
       </nav>
 
-      <main className="max-w-6xl mx-auto px-6 pt-20 lg:pt-32 pb-24 overflow-hidden">
+      <main className="max-w-6xl mx-auto px-6 pt-6 md:pt-20 lg:pt-32 pb-24 overflow-hidden">
         {/* Hero Section */}
         <section ref={heroRef} className="relative flex items-start lg:items-center min-h-0 lg:min-h-[85vh] pt-0 pb-12 lg:pt-24 lg:py-0">
           <div className="absolute right-0 top-0 w-full h-[110%] -z-10 opacity-20 pointer-events-none">
@@ -672,23 +734,22 @@ function App() {
 
             {/* Photo: mobile = portrait below name; desktop = right column */}
             <div className="hero-el w-full flex justify-center pointer-events-none lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:justify-end lg:self-center">
-              <div
-                className="relative w-3/5 sm:w-80 md:w-96 lg:w-[32rem]"
-                style={{
-                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%)',
-                  WebkitMaskComposite: 'source-in',
-                  maskImage: 'linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%)',
-                  maskComposite: 'intersect'
-                }}
-              >
-                <picture>
-                  <source srcSet={`${import.meta.env.BASE_URL}hero-optimized.webp`} type="image/webp" />
-                  <img
-                    src={`${import.meta.env.BASE_URL}hero-optimized.jpg`}
-                    alt="Aiman Hambali"
-                    className="w-full h-auto object-contain"
-                  />
-                </picture>
+              <div className="relative w-3/5 sm:w-80 md:w-96 lg:w-[32rem]">
+                {/* PORTFOLIO word drifting behind the subject (occluded by his body).
+                    Full-bleed to screen edges on phone; contained on desktop. */}
+                <div aria-hidden className="absolute top-[34%] -translate-y-1/2 -translate-x-1/2 left-1/2 w-screen lg:left-0 lg:right-0 lg:translate-x-0 lg:w-auto overflow-hidden select-none z-0">
+                  <div className="hero-marquee-track flex w-max whitespace-nowrap text-8xl sm:text-9xl lg:text-[11rem]"
+                       style={{ animation: 'hero-marquee 36s linear infinite' }}>
+                    {Array.from({ length: 8 }).map((_, i) => (
+                      <span key={i} className="hero-word">PORTFOLIO</span>
+                    ))}
+                  </div>
+                </div>
+                <img
+                  src={`${import.meta.env.BASE_URL}hero-cutout.png`}
+                  alt="Aiman Hambali"
+                  className="relative z-10 w-full h-auto object-contain"
+                />
               </div>
             </div>
 
@@ -729,7 +790,7 @@ function App() {
               <img 
                 src={`${import.meta.env.BASE_URL}profile-photo.jpg`}
                 alt="Aiman Hambali"
-                className="absolute inset-0 w-full h-full object-cover rounded-lg grayscale hover:grayscale-0 active:grayscale-0 transition-all duration-700 z-10 border border-gray-200"
+                className="absolute inset-0 w-full h-full object-cover rounded-lg grayscale-0 md:grayscale md:hover:grayscale-0 transition-all duration-700 z-10 border border-gray-200"
               />
             </div>
             <div className="md:col-span-7 space-y-8 md:pl-10">
@@ -828,16 +889,16 @@ function App() {
               const Icon = SKILL_ICONS[skill];
               const logo = SKILL_LOGOS[skill];
               return (
-              <div key={index} className="group skill-item px-5 sm:px-6 py-3 bg-white border border-gray-200 rounded-md text-sm font-medium shadow-sm hover:border-accent hover:text-accent hover:-translate-y-1 hover:shadow-md active:scale-95 transition-all duration-300 flex items-center justify-between sm:justify-start gap-3">
+              <div key={index} tabIndex={0} className="group skill-item px-5 sm:px-6 py-3 bg-white border border-gray-200 rounded-md text-sm font-medium shadow-sm hover:border-accent hover:text-accent hover:-translate-y-1 hover:shadow-md focus:border-accent focus:text-accent focus:outline-none active:scale-95 transition-all duration-300 flex items-center justify-between sm:justify-start gap-3">
                 <span className="text-[#111111] group-hover:text-accent transition-colors">{skill}</span>
                 <span className="relative inline-flex items-center justify-end min-w-[3.25rem] h-4">
-                  <span className="text-gray-400 font-mono text-[10px] tracking-wider uppercase transition-opacity duration-200 group-hover:opacity-0">TECH</span>
-                  {Icon && <Icon className="absolute right-0 w-4 h-4 text-accent opacity-0 transition-opacity duration-200 group-hover:opacity-100" />}
+                  <span className="text-gray-400 font-mono text-[10px] tracking-wider uppercase transition-opacity duration-200 group-hover:opacity-0 group-focus:opacity-0">TECH</span>
+                  {Icon && <Icon className="absolute right-0 w-4 h-4 text-accent opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus:opacity-100" />}
                   {logo && (
                     <span
                       role="img"
                       aria-label={skill}
-                      className="absolute right-0 h-4 text-accent bg-current opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+                      className="absolute right-0 h-4 text-accent bg-current opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus:opacity-100"
                       style={{
                         width: `${logo.w}px`,
                         WebkitMaskImage: `url(${import.meta.env.BASE_URL}${logo.src})`,
@@ -902,9 +963,9 @@ function App() {
                 <div className="timeline-dot absolute w-3 h-3 rounded-full bg-accent -left-[5.5px] top-2 ring-4 ring-[#ECECEC]"></div>
                 <div className="mb-4">
                   <h3 className="text-2xl md:text-3xl font-bold mb-2 text-[#111111]">{exp.role}</h3>
-                  <div className="flex flex-wrap items-center gap-4 text-sm font-mono tracking-widest uppercase">
+                  <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-1 sm:gap-4 text-sm font-mono tracking-widest uppercase">
                     <span className="text-accent">{exp.company}</span>
-                    <span className="text-gray-400">·</span>
+                    <span className="hidden sm:inline text-gray-400">·</span>
                     <span className="text-gray-500">{exp.period}</span>
                   </div>
                 </div>
@@ -1169,9 +1230,6 @@ function App() {
             alt="amnhmb"
             className="w-[3.375rem] h-[3.375rem] opacity-25 mb-5"
           />
-          <p className="italic text-xs text-gray-400 max-w-sm leading-relaxed mb-5">
-            &ldquo;{t('contact.quote')}&rdquo;
-          </p>
           <p className="text-sm text-gray-400 font-mono tracking-wider">
             {t('contact.copyright')}
           </p>

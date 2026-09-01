@@ -16,6 +16,7 @@
     scroll-behavior: smooth;
     background-color: #ECECEC;
     color: #111111;
+    overflow-x: clip; /* guard: full-bleed hero marquee (100vw) must not add h-scroll */
   }
 
   /* Slightly smaller, more compact type on phones only. Scales every
@@ -52,4 +53,85 @@
   p {
     text-wrap: pretty;
   }
+
+  /* Deter casual image saving (drag-to-desktop, iOS/Android long-press "Save
+     image", right-click). The CV PDF is an <a download> link, not an <img>, so
+     it stays downloadable. Screenshots can't be blocked and aren't the target. */
+  img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    user-drag: none;
+    -webkit-touch-callout: none;
+    user-select: none;
+  }
+}
+
+/* Custom desktop cursor: solid dot tracks exactly, ring trails with easing and
+   swells over links/buttons. Only fine-pointer devices; native cursor hidden. */
+@media (pointer: fine) {
+  * { cursor: none !important; }
+
+  .cursor-dot,
+  .cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    pointer-events: none;
+    border-radius: 9999px;
+    margin-left: -3px;
+    margin-top: -3px;
+    will-change: transform;
+  }
+  .cursor-dot {
+    width: 6px;
+    height: 6px;
+    background: #1e3a8a;
+  }
+  .cursor-ring {
+    width: 32px;
+    height: 32px;
+    margin-left: -16px;
+    margin-top: -16px;
+    border: 1.5px solid rgba(30, 58, 138, 0.5);
+    transition: width 0.25s ease, height 0.25s ease, margin 0.25s ease, background 0.25s ease;
+  }
+  .cursor-ring[data-hover="1"] {
+    width: 52px;
+    height: 52px;
+    margin-left: -26px;
+    margin-top: -26px;
+    background: rgba(30, 58, 138, 0.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-ring { transition: none; }
+}
+
+/* Hero: big PORTFOLIO word drifting behind the cut-out subject. Two copies in
+   the track + translateX(-50%) = seamless loop. */
+@keyframes hero-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.hero-word {
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  padding-right: 0.15em;
+  /* outline only: transparent fill, thin stroke traces the letter shape */
+  color: transparent;
+  -webkit-text-stroke: 1.5px #c2c2c2;
+}
+/* filled centered middot separator so the repeats read as distinct words */
+.hero-word::before {
+  content: "\00B7";
+  color: #c2c2c2;
+  -webkit-text-stroke: 0;
+  margin-right: 0.22em;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-marquee-track { animation: none !important; }
 }

@@ -58,7 +58,11 @@ const resources = {
             role: "Electrical Technician (Intern)",
             company: "Kejuruteraan Elektrik Usahamaju Sdn Bhd",
             period: "Jun 2021 - Aug 2021",
-            description: "Assisted in Distribution Board (DB) box installation, conduit fitting, and general house wiring."
+            description: [
+              "Assisted in Distribution Board (DB) box installation.",
+              "Handled conduit fitting for electrical routing.",
+              "Carried out general house wiring."
+            ]
           }
         ]
       },
@@ -163,7 +167,7 @@ const resources = {
       contact: {
         title: "Get in Touch",
         quote: "Dunia adalah ujian. Ini bukannya syurga untuk segalanya cantik dan baik.",
-        copyright: "© 2026 Aiman Hambali Bin Amran"
+        copyright: "© 2026 amnhmb.my"
       },
       projects: {
         title: "Projects",
@@ -270,7 +274,11 @@ const resources = {
             role: "Juruteknik Elektrik (Pelatih)",
             company: "Kejuruteraan Elektrik Usahamaju Sdn Bhd",
             period: "Jun 2021 - Ogo 2021",
-            description: "Bantu pasang Distribution Board (DB) box, conduit fitting, dan house wiring am."
+            description: [
+              "Bantu pasang Distribution Board (DB) box.",
+              "Buat conduit fitting untuk laluan pendawaian.",
+              "Kendali house wiring am."
+            ]
           }
         ]
       },
@@ -375,7 +383,7 @@ const resources = {
       contact: {
         title: "Hubungi Saya",
         quote: "Dunia adalah ujian. Ini bukannya syurga untuk segalanya cantik dan baik.",
-        copyright: "© 2026 Aiman Hambali Bin Amran"
+        copyright: "© 2026 amnhmb.my"
       },
       projects: {
         title: "Projek",
