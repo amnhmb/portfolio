@@ -16,6 +16,9 @@
     scroll-behavior: smooth;
     background-color: #ECECEC;
     color: #111111;
+  }
+  
+  #root {
     overflow-x: clip; /* guard: full-bleed hero marquee (100vw) must not add h-scroll */
   }
 
@@ -25,22 +28,23 @@
     html { font-size: 15px; }
   }
   
-  /* Subtle polka-dot halftone painted directly as the body background so no
-     opaque layer can cover it. A top-to-transparent gradient layer keeps the
-     hero area clean and lets the dots grow denser further down the page. */
+  /* Faint blueprint/graph-paper grid painted directly as the body background so
+     no opaque layer can cover it. A top-to-transparent gradient layer keeps the
+     hero area clean and lets the grid appear further down the page. */
   body {
     @apply antialiased font-sans text-[#111111];
     background-color: #ECECEC;
-    /* First layer keeps the landing screen (~first viewport) completely clean,
-       then reveals a uniform, evenly spaced polka-dot field for the rest of the
-       page. Dots are faint. */
+    /* First (top) layer keeps the landing screen (~first viewport) completely
+       clean, then reveals a uniform 32px grid for the rest of the page. Lines
+       are 1px, faint (alpha 0.07). */
     background-image:
       linear-gradient(to bottom, #ECECEC 0, #ECECEC 90vh, rgba(236, 236, 236, 0) 100vh),
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Ccircle cx='8' cy='8' r='1.1' fill='%23111111' fill-opacity='0.1'/%3E%3C/svg%3E");
-    background-size: 100% 100vh, 16px 16px;
-    background-repeat: no-repeat, repeat;
-    background-position: top left, top left;
-    background-attachment: scroll, scroll;
+      linear-gradient(to right, rgba(17, 17, 17, 0.07) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(17, 17, 17, 0.07) 1px, transparent 1px);
+    background-size: 100% 100vh, 32px 32px, 32px 32px;
+    background-repeat: no-repeat, repeat, repeat;
+    background-position: top left, top left, top left;
+    background-attachment: scroll, scroll, scroll;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -131,6 +135,70 @@
   color: #c2c2c2;
   -webkit-text-stroke: 0;
   margin-right: 0.22em;
+}
+
+/* Research collaborator block: foldable on phone (native <details>), always
+   open + non-interactive on desktop where there is room. */
+.research-fold > summary { list-style: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
+.research-fold > summary::-webkit-details-marker { display: none; }
+.research-fold .chev { transition: transform .2s ease; flex: none; }
+.research-fold[open] .chev { transform: rotate(180deg); }
+@media (min-width: 768px) {
+  /* Force content visible on desktop regardless of open state. Two UA
+     mechanisms to defeat: older browsers set display:none on non-summary
+     children; Chrome 128+ gates the whole content via
+     ::details-content { content-visibility: hidden }. Override both. */
+  .research-fold::details-content { content-visibility: visible !important; }
+  .research-fold > :not(summary) { display: block !important; }
+  .research-fold > .md-stat { display: inline-block !important; }
+  .research-fold > summary { cursor: default; pointer-events: none; }
+  .research-fold .chev { display: none; }
+}
+/* Phone: smooth slide open/close, same as the company fold (not native pop). */
+@media (max-width: 767px) {
+  .research-fold::details-content {
+    height: 0;
+    overflow: hidden;
+    transition: height .35s ease, content-visibility .35s allow-discrete;
+  }
+  .research-fold[open]::details-content { height: auto; }
+}
+
+/* Projects company card: collapsed by default, tap the header to reveal its
+   projects (native <details>). All viewports. */
+.company-fold > summary { list-style: none; cursor: pointer; }
+.company-fold > summary::-webkit-details-marker { display: none; }
+.company-fold > summary::marker { content: ""; }
+.company-fold .chev { transition: transform .25s ease; }
+.company-fold[open] .chev { transform: rotate(180deg); }
+/* Animate the fold itself sliding open/closed instead of the native instant
+   pop. Needs interpolate-size for height:auto; falls back to instant if the
+   browser lacks support. */
+:root { interpolate-size: allow-keywords; }
+.company-fold::details-content {
+  height: 0;
+  overflow: hidden;
+  transition: height .35s ease, content-visibility .35s allow-discrete;
+}
+.company-fold[open]::details-content { height: auto; }
+
+/* Achievements center-mode carousel (phone only): side cards shrink + dim,
+   active center card full size/opacity. Desktop (grid) is untouched. */
+@media (max-width: 767px) {
+  /* Recede side cards with scale + brightness, NOT opacity: element opacity
+     makes the white bg translucent and the body grid bleeds through, making a
+     card look like it sits under the grid. filter:brightness keeps it opaque. */
+  .ach-card {
+    transform: scale(0.86);
+    filter: brightness(0.95) saturate(0.85);
+    transform-origin: center;
+    transition: transform .38s ease, filter .38s ease;
+  }
+  .ach-card[data-active="true"] {
+    transform: scale(1);
+    filter: none;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-marquee-track { animation: none !important; }

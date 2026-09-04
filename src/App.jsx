@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, Suspense, lazy } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Globe, Mail, X, MoreVertical } from 'lucide-react';
+import { Globe, Mail, X, MoreVertical, MapPin, Lock as LockIcon } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 import { SiProteus, SiIntel, SiMultisim, SiSiemens, SiAutocad, SiPython, SiArduino, SiEspressif } from 'react-icons/si';
 
@@ -101,14 +101,65 @@ function SimpleLineChart({ data, title, type, onPointClick }) {
 }
 
 
+// Small SVG flags for the language switch (emoji flags don't render on
+// Windows, and Kelantan has no emoji flag). en=Union Jack, ms=Jalur Gemilang,
+// kel=Kelantan (red field + white emblem).
+function LangFlag({ code }) {
+  const box = { width: 20, height: 14 };
+  const wrap = 'inline-block rounded-[2px] overflow-hidden ring-1 ring-black/10 leading-none';
+  if (code === 'ms') {
+    return (
+      <span className={wrap} style={box}>
+        <svg viewBox="0 0 60 30" width="20" height="14" preserveAspectRatio="none">
+          <rect width="60" height="30" fill="#cc0001" />
+          <g fill="#fff">
+            <rect y="2.14" width="60" height="2.14" /><rect y="6.43" width="60" height="2.14" />
+            <rect y="10.71" width="60" height="2.14" /><rect y="15" width="60" height="2.14" />
+            <rect y="19.29" width="60" height="2.14" /><rect y="23.57" width="60" height="2.14" />
+            <rect y="27.86" width="60" height="2.14" />
+          </g>
+          <rect width="34" height="17.14" fill="#010066" />
+          <circle cx="12" cy="8.6" r="5.2" fill="#ffcc00" />
+          <circle cx="14.2" cy="8.6" r="4.3" fill="#010066" />
+          <path d="M20.5 4.6l1.15 2.43 2.66.2-2.02 1.74.64 2.6-2.43-1.43-2.43 1.43.64-2.6-2.02-1.74 2.66-.2z" fill="#ffcc00" />
+        </svg>
+      </span>
+    );
+  }
+  if (code === 'kel') {
+    return (
+      <span className={wrap} style={box}>
+        <img src={`${import.meta.env.BASE_URL}flag-kelantan.png`} alt="Kelantan" width="20" height="14" style={{ display: 'block', width: 20, height: 14 }} />
+      </span>
+    );
+  }
+  // en — Union Jack (simplified)
+  return (
+    <span className={wrap} style={box}>
+      <svg viewBox="0 0 60 40" width="20" height="14" preserveAspectRatio="none">
+        <rect width="60" height="40" fill="#012169" />
+        <path d="M0 0L60 40M60 0L0 40" stroke="#fff" strokeWidth="8" />
+        <path d="M0 0L60 40M60 0L0 40" stroke="#c8102e" strokeWidth="4" />
+        <rect x="25" width="10" height="40" fill="#fff" />
+        <rect y="15" width="60" height="10" fill="#fff" />
+        <rect x="27" width="6" height="40" fill="#c8102e" />
+        <rect y="17" width="60" height="6" fill="#c8102e" />
+      </svg>
+    </span>
+  );
+}
+
 function SlideOverDrawer({ transcript, onClose, onSelectTranscript, t }) {
   const drawerRef = useRef();
 
   useEffect(() => {
     if (!transcript) return;
-    
+
+    // Lock background scroll on both the <body> and the <html> scroller
+    // (documentElement is the real scroll container here), phone + desktop.
     document.body.style.overflow = 'hidden';
-    
+    document.documentElement.style.overflowY = 'hidden';
+
     const focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
     const focusableContent = drawerRef.current?.querySelectorAll(focusableElements);
     const firstFocusableElement = focusableContent?.[0];
@@ -147,6 +198,7 @@ function SlideOverDrawer({ transcript, onClose, onSelectTranscript, t }) {
     document.addEventListener('keydown', handleKeyDown);
     return () => {
       document.body.style.overflow = 'unset';
+      document.documentElement.style.overflowY = '';
       document.removeEventListener('keydown', handleKeyDown);
     };
   }, [transcript, onClose, onSelectTranscript]);
@@ -499,6 +551,29 @@ function App() {
   });
   const [selectedTranscript, setSelectedTranscript] = useState(null); // { type, semIndex }
   const [menuOpen, setMenuOpen] = useState(false); // mobile section menu
+  // Achievements peek-carousel (phone only): track active card for dots.
+  const achScrollRef = useRef(null);
+  const [achActive, setAchActive] = useState(0);
+  const onAchScroll = () => {
+    const el = achScrollRef.current;
+    if (!el) return;
+    const max = el.scrollWidth - el.clientWidth;
+    const count = el.children.length;
+    setAchActive(max <= 0 ? 0 : Math.round((el.scrollLeft / max) * (count - 1)));
+  };
+  const achGoTo = (i) => {
+    const el = achScrollRef.current;
+    if (el && el.children[i]) el.children[i].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+  };
+  // Research fold: open on desktop (uncontrolled, so scroll re-renders never
+  // reset it), closed + foldable on phone. Beats browser <details> hiding.
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 768px)');
+    const sync = () => document.querySelectorAll('.research-fold').forEach((d) => { d.open = mq.matches; });
+    sync();
+    mq.addEventListener('change', sync);
+    return () => mq.removeEventListener('change', sync);
+  }, []);
   // On phone, the navbar is hidden over the landing hero and slides in once
   // the user scrolls past it (desktop navbar stays pinned). fahryy-style.
   const [scrolled, setScrolled] = useState(false);
@@ -551,8 +626,9 @@ function App() {
   const achievementsRef = useRef();
   const researchRef = useRef();
   
+  const langCycle = ['en', 'ms', 'kel'];
   const toggleLanguage = () => {
-    const newLang = lang === 'en' ? 'ms' : 'en';
+    const newLang = langCycle[(langCycle.indexOf(lang) + 1) % langCycle.length] || 'en';
     i18n.changeLanguage(newLang);
     setLang(newLang);
   };
@@ -659,7 +735,7 @@ function App() {
       />
 
       {/* Navbar */}
-      <nav className={`fixed top-0 w-full z-50 bg-[#ECECEC]/80 backdrop-blur-xl border-b border-gray-200/50 transition-transform duration-300 md:translate-y-0 ${scrolled ? 'translate-y-0' : '-translate-y-full'}`}>
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 md:translate-y-0 ${scrolled ? 'translate-y-0 bg-[#ECECEC]/80 backdrop-blur-xl border-b border-gray-200/50' : '-translate-y-full'}`}>
         <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
           <div className="font-sans font-bold text-xl tracking-tight text-[#111111] nav-logo">
             amnhmb<span className="text-accent">.</span>
@@ -674,7 +750,7 @@ function App() {
               onClick={toggleLanguage}
               className="flex items-center gap-2 text-xs font-mono tracking-widest text-gray-600 hover:text-white hover:bg-[#111111] transition-all bg-white border border-gray-200 px-4 py-2 rounded-md"
             >
-              <Globe size={14} />
+              <LangFlag code={lang} />
               {lang.toUpperCase()}
             </button>
             {/* Mobile dot menu */}
@@ -769,9 +845,10 @@ function App() {
                 <a href="mailto:aimannhambalii@gmail.com" className="px-4 py-2.5 text-sm sm:text-base sm:px-8 sm:py-4 bg-[#111111] text-white rounded-md font-medium hover:bg-accent hover:scale-[0.98] transition-all duration-300">
                   {t('hero.contact')}
                 </a>
-                <a href={`${import.meta.env.BASE_URL}CV_AIMAN_HAMBALI.pdf`} download="CV_AIMAN_HAMBALI.pdf" className="px-4 py-2.5 text-sm sm:text-base sm:px-8 sm:py-4 border border-gray-300 text-[#111111] rounded-md font-medium hover:border-accent hover:text-accent transition-all duration-300">
+                <button type="button" disabled title={t('hero.resume')} className="inline-flex items-center gap-2 px-4 py-2.5 text-sm sm:text-base sm:px-8 sm:py-4 border border-gray-300 text-gray-400 rounded-md font-medium cursor-not-allowed select-none">
+                  <LockIcon size={16} className="shrink-0" />
                   {t('hero.resume')}
-                </a>
+                </button>
               </div>
 
               <div className="hero-el flex flex-wrap items-center gap-4 sm:gap-8 mt-8 sm:mt-16 text-gray-600">
@@ -815,7 +892,7 @@ function App() {
               </h2>
               <div className="space-y-10 md:space-y-16">
                 {Array.isArray(eduList) && eduList.map((edu, index) => (
-                  <div key={index} className="relative pl-8">
+                  <div key={index} className="relative pl-8 md:pl-12 ml-2 md:ml-4">
                     <div className="timeline-line absolute left-0 top-0 h-full w-px bg-accent origin-top"></div>
                     <div className="timeline-dot absolute w-3 h-3 rounded-full bg-accent -left-[5.5px] top-2 ring-4 ring-[#ECECEC]"></div>
                     <div className="mb-4">
@@ -990,65 +1067,100 @@ function App() {
 
         {/* Projects Section */}
         <section id="projects" ref={projectsRef} className="py-20 md:py-32 border-t border-gray-200">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#111111] tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-bold mb-12 md:mb-16 text-[#111111] tracking-tight">
             <ScrambleText text={t('projects.title')} trigger="view" />
           </h2>
-          <p className="text-lg text-gray-600 font-light mb-16 max-w-2xl leading-relaxed">
-            {t('projects.intro')}
-          </p>
-          <div className="grid md:grid-cols-2 gap-8 max-w-6xl">
-            {Array.isArray(t('projects.items', { returnObjects: true })) && t('projects.items', { returnObjects: true }).map((item, index) => (
-              <div 
-                key={index}
-                className="group flex flex-col bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:border-gray-300 hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] transition-all duration-300"
+          <div className="space-y-8 md:space-y-10 max-w-6xl">
+            {Array.isArray(t('projects.companies', { returnObjects: true })) && t('projects.companies', { returnObjects: true }).map((co, cIndex) => co.locked ? (
+              <div
+                key={cIndex}
+                aria-disabled="true"
+                className="relative bg-white border border-dashed border-gray-300 rounded-xl shadow-sm overflow-hidden select-none cursor-not-allowed"
               >
-                <div 
-                  className="w-full aspect-[16/9] overflow-hidden rounded-md border border-gray-100 mb-6 bg-gray-50"
-                >
-                  <img 
-                    src={`${import.meta.env.BASE_URL}${item.image}`} 
-                    alt={item.title} 
-                    loading="lazy" 
-                    className="w-full h-full object-cover transition-transform duration-700" 
-                  />
-                </div>
-                <h3 className="text-2xl font-bold text-[#111111] tracking-tight mb-3">
-                  {item.title}
-                </h3>
-                <p className="text-base text-gray-600 font-light leading-relaxed mb-6 flex-grow">
-                  {item.description}
-                </p>
-                
-                {/* Tech Chips */}
-                {item.tech && item.tech.length > 0 && (
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {item.tech.map((tItem, tIndex) => (
-                      <span key={tIndex} className="px-3 py-1 bg-gray-50 border border-gray-200 text-gray-600 text-xs font-mono tracking-wide rounded-md">
-                        {tItem}
-                      </span>
-                    ))}
+                <div className="flex items-center gap-4 p-5 md:p-8">
+                  <div className="w-14 h-14 md:w-16 md:h-16 rounded-lg border border-gray-100 bg-gray-100 flex items-center justify-center shrink-0">
+                    <LockIcon size={24} className="text-gray-400" />
                   </div>
-                )}
-                
-                {/* Action */}
-                <div className="mt-auto pt-4 border-t border-gray-100">
-                  {item.link ? (
-                    <a
-                      href={item.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group/btn inline-flex items-center gap-2 px-4 py-2 border border-accent text-accent rounded-md font-mono text-sm tracking-wide hover:bg-accent hover:text-white active:scale-95 transition-all duration-300"
-                    >
-                      {t('projects.viewLive')}
-                      <span className="transition-transform duration-300 group-hover/btn:translate-x-1">&rarr;</span>
-                    </a>
-                  ) : (
-                    <span className="inline-flex items-center gap-2 px-4 py-2 border border-gray-200 text-gray-400 rounded-md font-mono text-sm tracking-wide">
-                      {t('projects.private')}
-                    </span>
-                  )}
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-2xl md:text-3xl font-bold text-gray-400 tracking-tight leading-tight blur-[6px]">{co.name}</h3>
+                    <p className="text-sm text-gray-500 font-light mt-1">{co.tagline}</p>
+                  </div>
                 </div>
               </div>
+            ) : (
+              <details
+                key={cIndex}
+                className="company-fold bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden isolate hover:-translate-y-1 hover:shadow-md hover:border-gray-300 transition-all duration-300"
+              >
+                {/* Company header (tap to reveal projects) */}
+                <summary className="flex items-center gap-4 p-5 md:p-8">
+                  <img
+                    src={`${import.meta.env.BASE_URL}${co.logo}`}
+                    alt={co.name}
+                    className="w-14 h-14 md:w-16 md:h-16 rounded-lg object-cover border border-gray-100 bg-white shrink-0"
+                  />
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-2xl md:text-3xl font-bold text-[#111111] tracking-tight leading-tight">{co.name}</h3>
+                    {co.tagline && <p className="text-sm text-gray-500 font-light mt-0.5">{co.tagline}</p>}
+                  </div>
+                  <svg className="chev w-6 h-6 text-gray-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                </summary>
+
+                {/* Projects inside this company */}
+                <div className="grid md:grid-cols-2 gap-5 md:gap-6 px-5 md:px-8 pt-2 md:pt-3 pb-5 md:pb-8">
+                  {Array.isArray(co.items) && co.items.map((item, index) => (
+                    <div
+                      key={index}
+                      className="group flex flex-col bg-[#F7F8FA] border border-gray-200 rounded-lg p-5 hover:border-gray-300 hover:shadow-md hover:-translate-y-1 active:scale-[0.98] transition-all duration-300"
+                    >
+                      <div className="w-full aspect-[16/9] overflow-hidden rounded-md border border-gray-100 mb-5 bg-gray-50">
+                        <img
+                          src={`${import.meta.env.BASE_URL}${item.image}`}
+                          alt={item.title}
+                          loading="lazy"
+                          className="w-full h-full object-cover transition-transform duration-700"
+                        />
+                      </div>
+                      <h4 className="text-xl font-bold text-[#111111] tracking-tight mb-2">
+                        {item.title}
+                      </h4>
+                      <p className="text-sm text-gray-600 font-light leading-relaxed mb-5 flex-grow">
+                        {item.description}
+                      </p>
+
+                      {/* Tech Chips */}
+                      {item.tech && item.tech.length > 0 && (
+                        <div className="flex flex-wrap gap-2 mb-5">
+                          {item.tech.map((tItem, tIndex) => (
+                            <span key={tIndex} className="px-3 py-1 bg-white border border-gray-200 text-gray-600 text-xs font-mono tracking-wide rounded-md">
+                              {tItem}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* Action */}
+                      <div className="mt-auto pt-4 border-t border-gray-200">
+                        {item.link ? (
+                          <a
+                            href={item.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group/btn inline-flex items-center gap-2 px-4 py-2 border border-accent text-accent rounded-md font-mono text-sm tracking-wide hover:bg-accent hover:text-white active:scale-95 transition-all duration-300"
+                          >
+                            {t('projects.viewLive')}
+                            <span className="transition-transform duration-300 group-hover/btn:translate-x-1">&rarr;</span>
+                          </a>
+                        ) : (
+                          <span className="inline-flex items-center gap-2 px-4 py-2 border border-gray-200 text-gray-400 rounded-md font-mono text-sm tracking-wide">
+                            {t('projects.private')}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </details>
             ))}
           </div>
         </section>
@@ -1096,19 +1208,25 @@ function App() {
                 <p className="text-gray-600 text-lg leading-relaxed font-light">{t('research.overview')}</p>
               </div>
               <div>
-                <div className="mb-10">
-                  <h4 className="text-sm font-mono text-gray-400 uppercase tracking-widest mb-4">{t('research.approachLabel')}</h4>
+                <details className="research-fold mb-10">
+                  <summary className="mb-4">
+                    <span className="text-sm font-mono text-gray-400 uppercase tracking-widest">{t('research.approachLabel')}</span>
+                    <svg className="chev w-4 h-4 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                  </summary>
                   <p className="text-gray-600 text-lg leading-relaxed font-light mb-6">{t('research.approach')}</p>
-                  
-                  <div className="bg-[#ECECEC] border border-gray-100 rounded-md p-5 inline-block">
+
+                  <div className="md-stat bg-[#ECECEC] border border-gray-100 rounded-md p-5 inline-block">
                     <div className="text-3xl font-bold text-[#1e3a8a] mb-1"><AnimatedTextNumber text={t('research.stats.period')} /></div>
                     <div className="text-xs text-gray-500 font-mono tracking-wide">{t('research.stats.periodSub')}</div>
                   </div>
-                </div>
-                <div>
-                  <h4 className="text-sm font-mono text-gray-400 uppercase tracking-widest mb-4">{t('research.collabLabel')}</h4>
+                </details>
+                <details className="research-fold">
+                  <summary className="mb-4">
+                    <span className="text-sm font-mono text-gray-400 uppercase tracking-widest">{t('research.collabLabel')}</span>
+                    <svg className="chev w-4 h-4 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                  </summary>
                   <p className="text-gray-600 text-lg leading-relaxed font-light mb-6">{t('research.collab')}</p>
-                  
+
                   <div className="bg-[#ECECEC] border border-gray-100 rounded-md p-5">
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-x-6">
                       <div>
@@ -1125,7 +1243,7 @@ function App() {
                       </div>
                     </div>
                   </div>
-                </div>
+                </details>
               </div>
             </div>
 
@@ -1144,26 +1262,43 @@ function App() {
           <h2 className="text-4xl md:text-5xl font-bold mb-16 text-[#111111] tracking-tight">
             <ScrambleText text={t('achievements.title')} trigger="view" />
           </h2>
-          <div className="grid md:grid-cols-2 gap-8 max-w-6xl">
-            {Array.isArray(t('achievements.items', { returnObjects: true })) && t('achievements.items', { returnObjects: true }).map((item, index) => (
-              <div 
+          <div
+            ref={achScrollRef}
+            onScroll={onAchScroll}
+            className="flex md:grid md:grid-cols-2 gap-2 md:gap-8 max-w-6xl overflow-x-auto md:overflow-visible snap-x snap-mandatory scroll-smooth -mx-6 px-6 md:mx-0 md:px-0 pb-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+          >
+            {Array.isArray(t('achievements.items', { returnObjects: true })) && t('achievements.items', { returnObjects: true }).map((item, index) => {
+              const segs = (item.caption || '').split(' · ');
+              const location = segs.length > 1 ? segs[segs.length - 1] : null;
+              const context = (segs.length > 1 ? segs.slice(0, -1) : segs).join(' · ');
+              return (
+              <div
                 key={index}
-                className="group flex flex-col items-start bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:border-gray-300 hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] transition-all duration-300"
+                data-active={index === achActive}
+                className="ach-card group snap-center shrink-0 w-[78%] sm:w-[60%] md:w-auto flex flex-col items-start bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:border-gray-300 hover:shadow-lg md:hover:-translate-y-1 md:active:scale-[0.98] transition-all duration-300"
               >
                 <div className="w-full aspect-[4/3] overflow-hidden rounded-md border border-gray-100 mb-6 bg-gray-50">
-                  <img 
-                    src={`${import.meta.env.BASE_URL}${item.image}`} 
-                    alt={item.title} 
-                    loading="lazy" 
-                    className="w-full h-full object-cover transition-transform duration-700" 
+                  <img
+                    src={`${import.meta.env.BASE_URL}${item.image}`}
+                    alt={item.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-700"
                   />
                 </div>
                 <h3 className="text-xl font-bold text-[#111111] tracking-tight mb-2 group-hover:text-accent transition-colors">
                   {item.title}
                 </h3>
-                <p className={`text-sm text-gray-500 font-mono tracking-wide uppercase leading-relaxed ${item.note ? 'mb-3' : ''}`}>
-                  {item.caption}
+                {context && (
+                <p className="text-sm text-gray-500 font-light leading-relaxed mb-3">
+                  {context}
                 </p>
+                )}
+                {location && (
+                <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ECECEC] border border-gray-200 text-gray-600 text-[11px] font-mono tracking-wide uppercase ${item.note ? 'mb-3' : ''}`}>
+                  <MapPin size={12} className="text-accent" />
+                  {location}
+                </span>
+                )}
                 {(item.note || item.link) && (
                   <div className="mt-auto pt-3 border-t border-gray-100 w-full">
                     {item.note && (
@@ -1185,8 +1320,23 @@ function App() {
                   </div>
                 )}
               </div>
-            ))}
+              );
+            })}
           </div>
+
+          {/* dots (phone only) */}
+          {Array.isArray(t('achievements.items', { returnObjects: true })) && (
+            <div className="flex md:hidden justify-center gap-2 mt-5">
+              {t('achievements.items', { returnObjects: true }).map((_, i) => (
+                <button
+                  key={i}
+                  aria-label={`Slide ${i + 1}`}
+                  onClick={() => achGoTo(i)}
+                  className={`h-2 rounded-full transition-all duration-300 ${i === achActive ? 'w-6 bg-accent' : 'w-2 bg-gray-300'}`}
+                />
+              ))}
+            </div>
+          )}
 
           {/* Other Activities Chips */}
           <div className="mt-16">
@@ -1228,10 +1378,15 @@ function App() {
           <img
             src={`${import.meta.env.BASE_URL}favicon-512.png`}
             alt="amnhmb"
-            className="w-[3.375rem] h-[3.375rem] opacity-25 mb-5"
+            className="w-[5.0625rem] h-[5.0625rem] opacity-25 mb-5"
           />
-          <p className="text-sm text-gray-400 font-mono tracking-wider">
-            {t('contact.copyright')}
+          <p className="text-sm text-gray-400 font-mono tracking-wider flex flex-col items-center sm:block">
+            {t('contact.copyright').split(' · ').map((part, i) => (
+              <span key={i}>
+                {i > 0 && <span className="hidden sm:inline"> · </span>}
+                {part}
+              </span>
+            ))}
           </p>
         </section>
 

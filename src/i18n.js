@@ -7,9 +7,9 @@ const resources = {
       hero: {
         greeting: "hello, i am",
         name: "Aiman Hambali Bin Amran.",
-        role: "Fresh Graduate Engineer · Electronic & IoT Systems",
-        description: "Electronic & IoT engineer with hands-on experience in semiconductor test equipment and IoT sensor systems. Comfortable across Python, Arduino, and ESP32.",
-        resume: "Download Resume",
+        role: "Fresh Graduate Engineer · Semiconductor Test & IoT Systems",
+        description: "Hands-on experience in semiconductor test equipment and IoT sensor systems. Comfortable across Python, Arduino, and ESP32.",
+        resume: "CV on request",
         contact: "Get in Touch"
       },
       nav: {
@@ -23,15 +23,15 @@ const resources = {
       },
       about: {
         title: "About Me",
-        p1: "I am Aiman Hambali, a fresh graduate electronic engineer based in Kota Bharu, Kelantan, Malaysia.",
-        p2: "My work blends hardware and embedded software, from IC and circuit design tools like Proteus, Quartus, and Microwind to building IoT sensor systems on ESP32 and Arduino.",
-        p3: "During my diploma, I was active in robotics clubs and FIRA competitions, and hosted a visiting student delegation from Fukuoka, Japan at my polytechnic. I am now looking to grow as an electronic and embedded systems engineer."
+        p1: "I am Aiman Hambali, a fresh graduate electronic engineer based in Kota Bharu, Kelantan. My work blends hardware and embedded software, from IC and circuit design tools like Proteus, Quartus, and Microwind to building IoT sensor systems on ESP32 and Arduino. I like to really understand a problem and plan it out before I start building.",
+        p2: "During my internship at Unisem, I was hired at an engineer level but stepped up to cover PM Technician duties when the team was short-staffed. After one month of structured training and one month of supervised hands-on work, I independently ran the test line for four months once the technicians were reassigned to the Gopeng plant. Did preventive maintenance and troubleshooting on semiconductor test equipment (ETS-88, ETS-364, ASL-1000, CCT and LTX), catching issues before they became downtime, and coordinating daily with supervisors, operators, customers and line technicians. Before the internship ended, I onboarded and trained a new staff member.",
+        p3: "During my diploma I was active in robotics clubs and FIRA competitions, and hosted a visiting student delegation from Fukuoka, Japan at my polytechnic. I am now looking for a role in semiconductor test/equipment engineering or embedded systems, and I am open to relocating."
       },
       skills: {
         title: "Technical Skills",
         items: ["Proteus", "Quartus II", "NI Multisim", "Microwind", "L-Edit IC", "AutoCAD", "MATLAB", "Python", "Arduino", "ESP32"],
         softTitle: "Soft Skills",
-        softItems: ["Teamwork", "Mentoring & Leadership", "Problem Solving", "Professional Maturity", "Time Management", "Continuous Learning"],
+        softItems: ["Teamwork", "Mentoring & Leadership", "Analytical Problem Solving", "Professional Maturity", "Time Management", "Continuous Learning"],
         langTitle: "Languages",
         languages: [
           { name: "Bahasa Malaysia", level: 5, label: "Native" },
@@ -152,12 +152,14 @@ const resources = {
           {
             image: "mimos.jpg",
             title: "MIMOS Field Trip",
-            caption: "Analog & Digital IC Design study visit · MIMOS"
+            caption: "Analog & Digital IC Design study visit · MIMOS",
+            note: "A study visit to see and learn the theory behind the IC chip fabrication process."
           },
           {
             image: "ayubi.jpg",
             title: "Ayubie Lobster Farm Visit",
-            caption: "Electronic Design Project (EDP) site visit · Ayubie Lobster Farm"
+            caption: "Electronic Design Project (EDP) site visit · Ayubie Lobster Farm",
+            note: "Studied how the farm applies IoT in its operations, and the gaps that remain, to shape what students could build for the Electronic Design Project (EDP)."
           }
         ],
         otherLabel: "Other Activities",
@@ -167,26 +169,51 @@ const resources = {
       contact: {
         title: "Get in Touch",
         quote: "Dunia adalah ujian. Ini bukannya syurga untuk segalanya cantik dan baik.",
-        copyright: "© 2026 amnhmb.my"
+        copyright: "© 2026 @amnhmb · All rights reserved"
       },
       projects: {
         title: "Projects",
-        intro: "Currently supporting my cousin's business, ThirtyOne Lab, in customer service while designing and building its digital systems.",
+        intro: "Currently running operations at my cousin's business, ThirtyOne Lab, while designing and building its digital systems.",
         viewLive: "View live",
         private: "Private",
-        items: [
+        companies: [
           {
-            image: "project-catalog.png",
-            title: "ThirtyOne Lab · Catalog & Admin Panel",
-            description: "A product catalog web app with a built-in admin panel for the business. Customers browse the catalog and build quote requests; the owner manages products and content through the admin panel.",
-            tech: ["React", "Vite", "Tailwind", "Supabase", "Cloudflare Pages"],
-            link: "https://31lab.pages.dev"
+            logo: "31lab.webp",
+            name: "ThirtyOne Lab",
+            tagline: "Sublimation apparel printing shop",
+            items: [
+              {
+                image: "project-catalog.png",
+                title: "Catalog & Admin Panel",
+                description: "A product catalog web app with a built-in admin panel for the business. Customers browse the catalog and build quote requests; the owner manages products and content through the admin panel. The customer storefront is installable as a mobile app (PWA).",
+                tech: ["React", "Vite", "Tailwind", "Supabase", "Cloudflare Pages", "PWA"],
+                link: "https://31lab.pages.dev"
+              },
+              {
+                image: "project-oms.png",
+                title: "Order Management System (OMS)",
+                description: "A private internal system to manage orders, invoices, and order-status tracking for the business, with automated daily status reporting to Telegram.",
+                tech: ["React", "Vite", "Supabase", "Tailwind"]
+              }
+            ]
           },
           {
-            image: "project-oms.png",
-            title: "Order Management System (OMS)",
-            description: "A private internal system to manage orders, invoices, and order-status tracking for the business, with automated daily status reporting to Telegram.",
-            tech: ["React", "Vite", "Supabase", "Tailwind"]
+            logo: "tiga-pasak.png",
+            name: "Tiga Pasak",
+            tagline: "Camping gear rental business",
+            items: [
+              {
+                image: "project-tiga_pasak-admin_panel.png",
+                title: "Rental Admin Panel & Booking System",
+                description: "A private admin panel for a camping gear rental business: manage inventory and stock, build rental packages, take and track bookings with live availability, and see pickups on a dashboard and calendar. Installable as a mobile app (PWA).",
+                tech: ["React", "Vite", "Supabase", "Tailwind", "Cloudflare Pages", "PWA"]
+              }
+            ]
+          },
+          {
+            locked: true,
+            name: "Undisclosed Client",
+            tagline: "New project in progress"
           }
         ]
       },
@@ -223,9 +250,9 @@ const resources = {
       hero: {
         greeting: "hai, saya",
         name: "Aiman Hambali Bin Amran.",
-        role: "Fresh Graduate Engineer · Electronic & IoT Systems",
-        description: "Electronic & IoT engineer dengan pengalaman hands-on dalam semiconductor test equipment dan IoT sensor systems. Selesa guna Python, Arduino, dan ESP32.",
-        resume: "Muat turun Resume",
+        role: "Fresh Graduate Engineer · Semiconductor Test & IoT Systems",
+        description: "Pengalaman hands-on dalam semiconductor test equipment dan IoT sensor systems. Selesa guna Python, Arduino, dan ESP32.",
+        resume: "CV atas permintaan",
         contact: "Hubungi Saya"
       },
       nav: {
@@ -239,15 +266,15 @@ const resources = {
       },
       about: {
         title: "Mengenai Saya",
-        p1: "Saya Aiman Hambali, fresh graduate electronic engineer yang duduk di Kota Bharu, Kelantan.",
-        p2: "Kerja saya campur hardware dengan embedded software, dari tools design IC & circuit macam Proteus, Quartus, dan Microwind sampai la bina IoT sensor system atas ESP32 dan Arduino.",
-        p3: "Masa diploma dulu, saya aktif dalam kelab robotik dan pertandingan FIRA, dan pernah jadi hos untuk delegasi pelajar dari Fukuoka, Jepun yang datang ke politeknik saya. Sekarang saya nak terus berkembang sebagai electronic & embedded systems engineer."
+        p1: "Saya Aiman Hambali, jurutera elektronik fresh graduate dari Kota Bharu, Kelantan. Kerja saya campurkan hardware dan embedded software, dari tools reka IC dan litar macam Proteus, Quartus dan Microwind, sampai bina sistem sensor IoT atas ESP32 dan Arduino. Saya suka faham masalah betul-betul dan rancang dulu sebelum mula bina.",
+        p2: "Semasa internship di Unisem, saya diambil pada tahap engineer tapi ambil alih tugas PM Technician bila team kurang staf. Lepas sebulan latihan berstruktur dan sebulan hands-on bawah seliaan, saya jalankan tanggungjawab test line secara solo selama 4 bulan bila juruteknik dipindah ke plant Gopeng. Buat kerja preventive maintenance dan troubleshooting pada semiconductor test equipment (ETS-88, ETS-364, ASL-1000, CCT dan LTX), kesan masalah sebelum jadi downtime, dan coordinate setiap hari dengan supervisor, operator, customer dan line technician. Sebelum internship habis, saya onboard dan latih staf baru.",
+        p3: "Sepanjang diploma saya aktif dalam kelab robotik dan pertandingan FIRA, dan pernah host delegasi pelajar dari Fukuoka, Jepun di politeknik saya. Sekarang saya cari peranan dalam semiconductor test/equipment engineering atau embedded systems, dan terbuka untuk berpindah."
       },
       skills: {
         title: "Kemahiran Teknikal",
         items: ["Proteus", "Quartus II", "NI Multisim", "Microwind", "L-Edit IC", "AutoCAD", "MATLAB", "Python", "Arduino", "ESP32"],
         softTitle: "Soft Skills",
-        softItems: ["Teamwork", "Mentoring & Leadership", "Problem Solving", "Professional Maturity", "Time Management", "Continuous Learning"],
+        softItems: ["Teamwork", "Mentoring & Leadership", "Analytical Problem Solving", "Professional Maturity", "Time Management", "Continuous Learning"],
         langTitle: "Bahasa",
         languages: [
           { name: "Bahasa Malaysia", level: 5, label: "Bahasa Ibunda" },
@@ -368,12 +395,14 @@ const resources = {
           {
             image: "mimos.jpg",
             title: "Lawatan Sambil Belajar MIMOS",
-            caption: "Lawatan sambil belajar Reka Bentuk IC Analog & Digital · MIMOS"
+            caption: "Lawatan sambil belajar Reka Bentuk IC Analog & Digital · MIMOS",
+            note: "Lawatan untuk melihat dan mempelajari teori proses fabrikasi cip IC."
           },
           {
             image: "ayubi.jpg",
             title: "Lawatan Ladang Udang Kara Ayubie",
-            caption: "Lawatan tapak Projek Reka Bentuk Elektronik (EDP) · Ladang Udang Kara Ayubie"
+            caption: "Lawatan tapak Projek Reka Bentuk Elektronik (EDP) · Ladang Udang Kara Ayubie",
+            note: "Mengkaji cara ladang mengaplikasikan IoT dalam operasi mereka, dan jurang yang masih ada, sebagai panduan apa yang boleh dibina pelajar untuk projek Reka Bentuk Elektronik (EDP)."
           }
         ],
         otherLabel: "Aktiviti Lain",
@@ -383,26 +412,51 @@ const resources = {
       contact: {
         title: "Hubungi Saya",
         quote: "Dunia adalah ujian. Ini bukannya syurga untuk segalanya cantik dan baik.",
-        copyright: "© 2026 amnhmb.my"
+        copyright: "© 2026 @amnhmb · All rights reserved"
       },
       projects: {
         title: "Projek",
-        intro: "Sekarang saya bantu bisnes sepupu saya, ThirtyOne Lab, dalam customer service sambil design dan bina sistem digital mereka.",
+        intro: "Sekarang saya urus operasi bisnes sepupu saya, ThirtyOne Lab, sambil design dan bina sistem digital mereka.",
         viewLive: "Buka website",
         private: "Peribadi",
-        items: [
+        companies: [
           {
-            image: "project-catalog.png",
-            title: "ThirtyOne Lab · Katalog & Panel Pentadbir",
-            description: "Web app katalog produk dengan admin panel terbina dalam untuk bisnes. Customer boleh browse katalog dan buat quote request; owner urus produk dan content melalui admin panel.",
-            tech: ["React", "Vite", "Tailwind", "Supabase", "Cloudflare Pages"],
-            link: "https://31lab.pages.dev"
+            logo: "31lab.webp",
+            name: "ThirtyOne Lab",
+            tagline: "Kedai cetak baju sublimation",
+            items: [
+              {
+                image: "project-catalog.png",
+                title: "Katalog & Panel Pentadbir",
+                description: "Web app katalog produk dengan admin panel terbina dalam untuk bisnes. Customer boleh browse katalog dan buat quote request; owner urus produk dan content melalui admin panel. Storefront customer boleh diinstall sebagai app mobile (PWA).",
+                tech: ["React", "Vite", "Tailwind", "Supabase", "Cloudflare Pages", "PWA"],
+                link: "https://31lab.pages.dev"
+              },
+              {
+                image: "project-oms.png",
+                title: "Sistem Pengurusan Pesanan (OMS)",
+                description: "Sistem dalaman untuk urus order, invois, dan tracking status order untuk bisnes, dengan report status harian automatik ke Telegram.",
+                tech: ["React", "Vite", "Supabase", "Tailwind"]
+              }
+            ]
           },
           {
-            image: "project-oms.png",
-            title: "Sistem Pengurusan Pesanan (OMS)",
-            description: "Sistem dalaman untuk urus order, invois, dan tracking status order untuk bisnes, dengan report status harian automatik ke Telegram.",
-            tech: ["React", "Vite", "Supabase", "Tailwind"]
+            logo: "tiga-pasak.png",
+            name: "Tiga Pasak",
+            tagline: "Bisnes sewa barang camping",
+            items: [
+              {
+                image: "project-tiga_pasak-admin_panel.png",
+                title: "Admin Panel Sewaan & Sistem Tempahan",
+                description: "Admin panel peribadi untuk bisnes sewa barang camping: urus inventori dan stok, buat pakej sewaan, ambil dan track tempahan dengan ketersediaan live, serta pantau pickup di dashboard dan kalendar. Boleh diinstall sebagai app mobile (PWA).",
+                tech: ["React", "Vite", "Supabase", "Tailwind", "Cloudflare Pages", "PWA"]
+              }
+            ]
+          },
+          {
+            locked: true,
+            name: "Klien Sulit",
+            tagline: "Projek baru sedang dibina"
           }
         ]
       },
@@ -431,6 +485,249 @@ const resources = {
           mapSub: "mAP@0.5"
         },
         tags: ["IoT (Saya)", "ESP32", "DHT22", "MQ135", "YOLOv8 (Rakan Kolaborasi)", "Deep Learning", "Python"]
+      }
+    }
+  },
+  kel: {
+    translation: {
+      hero: {
+        greeting: "hai, kawe",
+        name: "Aiman Hambali Bin Amran.",
+        role: "Fresh Graduate Engineer · Semiconductor Test & IoT Systems",
+        description: "Ado pengalamey hands-on semiconductor test equipment nga IoT sensor systems. Seleso guno Python, Arduino, nga ESP32.",
+        resume: "CV atah permintaey",
+        contact: "Hubungi Kawe"
+      },
+      nav: {
+        about: "Pasal",
+        skills: "Kemahirey",
+        education: "Pelajarey",
+        experience: "Pengalamey",
+        projects: "Projek",
+        research: "Kajiey",
+        contact: "Roro"
+      },
+      about: {
+        title: "Pasal Kawe",
+        p1: "Kawe Aiman Hambali, fresh graduate electronic engineer, duk kat Kota Bharu, Kelantan. Kijo kawe capur hardware nga embedded software, dari tools design IC & circuit macey Proteus, Quartus, nga Microwind sapa la bina IoT sensor system atah ESP32 nga Arduino. Kawe suko pehe masaloh tu betul-betul, rancang dulu baru mulo wak.",
+        p2: "Maso internship kat Unisem, kawe di ambik pado tahap engineer tapi keno ambik alih kijo PM Technician sebab team kurey staf. Lepah sebulan latihey berstruktur nga sebulan hands-on bawoh seliaey staff, kawe jaley tanggungjawab test line sorey-sorey selamo 4 buley bilo staff keno ata ko plant Gopeng. Buak kijo preventive maintenance nga troubleshooting kat semiconductor test equipment (ETS-88, ETS-364, ASL-1000, CCT nga LTX), kesey masaloh sebelum jadi downtime, nga coordinate setiap hari nga supervisor, operator, customer nga line technician. Sebelum abih internship, kawe onboard nga latih staf baru.",
+        p3: "Sepanjey diploma kawe aktif daley kelab robotik nga masuk pertandingey FIRA, pernoh jadi hos delegasi pelajar dari Fukuoka, Jepun mari kat politeknik kawe. Loni kawe cari kijo dale semiconductor test/equipment engineering nga embedded systems, kawe sedio nok pindoh."
+      },
+      skills: {
+        title: "Kemahiran Teknikal",
+        items: ["Proteus", "Quartus II", "NI Multisim", "Microwind", "L-Edit IC", "AutoCAD", "MATLAB", "Python", "Arduino", "ESP32"],
+        softTitle: "Soft Skills",
+        softItems: ["Teamwork", "Mentoring & Leadership", "Analytical Problem Solving", "Professional Maturity", "Time Management", "Continuous Learning"],
+        langTitle: "Bahaso",
+        languages: [
+          { name: "Bahasa Malaysia", level: 5, label: "Bahaso Ibundo" },
+          { name: "English", level: 3, label: "Sederhano Jah" }
+        ]
+      },
+      experience: {
+        title: "Pengalamey",
+        items: [
+          {
+            role: "Pelatih Engineer",
+            company: "Unisem (M) Berhad",
+            period: "Jul 2025 - Jan 2026",
+            description: [
+              "Masuk jadi engineer, tapi amik inisiatif wat kijo PM Technician sebab pasukey kurey ore.",
+              "Abih 1 bulan structured training, pahtu 1 bulan lagi hands-on training bawoh supervision.",
+              "Handle sore tanggungjawab test line 4 bulan lepah technician pindoh gi kilang Gopeng.",
+              "Uruh preventive maintenance nga troubleshooting mesin semiconductor test (ETS-88, ETS-364, ASL-1000, CCT, nga LTX). Tok gogek.",
+              "Selaras kijo hari-hari nga supervisor, operator, customer, engineering team, nga line technician.",
+              "Dey train nga tunjuk ajar staff baru sebelum abih latihan industri."
+            ]
+          },
+          {
+            role: "Technician Elektrik (Intern)",
+            company: "Kejuruteraan Elektrik Usahamaju Sdn Bhd",
+            period: "Jun 2021 - Ogo 2021",
+            description: [
+              "Tolong pasey Distribution Board (DB) box.",
+              "Wak conduit fitting untuk laluey pendawaian.",
+              "Uruh house wiring biaso."
+            ]
+          }
+        ]
+      },
+      education: {
+        title: "Sejaroh Pelajarey",
+        performance: "Prestasi Akademik",
+        viewTranscript: "Tengok transkrip",
+        semester: "Semester",
+        subject: "Subjek",
+        grade: "Gred",
+        credit: "Kredit",
+        deansList: "Senarai Dekan",
+        items: [
+          {
+            degree: "Sarjana Muda Teknologi Kejuruteraan Elektronik (Kepujian)",
+            school: "Universiti Kuala Lumpur British Malaysian Institute",
+            location: "Gombak, Selangor",
+            period: "Sep 2022 - Mac 2026",
+            details: [
+              "CGPA 3.61",
+              "Projek Tahun Akhir: Sistem penderia berasaskan IoT untuk taney cendawey Volvariella",
+              "Projek Mini: Klip Dobi Bijok (IoT), Guard Keselamatey Baby (IoT)"
+            ],
+            type: "degree"
+          },
+          {
+            degree: "Diploma Kejuruteraan Elektronik (Komunikasi)",
+            school: "Politeknik Ungku Omar",
+            location: "Ipoh, Perak",
+            period: "Dis 2018 - Ogo 2021",
+            details: [
+              "CGPA 3.60",
+              "Projek Tahun Akhir: Robot Ngukah",
+              "Projek Mini: Robot Mudoh Alih Bluetooth"
+            ],
+            type: "diploma"
+          },
+          {
+            degree: "Sijil Pelajaran Malaysia (SPM)",
+            school: "SMK Long Gafar",
+            location: "Sekoloh Menengoh",
+            period: "2016 - 2017",
+            resultsTitle: "Keputusey",
+            results: [
+              { subject: "Bahasa Melayu", grade: "A-" },
+              { subject: "Bahasa Inggeris", grade: "D" },
+              { subject: "Pendidikan Islam", grade: "A-" },
+              { subject: "Sejarah", grade: "B" },
+              { subject: "Matematik", grade: "A" },
+              { subject: "Sains", grade: "A" },
+              { subject: "Matematik Tambahan", grade: "D" },
+              { subject: "Perdagangan", grade: "C" },
+              { subject: "Prinsip Perakaunan", grade: "A-" }
+            ]
+          },
+          {
+            degree: "Menengoh Rendoh",
+            school: "SMK Kota",
+            location: "Sekolah Menengah",
+            period: "2013 - 2015"
+          }
+        ]
+      },
+      achievements: {
+        title: "Pencapaian & Aktiviti",
+        items: [
+          {
+            image: "fira-2019.jpg",
+            title: "Tanding Robotik FIRA 2019",
+            caption: "Tempat Keduo (Pasukey) · Port Dickson",
+            note: "Tanding nga pasukey kelab robotik Politeknik Ungku Omar, dapat tempat keduo."
+          },
+          {
+            image: "award-integrity.jpg",
+            title: "Anugerah Integriti",
+            caption: "Makey Maley Tahuney PRS (Pembimbing Rakey Sebayo) · Politeknik Ungku Omar",
+            note: "Ahli Pembimbing Rakey Sebayo (PRS) maso Diploma."
+          },
+          {
+            image: "nuclear_malaysia.jpg",
+            title: "Konsultasi kat Nuklear Malaysia",
+            caption: "Lawatey konsultasi FYP · Agensi Nuklear Malaysia",
+            note: "Jumpo Dr. Azhar Mohamad, pakar taney cendawan, nok amik ilmu untuk FYP cendawan Volvariella kawe.",
+            link: "https://www.researchgate.net/profile/Azhar-Mohamad-2",
+            linkLabel: "Kajiey Dr. Azhar"
+          },
+          {
+            image: "mimos.jpg",
+            title: "Lawatey Sambil Belajar MIMOS",
+            caption: "Lawatey sambil belajar Reko Bentuk IC Analog & Digital · MIMOS",
+            note: "Lawatey nok tengok nga belajar teori proses buak cip IC."
+          },
+          {
+            image: "ayubi.jpg",
+            title: "Lawatey Ladang Udang Kara Ayubie",
+            caption: "Lawatey tapok Projek Reko Bentuk Elektronik (EDP) · Ladey Udey Karo Ayubie",
+            note: "Kaji macey mano ladey guno IoT daley operasi sep dio, nga jurey hok ado lagi, jadi panduan gapo student buleh bino untuk projek Reko Bentuk Elektronik (EDP)."
+          }
+        ],
+        otherLabel: "Aktiviti Lain",
+        other: ["Kelab Robotik, Politeknik Ungku Omar", "Pitch Perfect 5.0"],
+        close: "Tutup"
+      },
+      contact: {
+        title: "Roger Kawe",
+        quote: "Dunia adalah ujian. Ini bukannya syurga untuk segalanya cantik dan baik.",
+        copyright: "© 2026 @amnhmb · All rights reserved"
+      },
+      projects: {
+        title: "Projek",
+        intro: "Loni kawe uruh operasi bisnes sepupu kawe, ThirtyOne Lab, sambil design nga buat sistem digital ko sep dio.",
+        viewLive: "Buko website",
+        private: "Peribadi",
+        companies: [
+          {
+            logo: "31lab.webp",
+            name: "ThirtyOne Lab",
+            tagline: "Keda print baju sublimation",
+            items: [
+              {
+                image: "project-catalog.png",
+                title: "Katalog & Admin Panel",
+                description: "Web app katalog produk nga admin panel untuk bisnes. Customer buleh browse katalog; owner uruh prodak nga content di admin panel. Storefront customer buleh install macey mobile app (PWA).",
+                tech: ["React", "Vite", "Tailwind", "Supabase", "Cloudflare Pages", "PWA"],
+                link: "https://31lab.pages.dev"
+              },
+              {
+                image: "project-oms.png",
+                title: "Sistem Pengurusey Pesaney (OMS)",
+                description: "Sistem dalamey untuk uruh order, invois, nga tracking status order untuk bisnes, nga report status hari-hari automatik gi Telegram.",
+                tech: ["React", "Vite", "Supabase", "Tailwind"]
+              }
+            ]
+          },
+          {
+            logo: "tiga-pasak.png",
+            name: "Tiga Pasak",
+            tagline: "Bisnes sewo barey camping",
+            items: [
+              {
+                image: "project-tiga_pasak-admin_panel.png",
+                title: "Admin Panel Sewo & Sistem Tempahey",
+                description: "Admin panel peribadi untuk bisnes sewo barey camping: uruh inventori nga stok, wak pakej sewo, ambik nga track tempahey nga availability live, pahtu buleh tengok pickup kat dashboard nga kalendar. Buleh install macey mobile app (PWA).",
+                tech: ["React", "Vite", "Supabase", "Tailwind", "Cloudflare Pages", "PWA"]
+              }
+            ]
+          },
+          {
+            locked: true,
+            name: "Klien Sulit",
+            tagline: "Projek baru tengoh wak"
+          }
+        ]
+      },
+      research: {
+        title: "Kajian Kes",
+        paperTitle: "An IoT-Enabled Growth Management System with Deep Learning-Based Monitoring for Volvariella volvacea Mushroom Cultivation in Controlled Environments",
+        meta: "Wiley · Applied Research (Artikel Penyelidikan)",
+        status: "Under peer review",
+        role: "Co-author (paper gabung duo Final Year Project)",
+        overviewLabel: "Gambaran Keseluruhan",
+        overview: "Cendawan Volvariella tinggi permintaan kat Malaysia, tapi caro taney tradisional payoh nok kekal keadaan persekitaran hok ideal, jadi hasil nga kualiti tak tentu. Paper ni gabung projek IoT environmental control kawe nga projek deep learning monitoring saeng kawe jadi satu sistem lengkap.",
+        approachLabel: "Sumbangan Kawe (Sistem IoT)",
+        approach: "Kawe design nga bina IoT environmental control system guno ESP32 microcontroller nga sensor DHT22 (suhu/kelembapey), MQ135 (CO2), nga HW-038 (parah air). Dio kawal actuator (fogger, water pump, heater, kipas ventilation) nok kekal keadaan ideal automatik, 28-35°C, 75-95% RH, nga CO2 < 1000 ppm.",
+        collabLabel: "Sumbangey Saeng Kolaborasi (Model AI)",
+        collab: "Saeng co-author sumbey komponen deep learning YOLOv8 nok pantau empat peringkat tumbuh cendawan (Tiny, Button, Egg, Mature).",
+        resultsLabel: "Keputusey Utamo",
+        button: "Tengok kertas penuh",
+        stats: {
+          period: "~85%",
+          periodSub: "dale julat sasarey",
+          acc: "93.12%",
+          accSub: "ketepatey klasifikasi",
+          f1: "87.9%",
+          f1Sub: "makro-purata F1",
+          map: "0.78",
+          mapSub: "mAP@0.5"
+        },
+        tags: ["IoT (Kawe)", "ESP32", "DHT22", "MQ135", "YOLOv8 (Saeng Kawe)", "Deep Learning", "Python"]
       }
     }
   }
